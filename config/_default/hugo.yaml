@@ -1,0 +1,261 @@
+# General Hugo config. For Theme and CMS see params.yaml.
+
+baseURL: https://www.freecad.org/
+title: FreeCAD
+
+defaultContentLanguage: en
+
+menus:
+  main:
+  - pageRef: /features
+  - pageRef: /download
+  - pageRef: /news
+  - pageRef: /community
+  - pageRef: /docs
+  - pageRef: /donate
+    params:
+      class: button
+
+  footer:
+  - pageRef: /
+  - pageRef: /features
+  - pageRef: /download
+  - pageRef: /news
+    identifier: news
+  - pageRef: /news/archives
+    parent: news
+  - pageRef: /community
+  - pageRef: /docs
+    identifier: docs
+  - pageRef: /manual
+    parent: docs
+  - pageRef: /dev
+    parent: docs
+  - pageRef: /reference
+    parent: docs
+  - pageRef: /donate
+
+taxonomies:
+  category: categories
+  tag: tags
+  author: authors
+  version: versions
+
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+enableEmoji: true
+
+mainSections: news
+
+summaryLength: 20
+
+# Max number of listed pages (splits).
+pagination:
+  pagerSize: 12
+
+# Override url scheme (e.g. omit news section sub-folders).
+permalinks:
+  page:
+    news: /:sections[0]/:slugorcontentbasename
+
+cascade:
+  - weight: 10
+    target:
+      kind: home
+      path: "{/}"
+
+  - weight: 20
+    target:
+      kind: section
+      path: "{/features}"
+
+  - weight: 30
+    target:
+      kind: section
+      path: "{/download}"
+
+  - weight: 40
+    target:
+      kind: section
+      path: "{/news}"
+
+  - weight: 50
+    target:
+      kind: section
+      path: "{/community}"
+
+  - weight: 60
+    target:
+      kind: section
+      path: "{/docs}"
+
+  - weight: 70
+    target:
+      kind: section
+      path: "{/manual}"
+
+  - weight: 80
+    target:
+      kind: section
+      path: "{/dev}"
+
+  - weight: 90
+    target:
+      kind: section
+      path: "{/reference}"
+
+  - weight: 100
+    target:
+      kind: section
+      path: "{/donate}"
+
+  - weight: 110
+    target:
+      kind: section
+      path: "{/admin}"
+
+  - params:
+      breadcrumbs: true
+    target:
+      path: /dev/*/**
+
+  - params:
+      no_listing: true
+    target:
+      path: /donate
+
+module:
+  mounts:
+    - source: assets
+      target: assets
+    - source: static # Allow to pipe process static files.
+      target: assets
+
+    - source: content/zh
+      target: content
+      sites:
+        matrix:
+          languages:
+            - zh
+    - source: content/es
+      target: content
+      sites:
+        matrix:
+          languages:
+            - es
+    - source: content/fr
+      target: content
+      sites:
+        matrix:
+          languages:
+            - fr
+    - source: content/pt
+      target: content
+      sites:
+        matrix:
+          languages:
+            - pt
+    - source: content/de
+      target: content
+      sites:
+        matrix:
+          languages:
+            - de
+    - source: content/ja
+      target: content
+      sites:
+        matrix:
+          languages:
+            - ja
+# Keep default English fallback at end of mounts list.
+    - source: content/en
+      target: content
+      sites:
+        matrix:
+          languages:
+            - "*"
+
+outputs:
+  home:
+    - html
+  section:
+    - html
+  taxonomy:
+    - html
+  term:
+    - html
+
+disableKinds:
+  - rss
+
+# Keep for local dev. Production build uses --minify.
+minify:
+  minifyOutput: false
+
+markup:
+  goldmark:
+    duplicateResourceFiles: false
+    parser:
+      attribute:
+        block: true
+        title: true
+      autoDefinitionTermID: true
+      wrapStandAloneImageWithinParagraph: false
+    renderer:
+      unsafe: true
+    extensions:
+      strikethrough: false
+      extras:
+        delete:
+          enable: true
+        insert:
+          enable: true
+        mark:
+          enable: true
+        subscript:
+          enable: true
+        superscript:
+          enable: true
+  highlight:
+    style: dracula # NOTE: Currently overridden by highlight.css. Keep for now.
+    lineNos: false
+    noClasses: false
+  tableOfContents:
+    startLevel: 1
+    endLevel: 3
+    ordered: false
+
+imaging:
+  quality: 75
+  resampleFilter: mitchellNetravali
+  exif:
+    disableDate: true
+    disableLatLong: true
+
+enableGitInfo: true
+
+services:
+  googleAnalytics:
+    id: # Google Analytics G-MEASUREMENT_ID.
+
+privacy:
+  googleAnalytics:
+    disable: true
+    respectDoNotTrack: true
+  youtube:
+    disabled: false
+    privacyEnhanced: true
+
+caches:
+  getresource:
+    dir: :cacheDir/:project
+    maxAge: 24h
+  modules:
+    dir: :cacheDir/modules
+    maxAge: 24h
+  images:
+    dir: :cacheDir/images
