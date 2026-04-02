@@ -184,7 +184,7 @@ Current supported languages are defined in the general site configuration `confi
 
 Translations of the content are stored in the same folder ([leaf bundle](https://gohugo.io/content-management/page-bundles/) method) as the default language file (English) using a [translation by file name](https://gohugo.io/content-management/multilingual/#translate-your-content) approach.
 
-Translations of the Theme are handled by translations tables in `themes/Trigo/i18n`.
+Translations of the Theme are handled by translations tables in `themes/trigo/i18n`.
 
 Before a new language is enabled, the main navigation pages (Homepage, Features, Download, News, Community, Documentation and Donate) and the Theme strings must be translated.
 If willing to add a new language, use the provided [feature issue](https://github.com/FreeCAD/website/issues) template indicating who will translate and who will proof-read/review.
@@ -205,7 +205,7 @@ Pages, translations and resources such as illustrations can be added, edited or 
 > [!NOTE]
 > The Trigo Theme is WIP and its structure and methods may change in the near future.
 
-The custom-made Trigo Theme is used. It is included directly in the `themes/Trigo` directory. Read its [own documentation](themes/Trigo/README.md) to find out more.
+The custom-made Trigo Theme is used. It is included directly in the `themes/trigo` directory. Read its [own documentation](themes/trigo/README.md) to find out more.
 
 
 ## Tips
@@ -236,4 +236,4 @@ The trademark of FreeCAD branded resources (e.g. FreeCAD logo) is registered and
 
 ### Theme
 
-The `Trigo` Theme is licensed under the [MIT License](https://github.com/FreeCAD/website/blob/main/themes/Trigo/LICENSE "Read the license text").
+The `Trigo` Theme is licensed under the [MIT License](https://github.com/FreeCAD/website/blob/main/themes/trigo/LICENSE "Read the license text").
