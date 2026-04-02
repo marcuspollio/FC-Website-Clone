@@ -1,0 +1,20 @@
+/*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/
+
+/* Main CSS stylesheet with imported files. Order is important! */
+
+
+@import './vars.css';
+@import './body.css';
+@import './header.css';
+@import './hero.css';
+@import './content.css';
+@import './footer.css';
+@import './404.css';
+@import './archive.css';
+@import './share.css';
+@import './highlight.css';
+@import './media.css';
