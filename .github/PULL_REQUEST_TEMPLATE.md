@@ -17,7 +17,7 @@ Examples:
 - Download: German translation
 - Theme: Fix size on mobile
 - Theme: Add new shortcode
-- Hugo: Update version to 0.158.0
+- Hugo: Update version to 0.160.0
 -->
 
 ---

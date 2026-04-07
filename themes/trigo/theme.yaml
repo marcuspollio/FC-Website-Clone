@@ -26,7 +26,7 @@ features:
   - Minified-assets
   - Render hooks
   - Chroma-toggle (Light and Dark)
-min_version: 0.158.0
+min_version: 0.160.0
 author:
   name: FreeCAD contributors
   homepage: https://github.com/freecad/website/

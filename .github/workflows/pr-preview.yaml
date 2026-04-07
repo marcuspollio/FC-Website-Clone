@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ needs.action.outputs.action == 'deploy' && needs.action.outputs.draft != 'true' }}
     env:
-      HUGO_VERSION: 0.158.0
+      HUGO_VERSION: 0.160.0
       HUGO_ENVIRONMENT: production
       TZ: Europe/Berlin
     needs: action
