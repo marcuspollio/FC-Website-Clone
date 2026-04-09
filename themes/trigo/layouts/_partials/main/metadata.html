@@ -12,63 +12,30 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
+{{- $params := site.Params -}}
+{{- $key := "" -}}
+{{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+
 <div class="metadata">
 
-  {{- $params := site.Params -}}
-  {{- $taxonomy_counts := partialCached "utils/taxonomy_counts.html" . "taxonomy_counts" -}}
-
-  {{- $date := .Date -}}
-  {{- if not $date.IsZero -}}
-    <span class="meta">
-      {{- partialCached "utils/icon.html" "date" "date" -}}
-      <time datetime="{{ $date.UTC.Format "2006-01-02T15:04:05Z" }}">{{- $date | time.Format ":date_long" -}}</time>
-    </span>
+  {{- if $params.show_date -}}
+    {{- partialCached "main/meta_date.html" . $key -}}
   {{- end -}}
 
-  {{- range $taxonomy, $terms := site.Taxonomies -}}
-    {{- $show := index $params (printf "show_%s" (lower $taxonomy)) | default false -}}
-
-    {{- if and $show (index $.Params $taxonomy) -}}
-      {{- with $.GetTerms $taxonomy -}}
-        <span class="meta {{ $taxonomy }}">
-          {{- partialCached "utils/icon.html" $taxonomy (lower $taxonomy) -}}
-
-          {{- range . -}}
-            {{- $count := index (index $taxonomy_counts $taxonomy) (.Data.Term | urlize) -}}
-            <a href="{{ .RelPermalink }}">{{ .LinkTitle }} ({{ $count }})</a>
-          {{- end -}}
-        </span>
-      {{- end -}}
-    {{- end -}}
+  {{- if $params.show_taxonomy -}}
+    {{- partialCached "main/meta_taxonomy.html" . $key -}}
   {{- end -}}
 
-  {{- $words := .WordCount -}}
-  {{- if and $params.show_word_count (gt $words 0) -}}
-    <span class="meta">
-      {{- partialCached "utils/icon.html" "words" "words" -}}
-      {{- i18n "words" $words | default (printf "%d words" $words) -}}
-    </span>
+  {{- if $params.show_word_count -}}
+    {{- partialCached "main/meta_words.html" . $key -}}
   {{- end -}}
 
-  {{- $reading := .ReadingTime -}}
-  {{- if and $params.show_reading_time (gt $reading 0) -}}
-    <span class="meta">
-      {{- partialCached "utils/icon.html" "time" "time" -}}
-      {{- i18n "read_time" $reading | default (printf "%d min" $reading) -}}
-    </span>
+  {{- if $params.show_reading_time -}}
+    {{- partialCached "main/meta_reading.html" . $key -}}
   {{- end -}}
 
   {{- if $params.show_translations -}}
-    {{- with .Translations -}}
-      <span class="meta">
-        {{- partialCached "utils/icon.html" "translations" "translations" -}}
-        {{- range . -}}
-          <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}">
-            {{ .LinkTitle }} ({{ .Language.Label }})
-          </a>
-        {{- end -}}
-      </span>
-    {{- end -}}
+    {{- partialCached "main/meta_translations.html" . $key -}}
   {{- end -}}
 
 </div>

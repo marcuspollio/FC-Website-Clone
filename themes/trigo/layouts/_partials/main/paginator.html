@@ -24,7 +24,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <div class="card-list wide">
     <div class="cards">
       {{- range . -}}
-        {{- partialCached "main/card.html" . .RelPermalink -}}
+        {{- $key := "" -}}
+        {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+        {{- partialCached "main/card.html" . $key -}}
       {{- end -}}
     </div>
 

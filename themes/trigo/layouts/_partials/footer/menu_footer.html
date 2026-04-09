@@ -44,7 +44,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- if or .Page $is_external -}}
         <li>
           <a href="{{ .URL }}"
-            title="{{ $name }}"
             {{ with $class }}class="{{ delimit . " " }}"{{ end }}
             {{ with $aria }}aria-current="{{ . }}"{{ end }}
             {{ with .Params.style }}style="{{ . }}"{{ end }}
@@ -63,7 +62,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                 {{- $is_external := and (hasPrefix .URL "http") (not (hasPrefix .URL site.BaseURL)) -}}
                 <li>
                   <a href="{{ .URL }}"
-                    title="{{ $name }}"
                     {{ with .Params.style }}style="{{ . }}"{{ end }}
                     {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
                     {{- $name -}}
@@ -81,18 +79,31 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                   (not .Params.no_listing)
                 -}}
                   {{- range .Pages.ByWeight -}}
-                    {{- $name := .LinkTitle -}}
                     <li>
                       <a href="{{ .RelPermalink }}"
-                        title="{{ $name }}"
                         {{ with .Params.class }}class="{{ delimit . " " }}"{{ end }}
                         {{ with .Params.style }}style="{{ . }}"{{ end }}>
-                        {{- $name -}}
+                        {{- .LinkTitle -}}
                       </a>
                     </li>
                   {{- end -}}
+
+                {{- else if eq .Section (index site.MainSections 0) }}
+                  {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
+                  {{- range $key, $value := $taxonomy_map -}}
+                    {{- if hasSuffix $key "_data" -}}
+                      {{- $link_title := lower $value.link_title -}}
+                      {{- $title := i18n $link_title | default $link_title -}}
+                      <li>
+                        <a href="{{ $value.rel_permalink }}">
+                          {{- title $title -}}
+                        </a>
+                      </li>
+                    {{- end -}}
+                  {{- end -}}
                 {{- end -}}
               {{- end -}}
+
             </ul>
           {{- end -}}
 

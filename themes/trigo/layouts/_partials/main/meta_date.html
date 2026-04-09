@@ -1,0 +1,15 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Page date metadata. */ -}}
+
+
+{{- with .Date -}}
+  <span class="meta">
+    {{- partialCached "utils/icon.html" "date" "date" -}}
+    <time datetime="{{ .UTC.Format "2006-01-02T15:04:05Z" }}">{{- . | time.Format ":date_long" -}}</time>
+  </span>
+{{- end -}}

@@ -13,16 +13,20 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
+{{- $params := site.Params -}}
+{{- $key := "" -}}
+{{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+
 <a class="card"
   href="{{ with .Params.redirect }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}"
   title="{{ .Title }}">
 
   {{- /* Get article card cover image. */ -}}
-  {{- with (partialCached "main/card_image.html" . .RelPermalink) -}}
+  {{- with (partialCached "main/card_image.html" . $key) -}}
     {{- . -}}
 
   {{- else -}}
-    {{- $card_hue := partialCached "utils/color_hue.html" . .RelPermalink -}}
+    {{- $card_hue := partialCached "utils/color_hue.html" . $key -}}
     <div class="card-color" style="--hue: {{ $card_hue }};">
       {{- with .Params.icon -}}
         <span class="card-icon">
@@ -49,21 +53,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
   {{- end -}}
 
-  {{- if not .Date.IsZero -}}
-    <div class="card-metadata">
-      <span class="meta">
-        {{- partialCached "utils/icon.html" "date" "date" -}}
-        <time datetime="{{ .Date.UTC.Format "2006-01-02T15:04:05Z" }}">
-          {{- .Date | time.Format ":date_long" -}}
-        </time>
-      </span>
-
-      {{- with index (.GetTerms "categories") 0 -}}
-        <span class="meta">
-          {{- partialCached "utils/icon.html" "categories" "categories" -}}
-          {{ .LinkTitle }}
-        </span>
-      {{- end -}}
-    </div>
-  {{- end -}}
+  <div class="card-metadata">
+    {{- if $params.show_date -}}
+      {{- partialCached "main/meta_date.html" . $key -}}
+    {{- end -}}
+  </div>
 </a>

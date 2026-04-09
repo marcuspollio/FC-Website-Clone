@@ -26,11 +26,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       <h3 class="description">{{- . | $.RenderString -}}</h3>
     {{- end -}}
 
+    {{- $key := "" -}}
+    {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+
     {{- /* Get article metadata. */ -}}
-    {{- partialCached "main/metadata.html" . .RelPermalink -}}
+    {{- partialCached "main/metadata.html" . $key -}}
 
     {{- /* Get article cover image. */ -}}
-    {{- partialCached "main/cover.html" . .RelPermalink -}}
+    {{- partialCached "main/cover.html" . $key -}}
 
   </section>
 
@@ -43,7 +46,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- partial "main/content.html" . -}}
 
   {{/* Dynamically include content partials. */}}
-  {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "content" "auto" true) -}}
+  {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "content" "auto" true) $key -}}
 
   {{- /* Get pagination to previous and next pages. */ -}}
   {{- if site.Params.show_pagination -}}

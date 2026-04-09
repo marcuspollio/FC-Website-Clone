@@ -1,0 +1,15 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Page words count metadata. */ -}}
+
+
+{{- with .WordCount -}}
+  <span class="meta">
+    {{- partialCached "utils/icon.html" "words" "words" -}}
+    {{- i18n "words" . | default (printf "%d words" .) -}}
+  </span>
+{{- end -}}

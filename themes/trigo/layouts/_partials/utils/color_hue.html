@@ -71,7 +71,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- $hue = add $base (mul .Weight $step) -}}
 
   {{- else if (eq .Section (index site.MainSections 0)) -}}
-    {{- $data := partialCached "utils/taxonomy_counts.html" . "taxonomy_counts" -}}
+    {{- $data := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
     {{- $categories := .Params.categories | default "" -}}
     {{- $category := cond (reflect.IsSlice $categories) (index $categories 0) $categories -}}
     {{- $category = replace (string $category) " " "-" -}}

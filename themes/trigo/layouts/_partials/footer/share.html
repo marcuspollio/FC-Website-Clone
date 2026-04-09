@@ -27,9 +27,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $tags := slice -}}
 {{- with .Params.tags -}}
-  {{- range . -}}
-    {{- $tag := printf "#%s" . | urlize -}}
-    {{- $tags = $tags | append $tag -}}
+  {{- if reflect.IsSlice . -}}
+    {{- range . -}}
+      {{- $tag := printf "#%s" . | urlize -}}
+      {{- $tags = $tags | append $tag -}}
+    {{- end -}}
   {{- end -}}
   {{- $tags = printf "\n%s" (delimit $tags " ") -}}
   {{- $desc = printf "%s%s" $desc $tags | urlquery -}}

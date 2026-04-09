@@ -16,7 +16,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   {{- $buttons := .Params.buttons -}}
   {{- $hero := .Params.hero | default hugo.Sites.Default.Params.hero -}}
-  {{- $section_hue := partialCached "utils/color_hue.html" . .RelPermalink -}}
+  {{- $key := "" -}}
+  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+  {{- $section_hue := partialCached "utils/color_hue.html" . $key -}}
 
   <section class="hero"
     {{ if $section_hue }}style="--hue: {{ $section_hue }};"{{ end }}>

@@ -12,16 +12,17 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- define "main" -}}
 
-  {{- $taxonomy := .Type -}}
+  {{- $taxonomy := .Data.Plural -}}
   {{- $title := i18n $taxonomy | default $taxonomy -}}
   {{- $terms := .Data.Terms -}}
 
-  {{- $cover_image := partialCached "main/cover.html" . .RelPermalink -}}
+  {{- $key := "" -}}
+  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+  {{- $cover_image := partialCached "main/cover.html" . $key -}}
   {{- $section_hue := "" -}}
   {{- if not $cover_image}}
-    {{- $section_hue = partialCached "utils/color_hue.html" . .RelPermalink -}}
+    {{- $section_hue = partialCached "utils/color_hue.html" . $key -}}
   {{- end -}}
-  {{- $taxonomy_counts := partialCached "utils/taxonomy_counts.html" . "taxonomy_counts" -}}
 
   <section class="hero"
     {{ if $section_hue }}style="--hue: {{ $section_hue }};"{{ end }}>
@@ -36,12 +37,13 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
 
     {{- with $terms -}}
+      {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
       <ul class="terms">
         {{- range .Alphabetical -}}
-          {{- with .Page -}}
-            {{- $count := index (index $taxonomy_counts $taxonomy) (.Data.Term | urlize) -}}
-            <a href="{{ .RelPermalink }}">
-              {{ .LinkTitle }} ({{ $count }})
+          {{- $term := .Term | anchorize -}}
+          {{- with index (index $taxonomy_map $taxonomy) $term -}}
+            <a href="{{ .rel_permalink }}">
+              {{- .link_title }} ({{ .count -}})
             </a>
           {{- end -}}
         {{- end -}}

@@ -8,10 +8,8 @@ style:
   font-sans: '-apple-system, Arial, Helvetica, "Helvetica Neue", Verdana, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", "Noto Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif'
   font-mono: '"Ubuntu Mono", monospace, "Lucida Console", Monaco, Menlo, Consolas, "Andale Mono"'
 
-show_categories: true
-show_tags: true
-show_versions: true
-show_authors: true
+show_date: true
+show_taxonomy: true
 show_word_count: true
 show_reading_time: true
 show_translations: false

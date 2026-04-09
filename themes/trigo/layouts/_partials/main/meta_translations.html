@@ -1,0 +1,17 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Page translations metadata. */ -}}
+
+
+{{- with .Translations -}}
+  <span class="meta">
+    {{- partialCached "utils/icon.html" "translations" "translations" -}}
+    {{- range . -}}
+      <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}">{{ .LinkTitle }} ({{ .Language.Label }})</a>
+    {{- end -}}
+  </span>
+{{- end -}}

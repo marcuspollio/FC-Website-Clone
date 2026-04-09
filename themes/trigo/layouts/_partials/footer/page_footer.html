@@ -15,7 +15,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 <footer class="site-footer">
 
-  {{- partialCached "footer/top.html" . "top" -}}
+  {{- partialCached "footer/top.html" "top" "top" -}}
 
   {{- /* Get Footer Menu. */ -}}
   {{- if site.Menus.footer -}}

@@ -40,7 +40,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                       {{- if .Draft -}}<sup><span>[{{ i18n "draft" | default "Draft" }}]</span></sup>{{- end -}}
                     </h4>
                   </a>
-                  {{- partialCached "main/metadata.html" . .RelPermalink -}}
+                  {{- $key := "" -}}
+                  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+                  {{- partialCached "main/metadata.html" . $key -}}
                 </article>
               {{- end -}}
 

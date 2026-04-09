@@ -1,0 +1,34 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Page taxonomy metadata. */ -}}
+
+
+{{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
+
+{{- range $taxonomy, $terms := site.Taxonomies -}}
+
+  {{- if isset $.Params $taxonomy -}}
+    {{- $page_terms := (index $.Params $taxonomy) | default (slice) -}}
+    {{- if not (reflect.IsSlice $page_terms) -}}
+      {{- $page_terms = slice $page_terms -}}
+    {{- end -}}
+
+    {{- with $page_terms -}}
+      <span class="meta {{ $taxonomy }}">
+        {{- partialCached "utils/icon.html" $taxonomy $taxonomy -}}
+        {{- $tax := index $taxonomy_map $taxonomy -}}
+
+        {{- range $page_terms -}}
+          {{- $term := index $tax (. | anchorize) -}}
+          {{- with $term -}}
+            <a href="{{ .rel_permalink }}">{{ .link_title }} ({{ .count }})</a>
+          {{- end -}}
+        {{- end -}}
+      </span>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

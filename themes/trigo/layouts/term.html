@@ -14,20 +14,27 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   {{- $taxonomy := lower .Data.Plural -}}
   {{- $taxonomy_title := i18n (lower .Data.Singular) | default .Data.Singular -}}
-  {{- $cover_image := partialCached "main/cover.html" . .RelPermalink -}}
+
+  {{- $key := "" -}}
+  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+
+  {{- $cover_image := partialCached "main/cover.html" . $key -}}
   {{- $section_hue := "" -}}
   {{- if not $cover_image}}
-    {{- $section_hue = partialCached "utils/color_hue.html" . .RelPermalink -}}
+    {{- $section_hue = partialCached "utils/color_hue.html" . $key -}}
   {{- end -}}
-  {{- $taxonomy_counts := partialCached "utils/taxonomy_counts.html" . "taxonomy_counts" -}}
-  {{- $count := index (index $taxonomy_counts $taxonomy) (.Data.Term | urlize) -}}
+
+  {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
+  {{- $term := index (index $taxonomy_map $taxonomy) (.Data.Term | anchorize) -}}
 
   <section class="hero"
     {{ if $section_hue }}style="--hue: {{ $section_hue }};"{{ end }}>
 
     <h1 class="title">
       {{ partialCached "utils/icon.html" $taxonomy $taxonomy }}
-      {{ title $taxonomy_title }}: {{ .Title }} ({{ $count }})
+      {{- with $term -}}
+        {{ title $taxonomy_title }}: {{ title .link_title }} ({{ .count }})
+      {{- end -}}
     </h1>
 
     {{- with .Description -}}

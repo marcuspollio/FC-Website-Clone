@@ -671,11 +671,11 @@ figure .internal-tooltip {
   gap: var(--gap);
 }
 
-.kind-section .pagination {
+.list .pagination {
   padding: var(--gap) calc((100vw - var(--width)) * 0.5);
 }
 
-.kind-page .pagination {
+.single .pagination {
   padding: var(--gap) calc((100vw - var(--content-width)) * 0.5);
 }
 

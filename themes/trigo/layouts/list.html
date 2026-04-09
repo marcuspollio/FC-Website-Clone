@@ -28,12 +28,15 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
   {{- end -}}
 
+  {{- $key := "" -}}
+  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+
   {{- /* Get cover image. */ -}}
-  {{- $cover_image := partialCached "main/cover.html" . .RelPermalink -}}
+  {{- $cover_image := partialCached "main/cover.html" . $key -}}
 
   {{- $section_hue := "" -}}
   {{- if not $cover_image}}
-    {{- $section_hue = partialCached "utils/color_hue.html" . .RelPermalink -}}
+    {{- $section_hue = partialCached "utils/color_hue.html" . $key -}}
   {{- end -}}
 
   <section class="hero"
@@ -57,22 +60,31 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
 
     {{/* Dynamically include hero partials. */}}
-    {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "hero" "auto" true) -}}
+    {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "hero" "auto" true) $key -}}
 
     {{- if and (eq .Section (index site.MainSections 0)) (or site.Taxonomies site.Menus.footer) -}}
       <div class="buttons">
-        {{- range $taxonomy, $terms := site.Taxonomies -}}
-          {{- with $terms -}}
-            {{- $title := i18n (lower .Page.LinkTitle) | default .Page.LinkTitle -}}
-            <a href="{{ .Page.RelPermalink }}" class="hero-button">
-              {{ partialCached "utils/icon.html" .Page.Title (lower .Page.Title) }}
-              {{ title $title }} ({{ len . }})</a>
+
+        {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
+        {{- range $key, $value := $taxonomy_map -}}
+          {{- if hasSuffix $key "_data" -}}
+            {{- $link_title := lower $value.link_title -}}
+            {{- $title := i18n $link_title | default $link_title -}}
+            <a href="{{ $value.rel_permalink }}"
+              class="hero-button">
+              {{ partialCached "utils/icon.html" $link_title $link_title }}
+              {{ title $title }} ({{ $value.count }})
+            </a>
           {{- end -}}
         {{- end -}}
+
         {{- range site.Menus.footer -}}
           {{- if and .HasChildren (eq .Identifier $.Section) -}}
             {{- range .Children -}}
-              <a href="{{ .URL }}" class="hero-button">{{ .Name }}</a>
+              <a href="{{ .URL }}"
+                class="hero-button">
+                {{ .Name }}
+              </a>
             {{- end -}}
           {{- end -}}
         {{- end -}}
@@ -83,7 +95,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       <div class="card-list wide">
         <div class="cards">
           {{- range . -}}
-            {{- partialCached "main/card.html" . .RelPermalink -}}
+            {{- $card := "" -}}
+            {{- with .File -}}{{- $card = .Path -}}{{- else -}}{{- $card = .RelPermalink -}}{{- end -}}
+            {{- partialCached "main/card.html" . $card -}}
           {{- end -}}
         </div>
       </div>
@@ -94,12 +108,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   </section>
 
   {{/* Dynamically include content partials. */}}
-  {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "content") -}}
 
   {{- /* Get Table Of Contents. */ -}}
   {{- if and .Params.toc .Content (not .Pages) -}}
     {{- partial "main/table_contents.html" . -}}
   {{- end -}}
+  {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "content") $key -}}
 
   {{- /* Get page content. */ -}}
   {{- partial "main/content.html" . -}}

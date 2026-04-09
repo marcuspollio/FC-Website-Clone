@@ -1,0 +1,15 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Page reading time metadata. */ -}}
+
+
+{{- with .ReadingTime -}}
+  <span class="meta">
+    {{- partialCached "utils/icon.html" "time" "time" -}}
+    {{- i18n "read_time" . | default (printf "%d min" .) -}}
+  </span>
+{{- end -}}

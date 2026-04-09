@@ -80,7 +80,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- with .Page.GetPage .Destination -}}
       <span class="tooltip">
         <strong>{{- .Title -}}</strong>
-        {{- .Description | default .Summary | .RenderString -}}
+        {{- .Description -}}
       </span>
     {{- end -}}
   {{- end -}}
