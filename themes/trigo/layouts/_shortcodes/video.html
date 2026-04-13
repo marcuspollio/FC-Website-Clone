@@ -18,28 +18,60 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- $src := cond (.IsNamedParams) (.Get "src") (.Get 0) -}}
-{{- $poster := .Page.Resources.GetMatch (cond (.IsNamedParams) (.Get "poster") (.Get 1)) | default "" -}}
-{{- $video := .Page.Resources.GetMatch $src -}}
-{{- $video_fallback := i18n "video_fallback" | default "Your browser does not support the video tag." -}}
+{{- $poster := cond (.IsNamedParams) (.Get "poster") (.Get 1) | default "" -}}
 
-{{- if not $poster -}}
+{{- $url := urls.Parse $src -}}
+{{- $is_remote := $url.IsAbs -}}
+
+{{- $video := "" -}}
+{{- $poster_res := "" -}}
+
+{{- if $is_remote -}}
+  {{- $video = $src -}}
+{{- else -}}
+  {{- with .Page.Resources.GetMatch $src -}}
+    {{- $video = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $poster -}}
+  {{- if (urls.Parse $poster).IsAbs -}}
+    {{- with try (resources.GetRemote $poster) -}}
+      {{- with .Value }}
+        {{- $poster_res = .RelPermalink -}}
+      {{- else }}
+        {{- $poster_res = $poster -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- with .Page.Resources.GetMatch $poster -}}
+      {{- $poster_res = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if and (not $poster_res) (not $is_remote) -}}
   {{- $filename := replace $src (printf ".%s" (path.Ext $src)) "" -}}
-  {{- range $extension := slice "jpg" "jpeg" "png" "webp" -}}
-    {{- with (first 1 ($.Page.Resources.Match (printf "%s*.%s" $filename $extension))) -}}
-      {{- $poster = . -}}
+  {{- range $ext := slice "jpg" "jpeg" "png" "webp" -}}
+    {{- with (first 1 ($.Page.Resources.Match (printf "%s*.%s" $filename $ext))) -}}
+      {{- $poster_res = (index . 0).RelPermalink -}}
       {{- break -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
+{{- $video_fallback := i18n "video_fallback" | default "Your browser does not support the video tag." -}}
+
 <figure>
-  <video preload="metadata"
+  <video
+    preload="metadata"
     controls
-    {{ with $poster }}poster="{{ .RelPermalink }}"{{ end }}>
+    playsinline
+    loading="lazy"
+    {{ with $poster_res }}poster="{{ . }}"{{ end }}>
 
     {{- with $video -}}
-      <source src="{{ .RelPermalink }}"
-        type="video/{{ .MediaType.SubType }}">
+      <source src="{{ . }}">
 
     {{- else -}}
       <p>Video resource '{{ $src }}' not found.</p>

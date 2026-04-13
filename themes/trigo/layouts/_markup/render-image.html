@@ -49,7 +49,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- with $resource -}}
   {{- if eq .MediaType.MainType "video" -}}
     <figure>
-      <video preload="metadata" controls>
+      <video preload="metadata" controls playsinline loading="lazy">
         <source src="{{ .RelPermalink | safeURL }}">
         {{- $video_fallback -}}
       </video>
