@@ -442,16 +442,16 @@ figure .internal-tooltip {
   --card-hue: calc(var(--hue) * 3deg);
   background: linear-gradient(
     135deg,
-    hsl(var(--card-hue), 50%, 70%) 0%,
-    hsl(calc(var(--card-hue) + 30deg), 50%, 70%) 100%
+    hsl(var(--card-hue), 50%, 75%) 0%,
+    hsl(calc(var(--card-hue) + 30deg), 50%, 75%) 100%
   );
 }
 
 .dark .card-color {
   background: linear-gradient(
     135deg,
-    hsl(var(--card-hue), 50%, 30%) 0%,
-    hsl(calc(var(--card-hue) + 30deg), 50%, 30%) 100%
+    hsl(var(--card-hue), 50%, 25%) 0%,
+    hsl(calc(var(--card-hue) + 30deg), 50%, 25%) 100%
   );
 }
 
@@ -481,7 +481,7 @@ figure .internal-tooltip {
 
 .card-title {
   display: flex;
-  gap: var(--gap);
+  gap: calc(var(--gap) * 0.25);
   align-items: center;
   text-align: center;
 }
@@ -699,7 +699,7 @@ figure .internal-tooltip {
   background: var(--primary);
 }
 
-.page-item svg {
+.page-item svg:not(.icon-external) {
   vertical-align: -0.25rem;
 }
 

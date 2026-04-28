@@ -70,7 +70,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
               {{- partialCached "utils/icon.html" $icon $icon -}}
             {{- end -}}
 
-            {{- .LinkTitle -}}
+            {{- title .LinkTitle -}}
 
             {{- if $is_external -}}
               {{- partialCached "utils/icon.html" "external" "external" -}}

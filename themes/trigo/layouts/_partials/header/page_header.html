@@ -51,7 +51,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
             {{- $attrs := dict
               "href" .RelPermalink
-              "title" .LinkTitle
+              "title" (title .LinkTitle)
               "style" .Params.style
             -}}
             {{- if eq $page . -}}

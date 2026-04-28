@@ -51,7 +51,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             {{ with $class }}class="{{ delimit . " " }}"{{ end }}
             {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}
             {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
-            {{- $name -}}
+            {{- title $name -}}
 
             {{- if $is_external -}}
               {{- partialCached "utils/icon.html" "external" "external" -}}
@@ -76,7 +76,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                     {{ with .Params.class }}class="{{ delimit . " " }}"{{ end }}
                     {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}
                     {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
-                    {{- .Name -}}
+                    {{- title .Name -}}
 
                     {{- if $is_external -}}
                       {{- partialCached "utils/icon.html" "external" "external" -}}
@@ -104,7 +104,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                         {{ with .Params.class }}class="{{ delimit . " " }}"{{ end }}
                         {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}
                         {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
-                        {{- .LinkTitle -}}
+                        {{- title .LinkTitle -}}
 
                         {{- if $is_external -}}
                           {{- partialCached "utils/icon.html" "external" "external" -}}

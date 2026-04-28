@@ -45,7 +45,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- end -}}
 
   <h3 class="card-title">
-    {{- .Title -}}
+    {{- title .Title -}}
 
     {{- if $is_external -}}
       {{- partialCached "utils/icon.html" "external" "external" -}}

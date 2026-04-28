@@ -45,7 +45,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         <li>
           <a href="{{ .RelPermalink }}"
             class="current-section">
-            {{- partialCached "utils/icon.html" $icon $icon }} {{ .LinkTitle -}}
+            {{- partialCached "utils/icon.html" $icon $icon }} {{ title .LinkTitle -}}
           </a>
         </li>
       {{- end -}}
@@ -56,7 +56,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             <li>
               <a href="{{ .RelPermalink }}"
                 {{ if eq .RelPermalink $current_page.RelPermalink }}id="current-page" class="active" aria-current="page"{{ end }}>
-                {{- .LinkTitle -}}
+                {{- title .LinkTitle -}}
               </a>
             </li>
           {{- end -}}

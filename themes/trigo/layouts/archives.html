@@ -16,7 +16,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $key := "" -}}
   {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
 
-  <section class="hero {{ with .Params.background_class }}{{ . }}{{ end }}"
+  <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}"
     style="{{ with .Params.background_style }}{{ . | safeCSS }}
     {{- else with (partialCached "utils/color_hue.html" . $key) }}--hue: {{ . }};{{ end }}">
 
@@ -43,10 +43,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
               {{- range $month.Pages -}}
                 <article class="archive-entry">
-                  <a href="{{ .RelPermalink }}"
-                    title="{{ .Title | plainify }}">
+                  <a href="{{ .RelPermalink }}">
                     <h4 class="archive-entry-title">
-                      {{ .Title }}
+                      {{ title .Title }}
                       {{- if .Draft -}}<sup><span>[{{ i18n "draft" | default "Draft" }}]</span></sup>{{- end -}}
                     </h4>
                   </a>
