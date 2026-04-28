@@ -54,14 +54,28 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- end -}}
 
         {{- with $item -}}
+
+          {{- $href := .RelPermalink -}}
+          {{- with .Page.Params.redirect -}}
+            {{- $href = . -}}
+          {{- end -}}
+          {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
+
           <a class="page-item {{ $direction }}"
-             href="{{ .RelPermalink }}"
-             title="{{ i18n (printf "%s_%s" $direction $type) | default (printf "%s %s" (title $direction) $type) }}">
+            href="{{ $href }}"
+            title="{{ i18n (printf "%s_%s" $direction $type) | default (printf "%s %s" (title $direction) $type) }}"
+            {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
 
             {{- if eq $direction "next" -}}
               {{- partialCached "utils/icon.html" $icon $icon -}}
             {{- end -}}
-              {{- .LinkTitle -}}
+
+            {{- .LinkTitle -}}
+
+            {{- if $is_external -}}
+              {{- partialCached "utils/icon.html" "external" "external" -}}
+            {{- end -}}
+
             {{- if eq $direction "prev" -}}
               {{- partialCached "utils/icon.html" $icon $icon -}}
             {{- end -}}

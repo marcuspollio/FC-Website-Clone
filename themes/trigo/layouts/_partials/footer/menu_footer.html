@@ -19,6 +19,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <ul>
     {{- range site.Menus.footer -}}
 
+      {{- $url := .URL -}}
+      {{- with .Page -}}
+        {{- with .Params.redirect -}}
+          {{- $url = . -}}
+        {{- end -}}
+      {{- end -}}
+      {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
+
       {{- $name := .Name -}}
       {{- with .Identifier -}}
         {{- with T . -}}
@@ -26,29 +34,25 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- end -}}
       {{- end -}}
 
-      {{- $class := slice -}}
       {{- $aria := "" -}}
-      {{- if or
-        ($first_section.IsMenuCurrent .Menu .)
-        ($first_section.HasMenuCurrent .Menu .)
-      -}}
-        {{- $class = $class | append "active" -}}
+      {{- $class := slice -}}
+      {{- if or ($first_section.IsMenuCurrent .Menu .) ($first_section.HasMenuCurrent .Menu .) -}}
         {{- $aria = "page" -}}
+        {{- $class = $class | append "active" -}}
       {{- end -}}
       {{- with .Params.class -}}
         {{- $class = $class | append . -}}
       {{- end -}}
 
-      {{- $is_external := and (hasPrefix .URL "http") (not (hasPrefix .URL site.BaseURL)) -}}
-
       {{- if or .Page $is_external -}}
         <li>
-          <a href="{{ .URL }}"
-            {{ with $class }}class="{{ delimit . " " }}"{{ end }}
+          <a href="{{ $url }}"
             {{ with $aria }}aria-current="{{ . }}"{{ end }}
+            {{ with $class }}class="{{ delimit . " " }}"{{ end }}
             {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}
             {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
             {{- $name -}}
+
             {{- if $is_external -}}
               {{- partialCached "utils/icon.html" "external" "external" -}}
             {{- end -}}
@@ -58,13 +62,22 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- if or .Page .Children -}}
             <ul>
               {{- range .Children  -}}
-                {{- $name := .Name -}}
-                {{- $is_external := and (hasPrefix .URL "http") (not (hasPrefix .URL site.BaseURL)) -}}
+
+                {{- $child_url := .URL -}}
+                {{- with .Page -}}
+                  {{- with .Params.redirect -}}
+                    {{- $child_url = . -}}
+                  {{- end -}}
+                {{- end -}}
+                {{- $is_external := and (hasPrefix $child_url "http") (not (hasPrefix $child_url site.BaseURL)) -}}
+
                 <li>
-                  <a href="{{ .URL }}"
+                  <a href="{{ $child_url }}"
+                    {{ with .Params.class }}class="{{ delimit . " " }}"{{ end }}
                     {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}
                     {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
-                    {{- $name -}}
+                    {{- .Name -}}
+
                     {{- if $is_external -}}
                       {{- partialCached "utils/icon.html" "external" "external" -}}
                     {{- end -}}
@@ -79,16 +92,28 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                   (not .Params.no_listing)
                 -}}
                   {{- range .Pages.ByWeight -}}
+
+                    {{- $page_url := .RelPermalink -}}
+                    {{- with .Page.Params.redirect -}}
+                      {{- $page_url = . -}}
+                    {{- end -}}
+                    {{- $is_external := and (hasPrefix $page_url "http") (not (hasPrefix $page_url site.BaseURL)) -}}
+
                     <li>
-                      <a href="{{ .RelPermalink }}"
+                      <a href="{{ $page_url }}"
                         {{ with .Params.class }}class="{{ delimit . " " }}"{{ end }}
-                        {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}>
+                        {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}
+                        {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
                         {{- .LinkTitle -}}
+
+                        {{- if $is_external -}}
+                          {{- partialCached "utils/icon.html" "external" "external" -}}
+                        {{- end -}}
                       </a>
                     </li>
                   {{- end -}}
 
-                {{- else if eq .Section (index site.MainSections 0) }}
+                {{- else if eq .Section (index site.MainSections 0) -}}
                   {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
                   {{- range $key, $value := $taxonomy_map -}}
                     {{- if hasSuffix $key "_data" -}}
@@ -106,10 +131,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
             </ul>
           {{- end -}}
-
         </li>
       {{- end -}}
-    {{- end -}}
 
+    {{- end -}}
   </ul>
 </nav>

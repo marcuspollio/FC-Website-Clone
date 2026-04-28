@@ -67,12 +67,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
         {{- range $key, $value := $taxonomy_map -}}
-          {{- if hasSuffix $key "_data" -}}
+          {{- if and (hasSuffix $key "_data") (gt $value.count 0) -}}
             {{- $link_title := lower $value.link_title -}}
             {{- $title := i18n $link_title | default $link_title -}}
             <a href="{{ $value.rel_permalink }}"
               class="hero-button">
-              {{ partialCached "utils/icon.html" $link_title $link_title }}
+              {{- partialCached "utils/icon.html" $link_title $link_title -}}
               {{ title $title }} ({{ $value.count }})
             </a>
           {{- end -}}

@@ -42,28 +42,40 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- with $buttons -}}
         <div class="buttons">
           {{- range . -}}
-            {{- $href := .link -}}
-            {{- $label := .label -}}
 
-            {{- if and $href (not (hasPrefix $href "http")) -}}
-              {{- with (site.GetPage $href) -}}
-                {{- $href = .RelPermalink -}}
-                {{- if not $label -}}
-                  {{- $label = .LinkTitle -}}
+            {{- $button_link := .link -}}
+            {{- $button_label := .label -}}
+
+            {{- with $button_link -}}
+              {{- with site.GetPage . -}}
+                {{- with .Params.redirect -}}
+                  {{- $button_link = . -}}
+                {{- else -}}
+                  {{- $button_link = .RelPermalink -}}
+                {{- end -}}
+                {{- if not $button_label -}}
+                  {{- $button_label = .LinkTitle -}}
                 {{- end -}}
               {{- end -}}
             {{- end -}}
 
-            {{- if not $label -}}
-              {{- $label = i18n "explore" | default "Explore" -}}
+            {{- $is_external := and (hasPrefix $button_link "http") (not (hasPrefix $button_link site.BaseURL)) -}}
+
+            {{- if not $button_label -}}
+              {{- $button_label = i18n "explore" | default "Explore" -}}
             {{- end -}}
 
-            <a href="{{ $href }}"
-              title="{{ trim $label " " }}"
+            <a href="{{ $button_link }}"
               class="hero-button"
-              {{- with .style -}}style="{{ . | safeCSS }}"{{- end -}}>
-              {{ $label }}
+              {{ with .style }}style="{{ . | safeCSS }}"{{ end }}
+              {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+              {{- $button_label -}}
+
+              {{- if $is_external -}}
+                {{- partialCached "utils/icon.html" "external" "external" -}}
+              {{- end -}}
             </a>
+
           {{- end -}}
         </div>
       {{- end -}}
@@ -72,32 +84,50 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- if $hero -}}
 
       {{- $hero_link := $hero.link -}}
-      {{- $hero_page := site.GetPage $hero_link -}}
-      {{- $is_external := not $hero_page -}}
-      {{- $hero_cover := . -}}
-
-      {{- if $hero_page -}}
-        {{- $hero_link = $hero_page.RelPermalink -}}
-        {{- $hero_cover = $hero_page -}}
-      {{- end -}}
-
       {{- $hero_title := $hero.title -}}
-      {{- if and $hero_page (not $hero_title) -}}
-        {{- $hero_title = $hero_page.LinkTitle -}}
+      {{- $hero_cover := $hero.cover -}}
+
+      {{- with $hero_link -}}
+        {{- with site.GetPage . -}}
+          {{- with .Params.redirect -}}
+            {{- $hero_link = . -}}
+          {{- else -}}
+            {{- $hero_link = .RelPermalink -}}
+          {{- end -}}
+          {{- if not $hero_title -}}
+            {{- $hero_title = .LinkTitle -}}
+          {{- end -}}
+          {{- if not $hero_cover -}}
+            {{- $hero_cover = . -}}
+          {{- end -}}
+        {{- end -}}
       {{- end -}}
 
-      <a class="hero-column"
-        href="{{ $hero_link }}"
-        {{ if $is_external }}rel="noopener noreferrer"{{ end }}>
+      {{- $is_external := and (hasPrefix $hero_link "http") (not (hasPrefix $hero_link site.BaseURL)) -}}
 
+      {{- with $hero_link -}}
+        <a class="hero-column"
+          href="{{ . }}"
+          {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+      {{- end -}}
+
+      {{- with $hero_title -}}
         <h2 class="title"
           {{ with .Params.hero.class }}class="{{ . }}"{{ end }}
           {{ with .Params.hero.style }}style="{{ . | safeCSS }}"{{ end }}>
-          {{- $hero_title -}}
-        </h2>
+          {{- . -}}
 
-        {{- partialCached "main/cover.html" $hero_cover $hero_cover -}}
-      </a>
+          {{- if $is_external -}}
+            {{- partialCached "utils/icon.html" "external" "external" -}}
+          {{- end -}}
+        </h2>
+      {{- end -}}
+
+      {{- with $hero_cover -}}
+        {{- partialCached "main/cover.html" . . -}}
+      {{- end -}}
+
+      {{- with $hero_link -}}</a>{{- end -}}
 
     {{- end -}}
   </section>

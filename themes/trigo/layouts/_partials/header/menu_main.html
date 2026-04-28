@@ -30,6 +30,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <ul popover id="menu-list" class="menu-list">
     {{- range site.Menus.main -}}
 
+      {{- $url := .URL -}}
+      {{- with .Page -}}
+        {{- with .Params.redirect -}}
+          {{- $url = . -}}
+        {{- end -}}
+      {{- end -}}
+      {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
+
       {{- $name := .Name -}}
       {{- with .Identifier -}}
         {{- with T . -}}
@@ -37,36 +45,32 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- end -}}
       {{- end -}}
 
-      {{- $class := slice -}}
       {{- $aria := "" -}}
-      {{- if or
-        ($first_section.IsMenuCurrent .Menu .)
-        ($first_section.HasMenuCurrent .Menu .)
-      -}}
-        {{- $class = $class | append "active" -}}
+      {{- $class := slice -}}
+      {{- if or ($first_section.IsMenuCurrent .Menu .) ($first_section.HasMenuCurrent .Menu .) -}}
         {{- $aria = "page" -}}
+        {{- $class = $class | append "active" -}}
       {{- end -}}
       {{- with .Params.class -}}
         {{- $class = $class | append . -}}
       {{- end -}}
 
-      {{- $is_external := and (hasPrefix .URL "http") (not (hasPrefix .URL site.BaseURL)) -}}
-
       {{- if or .Page $is_external -}}
         <li>
-          <a href="{{ .URL }}"
-            title="{{ $name }}"
-            {{ with $class }}class="{{ delimit . " " }}"{{ end }}
+          <a href="{{ $url }}"
             {{ with $aria }}aria-current="{{ . }}"{{ end }}
+            {{ with $class }}class="{{ delimit . " " }}"{{ end }}
             {{ with .Params.style }}style="{{ . | safeCSS }}"{{ end }}
             {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
             {{- $name -}}
+
             {{- if $is_external -}}
               {{- partialCached "utils/icon.html" "external" "external" -}}
             {{- end -}}
           </a>
         </li>
       {{- end -}}
+
     {{- end -}}
   </ul>
 </nav>
