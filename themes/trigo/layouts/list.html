@@ -31,7 +31,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $key := "" -}}
   {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
 
-  <section class="hero {{ with .Params.background_class }}{{ . }}{{ end }}"
+  <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}"
     style="{{ with .Params.background_style }}{{ . | safeCSS }}
     {{- else with (partialCached "utils/color_hue.html" . $key) }}--hue: {{ . }};{{ end }}">
 
@@ -49,7 +49,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       <h3 class="description"
         {{ with $.Params.description_class }}class="{{ . }}"{{ end }}
         {{ with $.Params.description_style }}style="{{ . | safeCSS }}"{{ end }}>
-        {{- title . -}}
+        {{- . -}}
       </h3>
     {{- end -}}
 
@@ -67,12 +67,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
         {{- range $key, $value := $taxonomy_map -}}
-          {{- if hasSuffix $key "_data" -}}
+          {{- if and (hasSuffix $key "_data") (gt $value.count 0) -}}
             {{- $link_title := lower $value.link_title -}}
             {{- $title := i18n $link_title | default $link_title -}}
             <a href="{{ $value.rel_permalink }}"
               class="hero-button">
-              {{ partialCached "utils/icon.html" $link_title $link_title }}
+              {{- partialCached "utils/icon.html" $link_title $link_title -}}
               {{ title $title }} ({{ $value.count }})
             </a>
           {{- end -}}

@@ -11,7 +11,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <span class="meta">
     {{- partialCached "utils/icon.html" "translations" "translations" -}}
     {{- range . -}}
-      <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}">{{ .LinkTitle }} ({{ .Language.Label }})</a>
+      <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}">{{ title .LinkTitle }} ({{ .Language.Label }})</a>
     {{- end -}}
   </span>
 {{- end -}}

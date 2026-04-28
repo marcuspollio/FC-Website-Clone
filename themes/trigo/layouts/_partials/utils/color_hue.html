@@ -31,10 +31,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- else if .Parent.IsHome -}}
   {{- with .Weight -}}
-    {{- $hue = mul . $step -}}
+    {{- $hue = . -}}
 
   {{- else with $section.Weight -}}
-    {{- $hue = mul . $step -}}
+    {{- $hue = . -}}
 
   {{- else -}}
     {{- range $index, $sec := site.Sections -}}
@@ -79,7 +79,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- $hue = mul 2 (add $index 1) $step -}}
 
   {{- else -}}
-    {{- range $index, $page := $section.Pages -}}
+    {{- range $index, $page := $section.RegularPagesRecursive -}}
       {{- if eq $.RelPermalink $page.RelPermalink -}}
         {{- $hue = mul (add $index 1) $step -}}
         {{- break -}}

@@ -16,7 +16,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <span>{{ . }}</span>
 {{- else with site.Home -}}
   <span>
-    &copy; {{ now.Year }} <a href="{{ .RelPermalink }}" title="{{ .LinkTitle }}">{{ .Title }}</a>
+    &copy; {{ now.Year }} <a href="{{ .RelPermalink }}" title="{{ .LinkTitle }}">{{ title .Title }}</a>
   </span>
 {{- end -}}
 
