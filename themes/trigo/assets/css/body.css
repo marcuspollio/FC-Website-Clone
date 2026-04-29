@@ -60,7 +60,7 @@ h4, h5,h6 {
 
 p {
   font-size: var(--m);
-  margin: calc(var(--gap) * 0.5) auto;
+  margin: var(--gap) auto;
   scroll-margin-top: 25vh;
   text-align-last: auto;
 }
@@ -86,7 +86,7 @@ img {
 [class^="icon-"] {
   height: var(--m);
   width: var(--m);
-  margin-inline: calc(var(--gap) * 0.125);
+  margin-inline: calc(var(--gap) * 0.25);
   color: inherit;
   transition: var(--transition);
 }
@@ -180,7 +180,7 @@ dt ~ dt {
 }
 
 hr {
-  margin: calc(var(--gap) * 2) auto;
+  margin: var(--gap) auto;
   border: none;
   height: var(--line);
   color: var(--tone);

@@ -42,7 +42,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $content_class := cond (.IsNamedParams) (.Get "content_class") (.Get 6) -}}
   {{- $content_style := cond (.IsNamedParams) (.Get "content_style") (.Get 7) -}}
 
-  <div class="block wide"
+  <div class="block-shortcode wide"
     {{- with $block_class }} class="{{ . }}"{{ end -}}
     {{- with $block_style }} style="{{ . | safeCSS }}"{{ end -}}>
 
@@ -50,14 +50,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       <h2 class="block-title"
         {{- with $title_class }} class="{{ . }}"{{ end -}}
         {{- with $title_style }} style="{{ . | safeCSS }}"{{ end -}}>
-        {{- . -}}
+        {{- title . -}}
       </h2>
     {{- end -}}
 
     <div class="block-content"
       {{- with $content_class }} class="{{ . }}"{{ end -}}
       {{- with $content_style }} style="{{ . | safeCSS }}"{{ end -}}>
-      {{- $content | $.Page.RenderString -}}
+      {{- $content | .Page.RenderString (dict "display" "block") -}}
     </div>
   </div>
 

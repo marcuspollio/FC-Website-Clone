@@ -57,7 +57,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- /* Get page content. */ -}}
   {{- partial "main/content.html" . -}}
 
-  {{/* Dynamically include content partials. */}}
+  {{/* Dynamically include custom content partials. */}}
   {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "content" "auto" true) $key -}}
 
   {{- /* Get pagination to previous and next pages. */ -}}

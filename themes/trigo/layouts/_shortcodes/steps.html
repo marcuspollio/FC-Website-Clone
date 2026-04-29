@@ -25,7 +25,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- with .Inner -}}
 
   <div class="steps">
-    {{- .Inner | .Page.RenderString (dict "display" "block") -}}
+    {{- . | page.RenderString (dict "display" "block") -}}
   </div>
 
 {{- else -}}

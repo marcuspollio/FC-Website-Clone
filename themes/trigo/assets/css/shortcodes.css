@@ -262,6 +262,7 @@ input:checked + .branch :is(+ ul, .branch-open) {
 }
 
 .carousel :is(.prev, .next) svg {
+  color: var(--secondary);
   height: var(--l);
   width: var(--l);
 }
@@ -406,7 +407,7 @@ input:checked + .branch :is(+ ul, .branch-open) {
 
 /* Block shortcode. */
 
-.block {
+.block-shortcode {
   padding: calc(var(--gap) * 2);
 }
 
@@ -414,16 +415,31 @@ input:checked + .branch :is(+ ul, .branch-open) {
   text-align: center;
   max-width: var(--width);
   margin: auto;
+  color: var(--secondary);
 }
 
 .block-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   gap: var(--gap);
   margin: auto;
-  padding: var(--gap);
   max-width: var(--width);
   border-radius: var(--radius);
+}
+
+.block-content > * {
+  max-width: calc((var(--width) * 0.5) - (var(--gap) * 2));
+  flex: 1 auto;
+  margin: auto;
+}
+
+
+/* Group shortcode. */
+
+.group-shortcode :is(h1, h2, h3) {
+  text-align: center;
 }
 
 

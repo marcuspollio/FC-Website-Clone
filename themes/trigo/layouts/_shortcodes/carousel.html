@@ -78,7 +78,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     class="carousel"
     data-duration="{{ $duration }}"
     data-mode="{{ $mode }}">
-
     <ul>
       {{- range $index, $src := $images -}}
 
@@ -134,17 +133,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- end -}}
       {{- end -}}
     </ul>
-
     <ol>
       {{- range $index, $src := $images -}}
         <li><a href="#carousel{{ $ordinal }}-slide{{ $index }}"></a></li>
       {{- end -}}
     </ol>
-
     <div class="prev">
       {{- partialCached "utils/icon.html" "tri_left" "tri_left" -}}
     </div>
-
     <div class="next">
       {{- partialCached "utils/icon.html" "tri_right" "tri_right" -}}
     </div>

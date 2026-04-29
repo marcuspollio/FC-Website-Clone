@@ -251,6 +251,10 @@ sup:target {
   margin: auto;
 }
 
+.content .image-with-popover {
+  margin: var(--gap) auto;
+}
+
 .content video {
   width: 100%;
 }
@@ -696,12 +700,8 @@ figure .internal-tooltip {
   gap: var(--gap);
 }
 
-.list .pagination {
+.pagination {
   padding: var(--gap) calc((100vw - var(--width)) * 0.5);
-}
-
-.single .pagination {
-  padding: var(--gap) calc((100vw - var(--content-width)) * 0.5);
 }
 
 .page-item {
