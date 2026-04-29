@@ -251,6 +251,10 @@ sup:target {
   margin: auto;
 }
 
+.content .image-with-popover {
+  margin: var(--gap) auto;
+}
+
 .content video {
   width: 100%;
 }
@@ -374,12 +378,38 @@ figure .internal-tooltip {
   background: var(--bg3);
 }
 
+
+/* Cards on List pages and custom Sections. */
+
 .card-list:not(:is(.hero, .content) .card-list) {
   background: var(--bg-gradient);
 }
 
+.content .card-list {
+  display: flex;
+  flex-direction: column;
+}
 
-/* Cards on List pages and custom Sections. */
+.cards-title {
+  margin: var(--gap) auto;
+  padding: var(--padding);
+  text-align: center;
+  box-shadow: none;
+  color: var(--entry);
+  background: var(--accent);
+  border-radius: var(--radius);
+  box-shadow: none;
+  transition: var(--transition);
+}
+
+.cards-title svg:not(.icon-external) {
+  vertical-align: calc(var(--gap) * -0.125);
+}
+
+.cards-title:hover {
+  color: var(--entry);
+  background: var(--accent-hover);
+}
 
 .cards {
   display: flex;
@@ -466,8 +496,7 @@ figure .internal-tooltip {
 
 .card-icon svg {
   height: var(--xxxl);
-  width: auto;
-  max-width: calc(var(--xxxl) * 2);
+  width: var(--xxxl);
   color: var(--secondary);
 }
 
@@ -671,12 +700,8 @@ figure .internal-tooltip {
   gap: var(--gap);
 }
 
-.list .pagination {
+.pagination {
   padding: var(--gap) calc((100vw - var(--width)) * 0.5);
-}
-
-.single .pagination {
-  padding: var(--gap) calc((100vw - var(--content-width)) * 0.5);
 }
 
 .page-item {

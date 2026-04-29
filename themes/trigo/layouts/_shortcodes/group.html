@@ -1,0 +1,26 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Group shortcode:
+
+  @param {inner} content – Grouped content.
+
+  @return {HTML} Render grouped content, specially useful nested in a Block shortcode parent.
+
+  @example {{< group >}}Some text{{< /group >}}
+
+*/ -}}
+
+
+{{- with .InnerDeindent -}}
+
+  <div class="group">
+    {{- . | page.RenderString (dict "display" "block") -}}
+  </div>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'inner' content on %s" .Name .Position -}}
+{{- end -}}

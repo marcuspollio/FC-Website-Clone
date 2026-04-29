@@ -59,7 +59,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- end -}}
     {{- end -}}
 
-    {{/* Dynamically include hero partials. */}}
+    {{/* Dynamically include custom hero partials. */}}
     {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "hero" "auto" true) $key -}}
 
     {{- if and (eq .Section (index site.MainSections 0)) (or site.Taxonomies site.Menus.footer) -}}
@@ -106,7 +106,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- partialCached "main/cover.html" . $key -}}
   </section>
 
-  {{/* Dynamically include content partials. */}}
+  {{/* Dynamically include custom content partials. */}}
 
   {{- /* Get Table Of Contents. */ -}}
   {{- if and .Params.toc .Content (not .Pages) -}}
