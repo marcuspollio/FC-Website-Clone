@@ -1,0 +1,76 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Button shortcode:
+
+  @param {string} url – Button link.
+  @param {string} [label] – Optional button label (default to page title if any).
+  @param {string} [icon] – Optional icon before the label.
+  @param {string} [class] – Optional CSS class for button.
+  @param {string} [style] – Optional CSS style for button.
+
+  @return {HTML} Render clickable button with optional icon and label.
+
+  @example {{< button url="/news" label="See the latest news" icon="time" >}}
+  @example {{< button "/news" "See the latest news" "time" >}}
+
+*/ -}}
+
+
+{{- $url := cond (.IsNamedParams) (.Get "url") (.Get 0) -}}
+
+{{- if $url -}}
+
+  {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 1) -}}
+  {{- $icon := cond (.IsNamedParams) (.Get "icon") (.Get 2) -}}
+  {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 3) -}}
+  {{- $style := cond (.IsNamedParams) (.Get "style") (.Get 4) -}}
+
+  {{- with site.GetPage $url -}}
+    {{- with .Params.redirect -}}
+      {{- $url = . -}}
+    {{- else -}}
+      {{- $url = .RelPermalink -}}
+    {{- end -}}
+    {{- if not $icon -}}
+      {{- with .Params.icon -}}
+        {{- $icon = . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $label -}}
+      {{- $label = .LinkTitle -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $label -}}
+    {{- $label = i18n "open_link" | default "Open link" -}}
+  {{- end -}}
+  {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
+
+
+  {{- $classes := slice "shortcode-button" -}}
+  {{- with $class -}}{{- $classes = $classes | append . -}}{{- end -}}
+
+  <a href="{{ $url }}"
+    title="{{ $label }}"
+    aria-label="{{ $label }}"
+    class="{{ delimit $classes " " }}"
+    {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}
+    {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+
+    {{- with $icon -}}
+      {{- partialCached "utils/icon.html" . . -}}
+    {{- end -}}
+
+    {{- $label -}}
+
+    {{- if $is_external -}}
+      {{- partialCached "utils/icon.html" "external" "external" -}}
+    {{- end -}}
+  </a>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'url' argument on %s" .Name .Position -}}
+{{- end -}}

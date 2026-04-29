@@ -425,3 +425,28 @@ input:checked + .branch :is(+ ul, .branch-open) {
   max-width: var(--width);
   border-radius: var(--radius);
 }
+
+
+/* Button shortcode. */
+
+.shortcode-button {
+  display: table;
+  margin: var(--gap) auto;
+  padding: var(--padding);
+  text-align: center;
+  box-shadow: none;
+  color: var(--entry);
+  background: var(--accent);
+  border-radius: var(--radius);
+  box-shadow: none;
+  transition: var(--transition);
+}
+
+.shortcode-button svg:not(.icon-external) {
+  vertical-align: calc(var(--gap) * -0.125);
+}
+
+.shortcode-button:hover {
+  color: var(--entry);
+  background: var(--accent-hover);
+}
