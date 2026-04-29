@@ -43,13 +43,13 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 <li>
   <input type="checkbox"
     id="{{ $id }}"
-    {{ if eq $state "open" }}checked{{ end }}
+    {{- if eq $state "open" }} checked {{ end -}}
     hidden>
 
   <label class="branch"
     for="{{ $id }}"
-    {{ with $class }}class="{{ . }}"{{ end }}
-    {{ with $style }}style="{{ . | safeCSS }}"{{ end }}>
+    {{- with $class }} class="{{ . }}"{{ end -}}
+    {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}>
 
     <span class="branch-open">
       {{- partialCached "utils/icon.html" $icon_open $icon_open -}}

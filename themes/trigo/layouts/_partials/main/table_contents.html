@@ -55,7 +55,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- range $pages -}}
             <li>
               <a href="{{ .RelPermalink }}"
-                {{ if eq .RelPermalink $current_page.RelPermalink }}id="current-page" class="active" aria-current="page"{{ end }}>
+                {{- if eq .RelPermalink $current_page.RelPermalink }} id="current-page" class="active" aria-current="page"{{ end -}}>
                 {{- title .LinkTitle -}}
               </a>
             </li>

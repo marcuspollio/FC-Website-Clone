@@ -26,15 +26,15 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
     <div class="hero-column">
       <h1 class="title"
-        {{ with .Params.title_class }}class="{{ . }}"{{ end }}
-        {{ with .Params.title_style }}style="{{ . | safeCSS }}"{{ end }}>
+        {{- with .Params.title_class }} class="{{ . }}"{{ end -}}
+        {{- with .Params.title_style }} style="{{ . | safeCSS }}"{{ end -}}>
         {{- title .Title -}}
       </h1>
 
       {{- with .Description -}}
         <h3 class="description"
-          {{ with $.Params.description_class }}class="{{ . }}"{{ end }}
-          {{ with $.Params.description_style }}style="{{ . | safeCSS }}"{{ end }}>
+          {{- with $.Params.description_class }} class="{{ . }}"{{ end -}}
+          {{- with $.Params.description_style }} style="{{ . | safeCSS }}"{{ end -}}>
           {{- . -}}
         </h3>
       {{- end -}}
@@ -67,8 +67,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
             <a href="{{ $button_link }}"
               class="hero-button"
-              {{ with .style }}style="{{ . | safeCSS }}"{{ end }}
-              {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+              {{- with .style }} style="{{ . | safeCSS }}"{{ end -}}
+              {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
               {{- title $button_label -}}
 
               {{- if $is_external -}}
@@ -108,13 +108,13 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- with $hero_link -}}
         <a class="hero-column"
           href="{{ . }}"
-          {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+          {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
       {{- end -}}
 
       {{- with $hero_title -}}
         <h2 class="title"
-          {{ with .Params.hero.class }}class="{{ . }}"{{ end }}
-          {{ with .Params.hero.style }}style="{{ . | safeCSS }}"{{ end }}>
+          {{- with .Params.hero.class }} class="{{ . }}"{{ end -}}
+          {{- with .Params.hero.style }} style="{{ . | safeCSS }}"{{ end -}}>
           {{- title . -}}
 
           {{- if $is_external -}}

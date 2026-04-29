@@ -18,10 +18,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $path := cond (.IsNamedParams) (.Get "path") (.Get 0) -}}
 
-<div class="pdf">
-  <iframe src="{{ $path | safeURL }}"
-    width="100%"
-    style="min-height: 50vh; max-width: var(--width);"
-    frameborder="0">
-  </iframe>
-</div>
+{{- with $path -}}
+
+  <div class="pdf">
+    <iframe src="{{ . | safeURL }}"
+      width="100%"
+      style="min-height: 50vh; max-width: var(--width);"
+      frameborder="0">
+    </iframe>
+  </div>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'path' argument on %s" .Name .Position -}}
+{{- end -}}

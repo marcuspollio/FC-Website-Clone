@@ -18,19 +18,24 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) -}}
-{{- $class := cond (.IsNamedParams) (.Get "class") (.Get 1) -}}
-{{- $style := cond (.IsNamedParams) (.Get "style") (.Get 2) -}}
+{{- if .InnerDeindent -}}
 
+  {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) -}}
+  {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 1) -}}
+  {{- $style := cond (.IsNamedParams) (.Get "style") (.Get 2) -}}
 
-<ul class="tree"
-  {{ with $class }}class="{{ . }}"{{ end }}
-  {{ with $style }}style="{{ . | safeCSS }}"{{ end }}>
-  {{- with .InnerDeindent -}}{{- . -}}{{- end -}}
+  <ul class="tree"
+    {{- with $class }} class="{{ . }}"{{ end -}}
+    {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}>
+    {{- .InnerDeindent -}}
 
-  {{- with $label -}}
-    <li class="tree-label">
-      {{- . | title -}}
-    </li>
-  {{- end -}}
-</ul>
+    {{- with $label -}}
+      <li class="tree-label">
+        {{- . | title -}}
+      </li>
+    {{- end -}}
+  </ul>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'inner' content on %s" .Name .Position -}}
+{{- end -}}

@@ -21,8 +21,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- else with (partialCached "utils/color_hue.html" . $key) }}--hue: {{ . }};{{ end }}">
 
     <h2 class="title"
-      {{ with .Params.title_class }}class="{{ . }}"{{ end }}
-      {{ with .Params.title_style }}style="{{ . | safeCSS }}"{{ end }}>
+      {{- with .Params.title_class }} class="{{ . }}"{{ end -}}
+      {{- with .Params.title_style }} style="{{ . | safeCSS }}"{{ end -}}>
       {{- title .Title -}}
 
       {{- if .Draft -}}
@@ -32,8 +32,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
     {{- with .Description  -}}
       <h3 class="description"
-        {{ with $.Params.description_class }}class="{{ . }}"{{ end }}
-        {{ with $.Params.description_style }}style="{{ . | safeCSS }}"{{ end }}>
+        {{- with $.Params.description_class }} class="{{ . }}"{{ end -}}
+        {{- with $.Params.description_style }} style="{{ . | safeCSS }}"{{ end -}}>
         {{- . -}}
       </h3>
     {{- end -}}

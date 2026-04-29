@@ -22,6 +22,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-<div class="steps">
-  {{- .Inner | .Page.RenderString (dict "display" "block") -}}
-</div>
+{{- with .Inner -}}
+
+  <div class="steps">
+    {{- .Inner | .Page.RenderString (dict "display" "block") -}}
+  </div>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'inner' content on %s" .Name .Position -}}
+{{- end -}}

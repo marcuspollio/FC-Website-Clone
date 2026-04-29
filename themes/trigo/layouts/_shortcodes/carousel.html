@@ -72,83 +72,84 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- end -}}
 
 {{- $images = uniq $images -}}
-{{- if eq (len $images) 0 -}}
-  {{- warnf "Carousel shortcode: no images found (params: %v) on page %s" .Params $page.File.Path -}}
-  {{- return -}}
-{{- end -}}
 
-<div id="carousel{{ $ordinal }}"
-  class="carousel"
-  data-duration="{{ $duration }}"
-  data-mode="{{ $mode }}">
+{{- if gt (len $images) 0 -}}
+  <div id="carousel{{ $ordinal }}"
+    class="carousel"
+    data-duration="{{ $duration }}"
+    data-mode="{{ $mode }}">
 
-  <ul>
-    {{- range $index, $src := $images -}}
+    <ul>
+      {{- range $index, $src := $images -}}
 
-      {{- $img := $page.Resources.GetMatch $src -}}
-      {{- if not $img -}}
-        {{- $img = resources.Get $src -}}
-      {{- end -}}
-
-      {{- if and (not $img) (strings.HasPrefix $src "http") -}}
-        {{- $remote := try (resources.GetRemote $src) -}}
-        {{- with $remote.Err -}}
-          {{- warnf "Carousel: failed to fetch remote resource %q: %s" $src . -}}
-        {{- else -}}
-          {{- $img = $remote.Value -}}
+        {{- $img := $page.Resources.GetMatch $src -}}
+        {{- if not $img -}}
+          {{- $img = resources.Get $src -}}
         {{- end -}}
-      {{- end -}}
 
-      {{- if reflect.IsImageResourceProcessable $img -}}
-        {{- $srcset := slice -}}
-        {{- $sizes := slice -}}
-
-        {{- range $resize_dimensions -}}
-          {{- $width := int (index (split . "x") 0) -}}
-          {{- if lt $width $img.Width -}}
-            {{- $resized := $img.Resize (printf "%dx %s" $width $format) -}}
-            {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink $width) -}}
-            {{- $sizes = $sizes | append (printf "(max-width: %dpx) %dpx" $width $width) -}}
+        {{- if and (not $img) (strings.HasPrefix $src "http") -}}
+          {{- $remote := try (resources.GetRemote $src) -}}
+          {{- with $remote.Err -}}
+            {{- warnf "Carousel: failed to fetch remote resource %q: %s" $src . -}}
+          {{- else -}}
+            {{- $img = $remote.Value -}}
           {{- end -}}
         {{- end -}}
 
-        {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
-        {{- $sizes = $sizes | append "75vw" -}}
+        {{- if reflect.IsImageResourceProcessable $img -}}
+          {{- $srcset := slice -}}
+          {{- $sizes := slice -}}
 
-        <li id="carousel{{ $ordinal }}-slide{{ $index }}">
-          <img
-            srcset="{{ delimit $srcset ", " }}"
-            sizes="{{ delimit $sizes ", " }}"
-            src="{{ $img.RelPermalink }}"
-            width="{{ $img.Width }}"
-            height="{{ $img.Height }}"
-            alt="Slide-{{ $index }}"
-            loading="lazy"
-            fetchpriority="low">
-        </li>
+          {{- range $resize_dimensions -}}
+            {{- $width := int (index (split . "x") 0) -}}
+            {{- if lt $width $img.Width -}}
+              {{- $resized := $img.Resize (printf "%dx %s" $width $format) -}}
+              {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink $width) -}}
+              {{- $sizes = $sizes | append (printf "(max-width: %dpx) %dpx" $width $width) -}}
+            {{- end -}}
+          {{- end -}}
 
-      {{- else -}}
-        <li id="carousel{{ $ordinal }}-slide{{ $index }}">
-          <img src="{{ $src }}"
-            alt="Slide-{{ $index }}"
-            loading="lazy"
-            fetchpriority="low">
-        </li>
+          {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
+          {{- $sizes = $sizes | append "75vw" -}}
+
+          <li id="carousel{{ $ordinal }}-slide{{ $index }}">
+            <img
+              srcset="{{ delimit $srcset ", " }}"
+              sizes="{{ delimit $sizes ", " }}"
+              src="{{ $img.RelPermalink }}"
+              width="{{ $img.Width }}"
+              height="{{ $img.Height }}"
+              alt="Slide-{{ $index }}"
+              loading="lazy"
+              fetchpriority="low">
+          </li>
+
+        {{- else -}}
+          <li id="carousel{{ $ordinal }}-slide{{ $index }}">
+            <img src="{{ $src }}"
+              alt="Slide-{{ $index }}"
+              loading="lazy"
+              fetchpriority="low">
+          </li>
+        {{- end -}}
       {{- end -}}
-    {{- end -}}
-  </ul>
+    </ul>
 
-  <ol>
-    {{- range $index, $src := $images -}}
-      <li><a href="#carousel{{ $ordinal }}-slide{{ $index }}"></a></li>
-    {{- end -}}
-  </ol>
+    <ol>
+      {{- range $index, $src := $images -}}
+        <li><a href="#carousel{{ $ordinal }}-slide{{ $index }}"></a></li>
+      {{- end -}}
+    </ol>
 
-  <div class="prev">
-    {{- partialCached "utils/icon.html" "tri_left" "tri_left" -}}
+    <div class="prev">
+      {{- partialCached "utils/icon.html" "tri_left" "tri_left" -}}
+    </div>
+
+    <div class="next">
+      {{- partialCached "utils/icon.html" "tri_right" "tri_right" -}}
+    </div>
   </div>
 
-  <div class="next">
-    {{- partialCached "utils/icon.html" "tri_right" "tri_right" -}}
-  </div>
-</div>
+{{- else -}}
+  {{- warnf "%q shortcode: no images found for '%v' params on %s" .Name .Params .Position -}}
+{{- end -}}

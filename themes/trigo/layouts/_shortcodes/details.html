@@ -23,25 +23,31 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- $summary := cond (.IsNamedParams) (.Get "summary") (.Get 0) | default (i18n "details" | default "Details") -}}
-{{- $open := cond (.IsNamedParams) (.Get "open") (.Get 1) -}}
-{{- $name := cond (.IsNamedParams) (.Get "name") (.Get 2) -}}
-{{- $title := cond (.IsNamedParams) (.Get "title") (.Get 3) -}}
-{{- $id := cond (.IsNamedParams) (.Get "id") (.Get 4) -}}
-{{- $class := cond (.IsNamedParams) (.Get "class") (.Get 5) -}}
+{{- if .Inner -}}
 
-{{- if in (slice "true" "open" "opened" true 1) $open -}}
-  {{- $open = true -}}
+  {{- $summary := cond (.IsNamedParams) (.Get "summary") (.Get 0) | default (i18n "details" | default "Details") -}}
+  {{- $open := cond (.IsNamedParams) (.Get "open") (.Get 1) -}}
+  {{- $name := cond (.IsNamedParams) (.Get "name") (.Get 2) -}}
+  {{- $title := cond (.IsNamedParams) (.Get "title") (.Get 3) -}}
+  {{- $id := cond (.IsNamedParams) (.Get "id") (.Get 4) -}}
+  {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 5) -}}
+
+  {{- if in (slice "true" "open" "opened" true 1) $open -}}
+    {{- $open = true -}}
+  {{- end -}}
+
+  <details
+    {{- with $open }} open{{ end -}}
+    {{- with $name }} name="{{ . }}"{{ end -}}
+    {{- with $title }} title="{{ . }}"{{ end -}}
+    {{- with $id }} id="{{ . }}"{{ end -}}
+    {{- with $class }} class="{{ . }}"{{ end -}}>
+
+    <summary>{{ $summary }}</summary>
+
+    {{- .Inner | .Page.RenderString (dict "display" "block") -}}
+  </details>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'inner' content on %s" .Name .Position -}}
 {{- end -}}
-
-<details
-  {{ with $open }}open{{ end }}
-  {{ with $name }}name="{{ . }}"{{ end }}
-  {{ with $title }}title="{{ . }}"{{ end }}
-  {{ with $id }}id="{{ . }}"{{ end }}
-  {{ with $class }}class="{{ . }}"{{ end }}>
-
-  <summary>{{ $summary }}</summary>
-
-  {{- .Inner | .Page.RenderString (dict "display" "block") -}}
-</details>

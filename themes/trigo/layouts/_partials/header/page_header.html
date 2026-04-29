@@ -20,7 +20,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   <div class="logo">
     <a href="{{ "" | relLangURL }}"
-      {{- if .IsHome -}}class="active"{{- end -}}
+      {{- if .IsHome }} class="active"{{ end -}}
       accesskey="h"
       title="{{ $home_title }} (Alt + H)"
       aria-label="{{ $home_title }}">

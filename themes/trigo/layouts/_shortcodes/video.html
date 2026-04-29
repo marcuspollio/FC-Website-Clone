@@ -18,65 +18,72 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- $src := cond (.IsNamedParams) (.Get "src") (.Get 0) -}}
-{{- $poster := cond (.IsNamedParams) (.Get "poster") (.Get 1) | default "" -}}
 
-{{- $url := urls.Parse $src -}}
-{{- $is_remote := $url.IsAbs -}}
+{{- if $src -}}
 
-{{- $video := "" -}}
-{{- $poster_res := "" -}}
+  {{- $poster := cond (.IsNamedParams) (.Get "poster") (.Get 1) | default "" -}}
 
-{{- if $is_remote -}}
-  {{- $video = $src -}}
-{{- else -}}
-  {{- with .Page.Resources.GetMatch $src -}}
-    {{- $video = .RelPermalink -}}
+  {{- $url := urls.Parse $src -}}
+  {{- $is_remote := $url.IsAbs -}}
+
+  {{- $video := "" -}}
+  {{- $poster_res := "" -}}
+
+  {{- if $is_remote -}}
+    {{- $video = $src -}}
+  {{- else -}}
+    {{- with .Page.Resources.GetMatch $src -}}
+      {{- $video = .RelPermalink -}}
+    {{- end -}}
   {{- end -}}
-{{- end -}}
 
-{{- if $poster -}}
-  {{- if (urls.Parse $poster).IsAbs -}}
-    {{- with try (resources.GetRemote $poster) -}}
-      {{- with .Value }}
+  {{- if $poster -}}
+    {{- if (urls.Parse $poster).IsAbs -}}
+      {{- with try (resources.GetRemote $poster) -}}
+        {{- with .Value }}
+          {{- $poster_res = .RelPermalink -}}
+        {{- else }}
+          {{- $poster_res = $poster -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      {{- with .Page.Resources.GetMatch $poster -}}
         {{- $poster_res = .RelPermalink -}}
-      {{- else }}
-        {{- $poster_res = $poster -}}
       {{- end -}}
     {{- end -}}
-  {{- else -}}
-    {{- with .Page.Resources.GetMatch $poster -}}
-      {{- $poster_res = .RelPermalink -}}
+  {{- end -}}
+
+  {{- if and (not $poster_res) (not $is_remote) -}}
+    {{- $filename := replace $src (printf ".%s" (path.Ext $src)) "" -}}
+    {{- range $ext := slice "jpg" "jpeg" "png" "webp" -}}
+      {{- with (first 1 ($.Page.Resources.Match (printf "%s*.%s" $filename $ext))) -}}
+        {{- $poster_res = (index . 0).RelPermalink -}}
+        {{- break -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
+
+  {{- $video_fallback := i18n "video_fallback" | default "Your browser does not support the video tag." -}}
+
+  <figure>
+    <video
+      preload="metadata"
+      controls
+      playsinline
+      loading="lazy"
+      {{- with $poster_res }} poster="{{ . }}"{{ end -}}>
+
+      {{- with $video -}}
+        <source src="{{ . }}">
+
+      {{- else -}}
+        <p>Video resource '{{ $src }}' not found.</p>
+      {{- end -}}
+
+      {{- $video_fallback -}}
+    </video>
+  </figure>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'src' argument on %s" .Name .Position -}}
 {{- end -}}
-
-{{- if and (not $poster_res) (not $is_remote) -}}
-  {{- $filename := replace $src (printf ".%s" (path.Ext $src)) "" -}}
-  {{- range $ext := slice "jpg" "jpeg" "png" "webp" -}}
-    {{- with (first 1 ($.Page.Resources.Match (printf "%s*.%s" $filename $ext))) -}}
-      {{- $poster_res = (index . 0).RelPermalink -}}
-      {{- break -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-
-{{- $video_fallback := i18n "video_fallback" | default "Your browser does not support the video tag." -}}
-
-<figure>
-  <video
-    preload="metadata"
-    controls
-    playsinline
-    loading="lazy"
-    {{ with $poster_res }}poster="{{ . }}"{{ end }}>
-
-    {{- with $video -}}
-      <source src="{{ . }}">
-
-    {{- else -}}
-      <p>Video resource '{{ $src }}' not found.</p>
-    {{- end -}}
-
-    {{- $video_fallback -}}
-  </video>
-</figure>

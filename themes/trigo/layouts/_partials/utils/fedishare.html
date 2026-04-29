@@ -31,8 +31,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
     <script src="{{ $fedishare.RelPermalink }}"
       type="text/javascript"
-      {{ if hugo.IsProduction }}integrity="{{ $fedishare.Data.Integrity }}" crossorigin="anonymous"{{ end }}
-      defer>
+      defer
+      {{- if hugo.IsProduction }} integrity="{{ $fedishare.Data.Integrity }}" crossorigin="anonymous"{{ end -}}>
     </script>
   {{- end -}}
 
