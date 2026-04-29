@@ -32,8 +32,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <span
     class="leaf"
     tabindex="0"
-    {{ with $class }}class="{{ . }}"{{ end }}
-    {{ with $style }}style="{{ . | safeCSS }}"{{ end }}>
+    {{- with $class }} class="{{ . }}"{{ end -}}
+    {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}>
 
     {{- partialCached "utils/icon.html" $icon (lower $icon) -}}
     {{- with $label -}}{{- . -}}{{- end -}}

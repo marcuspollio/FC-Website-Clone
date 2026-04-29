@@ -26,7 +26,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 <a class="card"
   href="{{ $href }}"
-  {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+  {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
 
   {{- with (partialCached "main/card_image.html" . $key) -}}
     {{- . -}}

@@ -14,7 +14,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- end -}}
   <script src="{{ $carousel.RelPermalink }}"
     type="text/javascript"
-    {{ if hugo.IsProduction }}integrity="{{ $carousel.Data.Integrity }}" crossorigin="anonymous"{{ end }}
-    defer>
+    defer
+    {{- if hugo.IsProduction }} integrity="{{ $carousel.Data.Integrity }}" crossorigin="anonymous"{{ end -}}>
   </script>
 {{- end -}}

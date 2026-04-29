@@ -29,8 +29,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 <h{{ $level }}
   id="{{ $anchor }}"
-  {{ with $class }}class="{{ . }}"{{ end }}
-  {{ with $style }}style="{{ . | safeCSS }}"{{ end }}>
+  {{- with $class }} class="{{ . }}"{{ end -}}
+  {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}>
   {{- $text -}}
 
   <a class="heading-anchor"

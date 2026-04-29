@@ -111,4 +111,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
     </div>
   </div>
+
+{{- else -}}
+  {{- warnf "%q shortcode: no pages found for '%v' params on %s" .Name .Params .Position -}}
 {{- end -}}

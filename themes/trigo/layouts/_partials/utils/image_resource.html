@@ -55,13 +55,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   loading="lazy"
   fetchpriority="low"
   decoding="async"
-  {{ with $width }}width="{{ . }}"{{ end }}
-  {{ with $height }}height="{{ . }}"{{ end }}
-
-  {{- if gt (len $srcset) 0 }}
-    srcset="{{ delimit $srcset ", " }}"
-    sizes="{{ delimit $sizes ", " }}"
-  {{- end -}}
+  {{- with $width }} width="{{ . }}"{{ end -}}
+  {{- with $height }} height="{{ . }}"{{ end -}}
+  {{- if gt (len $srcset) 0 }} srcset="{{ delimit $srcset ", " }}" sizes="{{ delimit $sizes ", " }}"{{ end -}}
 
   {{- range $k, $v := $attributes }}
     {{- with $v }}

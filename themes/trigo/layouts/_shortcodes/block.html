@@ -29,33 +29,38 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $content := .InnerDeindent
   | default (cond (.IsNamedParams) (.Get "content") (.Get 0))
-  | default "No content provided"
   | strings.TrimSpace
 -}}
-{{- $title := cond (.IsNamedParams) (.Get "title") (.Get 1) -}}
-{{- $block_class := cond (.IsNamedParams) (.Get "class") (.Get 2) -}}
-{{- $block_style := cond (.IsNamedParams) (.Get "style") (.Get 3) -}}
-{{- $title_class := cond (.IsNamedParams) (.Get "title_class") (.Get 4) -}}
-{{- $title_style := cond (.IsNamedParams) (.Get "title_style") (.Get 5) -}}
-{{- $content_class := cond (.IsNamedParams) (.Get "content_class") (.Get 6) -}}
-{{- $content_style := cond (.IsNamedParams) (.Get "content_style") (.Get 7) -}}
 
-<div class="block wide"
-  {{ with $block_class }}class="{{ . }}"{{ end }}
-  {{ with $block_style }}style="{{ . | safeCSS }}"{{ end }}>
-  {{- with $title -}}
-    <h2 class="block-title"
-      {{ with $title_class }}class="{{ . }}"{{ end }}
-      {{ with $title_style }}style="{{ . | safeCSS }}"{{ end }}>
-      {{- . -}}
-    </h2>
-  {{- end -}}
+{{- if $content -}}
 
-  {{- with $content -}}
+  {{- $title := cond (.IsNamedParams) (.Get "title") (.Get 1) -}}
+  {{- $block_class := cond (.IsNamedParams) (.Get "class") (.Get 2) -}}
+  {{- $block_style := cond (.IsNamedParams) (.Get "style") (.Get 3) -}}
+  {{- $title_class := cond (.IsNamedParams) (.Get "title_class") (.Get 4) -}}
+  {{- $title_style := cond (.IsNamedParams) (.Get "title_style") (.Get 5) -}}
+  {{- $content_class := cond (.IsNamedParams) (.Get "content_class") (.Get 6) -}}
+  {{- $content_style := cond (.IsNamedParams) (.Get "content_style") (.Get 7) -}}
+
+  <div class="block wide"
+    {{- with $block_class }} class="{{ . }}"{{ end -}}
+    {{- with $block_style }} style="{{ . | safeCSS }}"{{ end -}}>
+
+    {{- with $title -}}
+      <h2 class="block-title"
+        {{- with $title_class }} class="{{ . }}"{{ end -}}
+        {{- with $title_style }} style="{{ . | safeCSS }}"{{ end -}}>
+        {{- . -}}
+      </h2>
+    {{- end -}}
+
     <div class="block-content"
-      {{ with $content_class }}class="{{ . }}"{{ end }}
-      {{ with $content_style }}style="{{ . | safeCSS }}"{{ end }}>
-      {{- . | $.Page.RenderString -}}
+      {{- with $content_class }} class="{{ . }}"{{ end -}}
+      {{- with $content_style }} style="{{ . | safeCSS }}"{{ end -}}>
+      {{- $content | $.Page.RenderString -}}
     </div>
-  {{- end -}}
-</div>
+  </div>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'content' argument on %s" .Name .Position -}}
+{{- end -}}

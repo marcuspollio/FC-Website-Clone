@@ -48,7 +48,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   (not (strings.HasPrefix (strings.TrimSuffix "/" $href) $base))
 -}}
 
-{{- $title := .Title | plainify | default (i18n "opne_link" | default "Open link") -}}
+{{- $title := .Title | plainify | default (i18n "open_link" | default "Open link") -}}
 {{- $text := .Text -}}
 
 {{- $classes := slice (cond $is_external "external-link" "internal-tooltip") -}}
@@ -58,11 +58,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 <a href="{{ $href }}"
   class="{{ delimit $classes " " }}"
-  {{- if $is_external -}}
-    title="{{ $title }}"
-    target="_blank"
-    rel="external noreferrer noopener"
-  {{- end -}}>
+  {{- if $is_external }} title="{{ $title }}" target="_blank" rel="external noreferrer noopener"{{ end -}}>
 
   {{- if strings.HasPrefix $url "#" -}}
     {{- partialCached "utils/icon.html" "hash" "hash" -}}

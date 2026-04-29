@@ -16,21 +16,25 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) | default (i18n "tab" | default "Tab") -}}
-{{- $group := printf "tabs-%v" (default .Parent.Ordinal (.Parent.Get 0)) -}}
-{{- $tab := printf "%s-%d" $group .Ordinal -}}
+{{- if .Inner -}}
 
-<input type="radio"
-  name="{{ $group }}"
-  id="{{ $tab }}"
-  {{ if not .Ordinal }}checked="checked"{{ end }} />
+  {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) | default (i18n "tab" | default "Tab") -}}
+  {{- $group := printf "tabs-%v" (default .Parent.Ordinal (.Parent.Get 0)) -}}
+  {{- $tab := printf "%s-%d" $group .Ordinal -}}
 
-<label for="{{ $tab }}">
-  {{- $label -}}
-</label>
+  <input type="radio"
+    name="{{ $group }}"
+    id="{{ $tab }}"
+    {{- if not .Ordinal }} checked="checked"{{ end -}}>
 
-{{- with .Inner -}}
+  <label for="{{ $tab }}">
+    {{- $label -}}
+  </label>
+
   <div class="tabs-content">
-    {{- . | $.Page.RenderString -}}
+    {{- .Inner | .Page.RenderString -}}
   </div>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'inner' content on %s" .Name .Position -}}
 {{- end -}}

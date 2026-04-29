@@ -64,7 +64,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           <a class="page-item {{ $direction }}"
             href="{{ $href }}"
             title="{{ i18n (printf "%s_%s" $direction $type) | default (printf "%s %s" (title $direction) $type) }}"
-            {{ if $is_external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+            {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
 
             {{- if eq $direction "next" -}}
               {{- partialCached "utils/icon.html" $icon $icon -}}

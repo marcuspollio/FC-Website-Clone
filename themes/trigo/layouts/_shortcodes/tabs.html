@@ -16,7 +16,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- with .Inner -}}
+
   <div class="tabs">
     {{- . -}}
   </div>
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'inner' content on %s" .Name .Position -}}
 {{- end -}}
