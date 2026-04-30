@@ -32,7 +32,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- $url = cond (.IsNamedParams) (.Get "url") (.Get 0) -}}
+{{- $url := cond (.IsNamedParams) (.Get "url") (.Get 0) -}}
 
 {{- if $url -}}
 
@@ -168,6 +168,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- /* Render. */ -}}
     {{- if $width -}}
       {{- $height = div $width $data.aspectRatio | math.Round -}}
+
       <iframe title="{{ $data.name }}"
         width="{{ $width }}"
         height="{{ $height }}"
@@ -182,6 +183,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- $width = "100%" -}}
       {{- $height = "100%" -}}
       {{- $paddingTop := $data.aspectRatio | div 1 | mul 100 | fmt.Printf "%2.2f%%" -}}
+
       <div style="position: relative; padding-top: {{ $paddingTop }};">
         <iframe title="{{ $data.name }}"
           width="{{ $width }}"

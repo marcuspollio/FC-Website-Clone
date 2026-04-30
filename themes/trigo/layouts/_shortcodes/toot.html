@@ -58,19 +58,19 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             <a class="toot-author-name"
               href="https://{{ $host }}/@{{ $acct }}"
               rel="noopener">
-              {{ $json.account.display_name }}
+              {{- $json.account.display_name -}}
             </a>
             <a class="toot-author-handle"
               href="https://{{ $host }}/@{{ $acct }}"
               rel="noopener">
-              {{ $handle_inst }}
+              {{- $handle_inst -}}
             </a>
           </div>
         </div>
 
         {{- $json.content | safeHTML -}}
-
         {{- $images := slice -}}
+
         {{- with $json.media_attachments -}}
           {{- range . -}}
             {{- if eq .type "image" -}}
@@ -80,23 +80,24 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
           {{- with $images -}}
             <div class="toot-img-grid-{{ len $images }}">
+
               {{- range $img := . -}}
+
                 <img src="{{ $img.url }}"
                   alt="{{ $alt }}"
                   loading="lazy"
                   class="toot-media-img{{- if $json.sensitive }} toot-sens-blur{{ end -}}"
                   {{- if $json.sensitive }} onclick="this.classList.toggle('toot-sens-blur-no')"{{ end -}}>
+
                 {{- if $json.sensitive -}}
-                  <div class="blur-text">
-                    Sensitive content<br>
-                    (flagged at origin)
-                  </div>
+                  <div class="blur-text">Sensitive content<br>(flagged at origin)</div>
                 {{- end -}}
               {{- end -}}
             </div>
           {{- end -}}
 
           {{- range . -}}
+
             {{- if or (eq .type "video") (eq .type "gifv") -}}
               <div class="ctr toot-video-wrapper">
                 <video muted playsinline controls
@@ -104,15 +105,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                   {{- if eq .type "gifv" }} loop autoplay{{ end -}}
                   {{- if $json.sensitive }} onclick="this.classList.toggle('toot-sens-blur-no')"{{ end -}}>
                   <source src="{{ .url }}">
-                  <p class="legal ctr">
-                    (Your browser doesn't support the <code>video</code> tag.)
-                  </p>
+                  <p class="legal ctr">Your browser doesn't support the <code>video</code> tag.</p>
                 </video>
+
                 {{- if $json.sensitive -}}
-                  <div class="blur-text">
-                    Sensitive content<br>
-                    (flagged at origin)
-                  </div>
+                  <div class="blur-text">Sensitive content<br>(flagged at origin) </div>
                 {{- end -}}
               </div>
             {{- end -}}
@@ -132,10 +129,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                   </div>
                   <div class="toot-card-content">
                     <p class="toot-card-title">
-                      {{ $json.card.title }}
+                      {{- $json.card.title -}}
                     </p>
                     <p class="toot-card-description">
-                      {{ $json.card.description }}
+                      {{- $json.card.description -}}
                     </p>
                   </div>
                 </div>
@@ -146,27 +143,31 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         {{- with $json.poll -}}
           {{- $votes_total := 0 -}}
+
           {{- range .options -}}
             {{- $votes_total = add $votes_total .votes_count -}}
           {{- end -}}
+
           <div class="toot-poll-wrapper">
             {{- range .options -}}
+
               <div class="toot-poll-meter">
                 <meter id="vote-count"
                   max="{{ $votes_total }}"
                   value="{{ .votes_count }}">
                 </meter>
                 <span class="toot-poll-count">
-                  {{ (mul 100 (div .votes_count $votes_total)) | lang.FormatPercent 1 }}
+                  {{- (mul 100 (div .votes_count $votes_total)) | lang.FormatPercent 1 -}}
                 </span>
                 <span class="toot-poll-title">
-                  {{ .title }}
+                  {{- .title -}}
                 </span>
               </div>
             {{- end -}}
+
           </div>
           <p class="legal toot-poll-total">
-            {{ $votes_total }} people
+            {{- printf "%s people" $votes_total -}}
           </p>
         {{- end -}}
 
@@ -174,7 +175,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           <a href="https://{{ $host }}/@{{ $acct }}/{{ $json.id }}"
             class="toot-date"
             rel="noopener">
-            {{ dateFormat "3:04 PM • January 2, 2006" $json.created_at }} (UTC)
+            {{- $date := dateFormat "3:04 PM • January 2, 2006" $json.created_at -}}
+            {{- printf "%s (UTC)" $date -}}
           </a>
         </div>
       </blockquote>

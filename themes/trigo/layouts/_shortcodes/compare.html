@@ -36,6 +36,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $images := slice (dict "src" $before "class" "before") (dict "src" $after "class" "after") -}}
 
   {{- with $images -}}
+
     <div id="compare{{ $ordinal }}" class="compare">
 
       {{- range . -}}

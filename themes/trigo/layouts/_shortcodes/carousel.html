@@ -74,11 +74,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $images = uniq $images -}}
 
 {{- if gt (len $images) 0 -}}
+
   <div id="carousel{{ $ordinal }}"
     class="carousel"
     data-duration="{{ $duration }}"
     data-mode="{{ $mode }}">
+
     <ul>
+
       {{- range $index, $src := $images -}}
 
         {{- $img := $page.Resources.GetMatch $src -}}
@@ -132,6 +135,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           </li>
         {{- end -}}
       {{- end -}}
+
     </ul>
     <ol>
       {{- range $index, $src := $images -}}

@@ -51,43 +51,46 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- end -}}
 
   {{- if gt (len $frames) 0 -}}
-    <div class="canvas"
-      id="{{ $id }}"
-      tabindex="0"
-      {{- with $title }} title="{{ . }}"{{ end -}}>
 
-      <canvas aria-label="Canvas animation">
-        <img src="{{ index $frames 0 }}" alt="{{ $alt }}">
-      </canvas>
+<div class="canvas"
+  id="{{ $id }}"
+  tabindex="0"
+  {{- with $title }} title="{{ . }}"{{ end -}}>
 
-      <div class="controls">
-        <button class="play" aria-label="Play animation">
-          {{- partialCached "utils/icon.html" "play" "play" -}}
-        </button>
+  <canvas aria-label="Canvas animation">
+    <img src="{{ index $frames 0 }}" alt="{{ $alt }}">
+  </canvas>
 
-        <button class="pause" aria-label="Pause animation">
-          {{- partialCached "utils/icon.html" "pause" "pause" -}}
-        </button>
-        <input class="slider" type="range" min="0" max="{{ sub (len $frames) 1 }}" value="0" aria-label="Animation frame">
-      </div>
+  <div class="controls">
+    <button class="play" aria-label="Play animation">
+      {{- partialCached "utils/icon.html" "play" "play" -}}
+    </button>
 
-      <script type="application/json" class="canvas-data">
-      {
-        "fps": {{ $fps }},
-        "frames": {{ $frames | jsonify | safeJS }}
-      }
-      </script>
+    <button class="pause" aria-label="Pause animation">
+      {{- partialCached "utils/icon.html" "pause" "pause" -}}
+    </button>
 
-      <noscript>
-        <figure>
-          <img src="{{ index $frames 0 }}"
-            alt="{{ $alt }}"
-            style="max-width:100%; border-radius:var(--radius);">
+    <input class="slider" type="range" min="0" max="{{ sub (len $frames) 1 }}" value="0" aria-label="Animation frame">
+  </div>
 
-          <figcaption>Enable JavaScript to view the canvas animation.</figcaption>
-        </figure>
-      </noscript>
-    </div>
+  <script type="application/json" class="canvas-data">
+  {
+    "fps": {{ $fps }},
+    "frames": {{ $frames | jsonify | safeJS }}
+  }
+  </script>
+
+  <noscript>
+    <figure>
+      <img src="{{ index $frames 0 }}"
+        alt="{{ $alt }}"
+        style="max-width:100%; border-radius:var(--radius);"
+        loading="lazy"
+        fetchpriority="low">
+      <figcaption>Enable JavaScript to view the canvas animation.</figcaption>
+    </figure>
+  </noscript>
+</div>
 
   {{- else -}}
     {{- warnf "%q shortcode: no frames found for '%q' path argument on %s" .Name $path .Position -}}
