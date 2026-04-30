@@ -16,7 +16,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     "mastodon" "share?text={text}"
     "misskey" "share?text={text}"
 -}}
-{{- $domains := hugo.Data.fediverse | default slice -}}
+{{- $domains := hugo.Data.fediverse_instances | default slice -}}
 
 <!DOCTYPE html>
 <html lang="{{ site.Language.Locale }}">
