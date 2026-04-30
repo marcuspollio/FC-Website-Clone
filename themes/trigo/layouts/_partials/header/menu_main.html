@@ -38,12 +38,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- end -}}
       {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
 
-      {{- $name := .Name -}}
-      {{- with .Identifier -}}
-        {{- with T . -}}
-          {{- $name = . -}}
-        {{- end -}}
-      {{- end -}}
+      {{- $name := i18n (lower .KeyName) | default .Name -}}
 
       {{- $aria := "" -}}
       {{- $class := slice -}}

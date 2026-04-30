@@ -68,7 +68,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                     {{- printf " %s=%q" $key $value | safeHTMLAttr -}}
                   {{- end -}}
                 {{- end -}}>
-                {{ .Language.Label }} {{ .Language.Params.locale_flag }}
+                {{- .Language.Label }} {{ .Language.Params.locale_flag -}}
               </a>
             </li>
           {{- end -}}

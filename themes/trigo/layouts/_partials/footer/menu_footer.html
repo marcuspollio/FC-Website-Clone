@@ -27,10 +27,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- end -}}
       {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
 
-      {{- $name := .Name -}}
-      {{- with .Identifier -}}
-        {{- with T . -}}
-          {{- $name = . -}}
+      {{- $name := i18n (lower .KeyName) | default .Name -}}
+      {{- with .Page -}}
+        {{- if .IsHome -}}
+          {{- $name = i18n "home" | default site.Title -}}
         {{- end -}}
       {{- end -}}
 
