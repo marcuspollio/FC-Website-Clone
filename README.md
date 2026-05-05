@@ -163,7 +163,7 @@ Template actions in the Theme resize and crop images at build time depending on 
 
 Current supported languages are defined in the general site configuration `config/_default/languages.yaml`.
 
-Translations of the content are stored in the same folder ([leaf bundle](https://gohugo.io/content-management/page-bundles/) method) as the default language file (English) using a [translation by file name](https://gohugo.io/content-management/multilingual/#translate-your-content) approach.
+Content translations are stored in separate content root directories, e.g. `/content/en/` and `/content/zh/`. Page resources such as images, videos, and more, only need to be placed in the default language site (`en` for English), using the [page bundle](https://gohugo.io/content-management/page-bundles/) approach, as they are automatically linked among languages.
 
 Translations of the Theme are handled by translations tables in `themes/trigo/i18n`.
 
