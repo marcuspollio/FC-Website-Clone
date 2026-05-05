@@ -3,6 +3,7 @@ name: PR Preview (build PR, deploy to pages branch, and clean with cache)
 on:
   pull_request:
     types: [closed]
+  delete:
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -24,7 +25,8 @@ concurrency:
 jobs:
   action:
     if: >
-      github.event_name == 'pull_request' ||
+      (github.event_name == 'pull_request' && github.event.action == 'closed') ||
+      github.event_name == 'delete' ||
       (github.event_name == 'issue_comment' && github.event.issue.pull_request != null) ||
       github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -62,6 +64,10 @@ jobs:
             if (isPRClose) {
               prNumber = context.payload.pull_request.number;
               action = 'clean';
+            }
+
+            if (context.eventName === 'delete') {
+              core.info("Branch deleted but PR number not available.");
             }
 
             if (context.eventName === 'workflow_dispatch' && context.payload.inputs?.pr) {
@@ -244,7 +250,7 @@ jobs:
 
   clean-preview:
     runs-on: ubuntu-latest
-    if: ${{ needs.action.outputs.action == 'clean' }}
+    if: ${{ needs.action.outputs.action == 'clean' && needs.action.outputs.pr != '' }}
     needs: action
     steps:
 
