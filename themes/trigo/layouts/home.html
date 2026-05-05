@@ -113,8 +113,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- with $hero_title -}}
         <h2 class="title"
-          {{- with .Params.hero.class }} class="{{ . }}"{{ end -}}
-          {{- with .Params.hero.style }} style="{{ . | safeCSS }}"{{ end -}}>
+          {{- with $hero.class }} class="{{ . }}"{{ end -}}
+          {{- with $hero.style }} style="{{ . | safeCSS }}"{{ end -}}>
           {{- title . -}}
 
           {{- if $is_external -}}

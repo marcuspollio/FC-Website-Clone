@@ -14,7 +14,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   text-align-last: auto;
 }
 
-.content :is(h1, h2):not(.block-title) {
+.content :is(h1, h2):not(.block-shortcode :is(h1, h2)) {
   border-block-end: var(--border);
 }
 

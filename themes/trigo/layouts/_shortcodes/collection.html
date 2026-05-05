@@ -39,6 +39,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $pages := slice -}}
 {{- $taxonomies := site.Taxonomies -}}
+{{- $show_title := ne $title nil -}}
 {{- $title_link := .Page.CurrentSection.RelPermalink -}}
 
 {{- if and $collection (not $taxonomy) (not $term) -}}
@@ -64,7 +65,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- if not $pages -}}
     {{- with site.GetPage $collection -}}
       {{- $pages = .Pages -}}
-      {{- if not $title -}}
+      {{- if eq $title "auto" -}}
         {{- $title = .LinkTitle -}}
       {{- end -}}
       {{- $title_link = .RelPermalink -}}
@@ -75,7 +76,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- else if and $taxonomy $term -}}
   {{- with index $taxonomies $taxonomy -}}
     {{- $pages = .Get $term -}}
-    {{- if not $title -}}
+    {{- if eq $title "auto" -}}
       {{- $title = .LinkTitle -}}
     {{- end -}}
     {{- $title_link = .RelPermalink -}}
@@ -84,7 +85,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- else if $taxonomy -}}
   {{- with index $taxonomies $taxonomy -}}
     {{- $pages = .Pages -}}
-    {{- if not $title -}}
+    {{- if eq $title "auto" -}}
       {{- $title = .LinkTitle -}}
     {{- end -}}
     {{- $title_link = .RelPermalink -}}
@@ -125,7 +126,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   <div class="card-list wide">
 
-    {{- with $title -}}
+    {{- if and $show_title $title -}}
       {{- with site.GetPage $title_link -}}
         {{- with .Params.redirect -}}
           {{- $title_link = . -}}
