@@ -1,19 +1,19 @@
 ---
 title: Structure and organization
 description: How to organize the website files.
-weight: 2
+weight: 3
 ---
 
 
 ## Directory Structure
 
-By default, Hugo searches for Markdown files in the `content` directory, and the structure of the directory determines the final output structure of your website.
+By default, Hugo looks for Markdown files in the `/content` directory, and the structure of the directory determines the final output structure of your website.
 
 Take this site as an example:
 
 {{< tree >}}
-  {{< branch label="content" >}}
-    {{< leaf label="_index.md  ← /" >}}
+  {{< branch label="/content" >}}
+    {{< leaf label="_index.md  ← / (homepage)" >}}
     {{< branch label="docs" state="open" >}}
       {{< leaf label="_index.md  ← /docs/" >}}
       {{< branch label="getting-started" >}}
@@ -38,13 +38,24 @@ Each `_index.md` file is the index page for the corresponding section. The other
 
 ### Configure Content Directory
 
-By default, the root `content/` directory is used by Hugo to build the site.
-If you need to use a different directory for content, for example `docs/`, this can be done by setting the [`contentDir`](https://gohugo.io/getting-started/configuration/#contentdir) parameter in the site configuration `hugo.yaml`.
+By default, the root `/content` directory is used by Hugo to build the site.
+If you need to use a different directory for content, for example `/docs`, this can be done by setting the [`contentDir`](https://gohugo.io/getting-started/configuration/#contentdir) parameter in the site configuration `hugo.yaml`.
 
 
-## Add resources
+## Resources
 
-To add resources such as images, videos, and more, the easiest way is to place these files in the same directory as the Markdown file.
+In addition to text content, Hugo supports a wide range of additional resources, such as images, animations, vector graphics, videos, PDF, JSON, CSV, and many more medias and data formats.
+
+> [!NOTE]
+> For the FreeCAD website, page bundles are used, so it is easier to organize large amount of content and resources in a nested structure.
+>
+> Additionally, each language is organized into its own root content directory (e.g `/content/en/`). Resources only need to go into the default language site (`en` for English), as other languages are linked automatically.
+
+### Page bundles
+
+To add resources, the easiest way is to place these files together in the same directory as the Markdown file.
+
+The [page bundles][page-bundles] feature of Hugo allows to organize content and resource files neatly. To achieve that, turn the `my-page.md` file into a directory `my-page`, put the content into a Markdown file named `index.md`, and put the resource files inside the `my-page` directory.
 
 For example, add an image file `image.webp` alongside the `my-page.md` file:
 
@@ -59,36 +70,7 @@ For example, add an image file `image.webp` alongside the `my-page.md` file:
 
 Then, can use the following Markdown syntax to add the image to the content:
 
-```markdown {file="content/section/my-page.md"}
-![alt](image.webp "title")
-```
-
-### Page bundles
-
-The [page bundles][page-bundles] feature of Hugo allows to organize resource files together with the Markdown file. To achieve that, turn the `my-page.md` file into a directory `my-page` and put the content into a file named `index.md`, and put the resource files inside the `my-page` directory.
-
-> [!NOTE]
-> For the FreeCAD website, page bundles are used, so it is easier to organize large amount of content and resources in a nested structure.
->
-> Additionally, each language is organized into its own root content directory (e.g `/content/en/section`, `/content/fr/section`, etc). Resources only need to go into the default language site (`en` for English), as other languages are linked automatically.
->
-> The strategy illustrated below (e.g. `index.en.md`) is currently not used.
-
-For multi-lingual sites, it is also possible to organize translated content in the same directory with the language code in the file name.
-
-{{< tree >}}
-  {{< branch label="content" >}}
-    {{< branch label="section" >}}
-        {{< branch label="my-page" >}}
-            {{< leaf label="index.en.md" >}}
-            {{< leaf label="index.fr.md" >}}
-            {{< leaf label="image.webp" >}}
-        {{< /branch >}}
-    {{< /branch >}}
-  {{< /branch >}}
-{{< /tree >}}
-
-```markdown {file="content/section/my-page/index.en.md"}
+```markdown {file="content/en/section/my-page/index.md"}
 ![alt](image.webp "title")
 ```
 

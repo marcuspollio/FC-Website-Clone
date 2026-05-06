@@ -1,7 +1,7 @@
 ---
 title: Shortcodes
-description: Bundled Trigo Theme and Hugo shortcodes to augment your content with custom stuff.
-weight: 4
+description: Bundled Trigo Theme and Hugo shortcodes to augment your content.
+weight: 5
 ---
 
 

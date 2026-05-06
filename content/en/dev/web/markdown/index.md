@@ -1,7 +1,7 @@
 ---
 title: Markdown Syntax Guide
 description: Sample article showcasing basic Markdown syntax and formatting.
-weight: 3
+weight: 4
 ---
 
 
