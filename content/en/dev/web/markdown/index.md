@@ -281,14 +281,14 @@ For a list of supported languages and the names to use, please see the [Chroma d
 To set line numbers, set the `linenos` attribute to `table` and optionally set `linenostart` to the starting line number:
 
 ````text {file=Markdown}
-```python {linenos=table,linenostart=42}
+```python {linenos=inline,linenostart=42}
 def hello():
     print("Hello World!")
 ```
 ````
 
 ````text {file=Markdown}
-```html {linenos=true}
+```html {linenos=inline}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -305,12 +305,12 @@ def hello():
 
 <u>How it renders:</u>
 
-```python {linenos=table,linenostart=42}
+```python {linenos=inline,linenostart=42}
 def hello():
     print("Hello World!")
 ```
 
-```html {linenos=true}
+```html {linenos=inline}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -347,7 +347,7 @@ def hello():
 To highlight lines, set the `hl_lines` attribute to a list of line numbers:
 
 ````text {file="Markdown"}
-```python {linenos=table,hl_lines=[2,4],linenostart=1,file="hello.py"}
+```python {linenos=inline,linenostart=1,hl_lines=[2,"4-5"],file="hello.py"}
 def hello():
     print("Hello World!")
 
@@ -358,7 +358,7 @@ def main():
 
 <u>How it renders:</u>
 
-```python {linenos=table,hl_lines=[2,4],linenostart=1,file="hello.py"}
+```python {linenos=inline,linenostart=1,hl_lines=[2,"4-5"],file="hello.py"}
 def hello():
     print("Hello World!")
 

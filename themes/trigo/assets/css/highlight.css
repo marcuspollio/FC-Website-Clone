@@ -45,7 +45,7 @@ For Dark chroma, go to second half far-below. */
 .chroma .hl {
   display: block;
   width: 100%;
-  background: #ffffcc;
+  background: var(--theme);
 }
 
 /* LineNumbersTable, LineNumbers */
@@ -237,5 +237,5 @@ LiteralStringDouble, LiteralStringEscape, LiteralStringHeredoc, LiteralStringInt
 
 /* LineHighlight */
 .dark .chroma .hl {
-  background: #4d4400;
+  background: var(--theme);
 }
