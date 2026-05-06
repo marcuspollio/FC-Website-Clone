@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
@@ -231,7 +231,7 @@
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/start/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
@@ -496,42 +496,42 @@
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/tech/code-glossary/"
                 />
   </url><url>
-    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/structure/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/guidelines/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
-                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/structure/"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/guidelines/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
-                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/structure/"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/guidelines/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es-ES"
-                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/structure/"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/guidelines/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr-FR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/structure/"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/guidelines/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="de-DE"
-                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/structure/"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/guidelines/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja-JP"
-                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/structure/"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/guidelines/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-BR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/structure/"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/guidelines/"
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/teams/</loc>
@@ -687,7 +687,7 @@
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/setup/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <lastmod>2026-05-06T08:50:09+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
@@ -722,44 +722,6 @@
                 rel="alternate"
                 hreflang="pt-BR"
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/setup/"
-                />
-  </url><url>
-    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/markdown/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/markdown/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/markdown/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es-ES"
-                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/markdown/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr-FR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/markdown/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de-DE"
-                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/markdown/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja-JP"
-                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/markdown/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-BR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/markdown/"
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/design/naming/</loc>
@@ -836,6 +798,44 @@
                 rel="alternate"
                 hreflang="pt-BR"
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/tech/src/"
+                />
+  </url><url>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/structure/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/structure/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/structure/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/structure/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/structure/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/structure/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja-JP"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/structure/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-BR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/structure/"
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/tech/app/</loc>
@@ -952,6 +952,44 @@
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/teams/code-group/"
                 />
   </url><url>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/markdown/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/markdown/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/markdown/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/markdown/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/markdown/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/markdown/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja-JP"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/markdown/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-BR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/markdown/"
+                />
+  </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/roadmap/</loc>
     <lastmod>2026-05-05T15:27:52+02:00</lastmod>
     <xhtml:link
@@ -988,44 +1026,6 @@
                 rel="alternate"
                 hreflang="pt-BR"
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/roadmap/"
-                />
-  </url><url>
-    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/shortcodes/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/shortcodes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/shortcodes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es-ES"
-                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/shortcodes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr-FR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/shortcodes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de-DE"
-                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/shortcodes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja-JP"
-                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/shortcodes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-BR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/shortcodes/"
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/setup/vscode/</loc>
@@ -1143,7 +1143,7 @@
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/design/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <lastmod>2026-05-06T08:50:09+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
@@ -1256,44 +1256,6 @@
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/design/ui-glossary/"
                 />
   </url><url>
-    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/guidelines/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/guidelines/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/guidelines/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es-ES"
-                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/guidelines/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr-FR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/guidelines/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de-DE"
-                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/guidelines/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja-JP"
-                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/guidelines/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-BR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/guidelines/"
-                />
-  </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/code/python/</loc>
     <lastmod>2026-05-05T15:27:52+02:00</lastmod>
     <xhtml:link
@@ -1330,6 +1292,44 @@
                 rel="alternate"
                 hreflang="pt-BR"
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/code/python/"
+                />
+  </url><url>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/shortcodes/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/shortcodes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/shortcodes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/shortcodes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/shortcodes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/shortcodes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja-JP"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/shortcodes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-BR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/shortcodes/"
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/addon-academy/</loc>
@@ -1408,44 +1408,6 @@
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/tech/tests/"
                 />
   </url><url>
-    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/cms/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/cms/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/cms/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es-ES"
-                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/cms/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr-FR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/cms/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de-DE"
-                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/cms/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja-JP"
-                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/cms/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-BR"
-                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/cms/"
-                />
-  </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/code/copyright/</loc>
     <lastmod>2026-05-05T15:27:52+02:00</lastmod>
     <xhtml:link
@@ -1482,6 +1444,44 @@
                 rel="alternate"
                 hreflang="pt-BR"
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/code/copyright/"
+                />
+  </url><url>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/front-matter/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/front-matter/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/front-matter/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/front-matter/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/front-matter/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/front-matter/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja-JP"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/front-matter/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-BR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/front-matter/"
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/teams/git/</loc>
@@ -1636,6 +1636,44 @@
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/localization/"
                 />
   </url><url>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/locales/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/locales/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/locales/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/locales/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/locales/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/locales/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja-JP"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/locales/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-BR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/locales/"
+                />
+  </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/design/zones/</loc>
     <lastmod>2026-05-05T15:27:52+02:00</lastmod>
     <xhtml:link
@@ -1672,6 +1710,44 @@
                 rel="alternate"
                 hreflang="pt-BR"
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/design/zones/"
+                />
+  </url><url>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/cms/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/cms/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/cms/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/cms/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/cms/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/cms/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja-JP"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/cms/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-BR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/cms/"
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/writing/</loc>
@@ -1902,6 +1978,44 @@
                 href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/tech/deletion/"
                 />
   </url><url>
+    <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/theme/</loc>
+    <lastmod>2026-05-06T10:42:03+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="https://marcuspollio.github.io/FC-Website-Clone/dev/web/theme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="https://marcuspollio.github.io/FC-Website-Clone/zh/dev/web/theme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es-ES"
+                href="https://marcuspollio.github.io/FC-Website-Clone/es/dev/web/theme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/fr/dev/web/theme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="https://marcuspollio.github.io/FC-Website-Clone/de/dev/web/theme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja-JP"
+                href="https://marcuspollio.github.io/FC-Website-Clone/ja/dev/web/theme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-BR"
+                href="https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/theme/"
+                />
+  </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/tech/preferences/</loc>
     <lastmod>2026-05-05T15:27:52+02:00</lastmod>
     <xhtml:link
@@ -1941,7 +2055,7 @@
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/web/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <lastmod>2026-05-06T08:50:09+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
@@ -1979,7 +2093,7 @@
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/code/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <lastmod>2026-05-06T08:50:09+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
@@ -2093,7 +2207,7 @@
                 />
   </url><url>
     <loc>https://marcuspollio.github.io/FC-Website-Clone/pt/dev/tech/</loc>
-    <lastmod>2026-05-05T15:27:52+02:00</lastmod>
+    <lastmod>2026-05-06T08:50:09+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-US"
