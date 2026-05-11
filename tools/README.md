@@ -2,11 +2,11 @@
 
 
 This directory contains scripts and utilities used for the FreeCAD website project.
-Tools are primarily for content generation, automation, data collection, and reporting tasks related to maintenance and development workflows.
+Tools are primarily for content generation, workflows, data collection, and reporting tasks related to maintenance and development.
 Please see the website repository [ReadMe](https://github.com/FreeCAD/Website?tab=readme-ov-file#readme) for contributions guidelines.
 
 
-## Included Scripts
+## Content Scripts
 
 ### `wip_wednesday.py`
 

@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       pr:
-        description: 'PR number to deploy preview for'
+        description: PR number to deploy preview for
         required: true
         type: number
 
@@ -19,7 +19,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: "pr-preview"
+  group: pr-preview
   cancel-in-progress: true
 
 jobs:
