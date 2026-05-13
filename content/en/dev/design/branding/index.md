@@ -18,7 +18,7 @@ Third parties can only use it to provide credit for FreeCAD or to link to [freec
 
 You can download the logo kit including guidelines:
 
-[Download Logo Kit](logo_kit.zip)
+[Download Logo Kit](https://fpa.freecad.org/images/logos/logo_kit.zip)
 
 ### Wordmark
 
@@ -79,7 +79,7 @@ To maintain consistency, the FreeCAD logo should only be used as suggested above
 You should **not** alter colors, shape, style, or apply any effects such as gradients, borders, shadows, or outlines.
 
 We have made some examples of what **not** to do when using the logo:
-![Guidelines](guidelines-4.svg)
+![Guidelines](guidelines.svg)
 
 
 ## PDF Guidelines
