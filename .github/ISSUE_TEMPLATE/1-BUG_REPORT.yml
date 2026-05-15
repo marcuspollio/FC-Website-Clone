@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report! Please [search](https://github.com/freecad/website/issues) if a similar reported bug already exists.
+        Thanks for taking the time to fill out this bug report! Please [search](https://github.com/freecad/Website/issues) if a similar reported bug already exists.
         This bug report template helps ensure issues can be reviewed and solved efficiently.
         Please do not add 2 unrelated issues in a single report.
 

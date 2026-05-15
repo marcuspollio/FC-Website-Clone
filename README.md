@@ -34,11 +34,11 @@ Contributions are always welcome!
 
 The FreeCAD website source is freely accessible and open just like FreeCAD.
 
-When contributing to the website, keep in mind that it acts as the public face of the FreeCAD organization and community. Substantial changes must be discussed beforehand via its usual communication channels (e.g. [GitHub](https://github.com/FreeCAD/website/issues), [Matrix chat](https://matrix.to/#/#FreeCAD_FreeCAD:gitter.im), [Forum](https://forum.freecad.org/)). [FreeCAD's code of conduct](https://github.com/FreeCAD/website/blob/main/CODE_OF_CONDUCT.md) must be observed at any time. Please also read the [Guidelines](#guidelines) below.
+When contributing to the website, keep in mind that it acts as the public face of the FreeCAD organization and community. Substantial changes must be discussed beforehand via its usual communication channels (e.g. [GitHub](https://github.com/FreeCAD/Website/issues), [Matrix chat](https://matrix.to/#/#FreeCAD_FreeCAD:gitter.im), [Forum](https://forum.freecad.org/)). [FreeCAD's code of conduct](https://github.com/FreeCAD/Website/blob/main/CODE_OF_CONDUCT.md) must be observed at any time. Please also read the [Guidelines](#guidelines) below.
 
-Contributions of all kinds are welcome: content, translations, bug fixes, theme improvements, testing, documentation, bug reports, and more... Depending on the scope, some basic know-how of Git, Markdown, HTML, CSS, Javascript, YAML/JSON and Hugo template syntax is recommended. Create appropriate [feature issues](https://github.com/FreeCAD/website/issues) to discuss substantial changes before submitting Pull Requests. Also use the appropriate [Pull Request template](https://github.com/FreeCAD/website/pulls) and make sure reviewers are assigned.
+Contributions of all kinds are welcome: content, translations, bug fixes, theme improvements, testing, documentation, bug reports, and more... Depending on the scope, some basic know-how of Git, Markdown, HTML, CSS, Javascript, YAML/JSON and Hugo template syntax is recommended. Create appropriate [feature issues](https://github.com/FreeCAD/Website/issues) to discuss substantial changes before submitting Pull Requests. Also use the appropriate [Pull Request template](https://github.com/FreeCAD/Website/pulls) and make sure reviewers are assigned.
 
-For bug report, use the provided [bug issues](https://github.com/FreeCAD/website/issues) template.
+For bug report, use the provided [bug issues](https://github.com/FreeCAD/Website/issues) template.
 
 Thank you!
 
@@ -71,7 +71,7 @@ To build the website locally:
 4. Clone this repository (or download the Code Zip via the green button on the top-right and unzip it):
 
 ```shell
-git clone -b main https://github.com/FreeCAD/website.git
+git clone -b main https://github.com/FreeCAD/Website.git
 ```
 
 5. Open the terminal at the cloned or downloaded repository location.
@@ -90,10 +90,10 @@ To view the website locally, open the web browser at the indicated address, by d
 This project uses a `development` > `testing` > `production` environments logic:
 
 - The `development` environment is the local clone. The result can be seen on the web browser after following the [Building instructions above](#building).
-- The `testing` environment is the `main` branch of this `website` repository. The result can be seen on [GitHub Pages](https://freecad.github.io/website/).
+- The `testing` environment is the `main` branch of this `website` repository. The result can be seen on [GitHub Pages](https://freecad.github.io/Website/).
 - The `production` environment is hosted on FreeCAD's server. The result can be seen on [FreeCAD website](https://www.freecad.org).
 
-Testing builds deployment to GitHub Pages is done automatically by workflow Actions whenever the `main` branch receives a new commit. The built artifacts are stored in the `pages` branch (extracted from the `public` dir when the `hugo` command is run). The official website version is built from the `prod` branch instead.
+Testing builds deployment to GitHub Pages is done automatically by workflow Actions whenever the `main` branch receives a new commit. The built artifacts are stored in the `pages` branch (extracted from the `public` dir when the `hugo` command is run).
 
 
 ## Structure
@@ -167,7 +167,7 @@ Content translations are stored in separate content root directories, e.g. `/con
 
 Translations of the Theme are handled by translations tables in `themes/trigo/i18n`.
 
-Before a new language is enabled, the main navigation pages (Homepage, Features, Download, News, Community, Documentation and Donate) and the Theme strings must be translated. If willing to add a new language, use the provided [feature issue](https://github.com/FreeCAD/website/issues) template indicating who will translate and who will proof-read/review.
+Before a new language is enabled, the main navigation pages (Homepage, Features, Download, News, Community, Documentation and Donate) and the Theme strings must be translated. If willing to add a new language, use the provided [feature issue](https://github.com/FreeCAD/Website/issues) template indicating who will translate and who will proof-read/review.
 
 
 ## CMS
@@ -196,7 +196,7 @@ The custom-made Trigo Theme is used. It is included directly in the `themes/trig
 
 ## License
 
-This repository is licensed under the [GNU Lesser General Public License Version 2.1](https://github.com/FreeCAD/website/blob/main/LICENSE "Read the license text").
+This repository is licensed under the [GNU Lesser General Public License Version 2.1](https://github.com/FreeCAD/Website/blob/main/LICENSE "Read the license text").
 
 ### Content
 
@@ -210,4 +210,4 @@ The trademark of FreeCAD branded resources (e.g. FreeCAD logo) is registered and
 
 ### Trigo Theme for Hugo
 
-The `Trigo` Theme is licensed under the [MIT License](https://github.com/FreeCAD/website/blob/main/themes/trigo/LICENSE "Read the license text").
+The `Trigo` Theme is licensed under the [MIT License](https://github.com/FreeCAD/Website/blob/main/themes/trigo/LICENSE "Read the license text").

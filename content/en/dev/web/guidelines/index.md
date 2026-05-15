@@ -52,7 +52,7 @@ To tweak or enhance the Trigo theme and the FreeCAD website configuration, see t
 
 ## Licensing
 
-The whole FreeCAD website repository is licensed under the [GNU Lesser General Public License Version 2.1](https://github.com/FreeCAD/website/blob/main/LICENSE "Read the license text").
+The whole FreeCAD website repository is licensed under the [GNU Lesser General Public License Version 2.1](https://github.com/FreeCAD/Website/blob/main/LICENSE "Read the license text").
 
 ### Content
 
@@ -66,4 +66,4 @@ The trademark of FreeCAD branded resources (e.g. FreeCAD logo) is registered and
 
 ### Trigo Theme for Hugo
 
-The `Trigo` Theme is licensed under the [MIT License](https://github.com/FreeCAD/website/blob/main/themes/trigo/LICENSE "Read the license text").
+The `Trigo` Theme is licensed under the [MIT License](https://github.com/FreeCAD/Website/blob/main/themes/trigo/LICENSE "Read the license text").

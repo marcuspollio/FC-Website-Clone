@@ -29,7 +29,7 @@ languages:
 > [!NOTE]
 > Before a new language is enabled, the main sections and navigation pages (Homepage, Features, Download, News, Community, Documentation and Donate) and the Theme strings must be translated.
 >
-> Want to add a new language? Please use the provided [feature issue](https://github.com/FreeCAD/website/issues) template indicating who will translate and proof-read/review.
+> Want to add a new language? Please use the provided [feature issue](https://github.com/FreeCAD/Website/issues) template indicating who will translate and proof-read/review.
 
 ## Manage content translations
 

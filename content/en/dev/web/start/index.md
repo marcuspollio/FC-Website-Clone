@@ -8,7 +8,7 @@ weight: 1
 > [!IMPORTANT]
 > The FreeCAD website is still in active development.
 > The following documentation is not yet accurate or up-to-date.
-> Have a question or feedback? Feel free to [open an issue](https://github.com/freecad/website).
+> Have a question or feedback? Feel free to [open an issue](https://github.com/freecad/Website).
 
 
 ## Contributions
@@ -17,20 +17,20 @@ Contributions are always welcome!
 
 The FreeCAD website source is freely accessible and open just like the FreeCAD software.
 
-When contributing to the website, keep in mind that it acts as the public face of the FreeCAD organization and community. Substantial changes must be discussed beforehand via its usual communication channels (e.g. [GitHub](https://github.com/FreeCAD/website/issues), [Matrix chat](https://matrix.to/#/#FreeCAD_FreeCAD:gitter.im), [Forum](https://forum.freecad.org/)). [FreeCAD's code of conduct](https://github.com/FreeCAD/website/blob/main/CODE_OF_CONDUCT.md) must be observed at any time. Please also read the [Guidelines](guidelines).
+When contributing to the website, keep in mind that it acts as the public face of the FreeCAD organization and community. Substantial changes must be discussed beforehand via its usual communication channels (e.g. [GitHub](https://github.com/FreeCAD/Website/issues), [Matrix chat](https://matrix.to/#/#FreeCAD_FreeCAD:gitter.im), [Forum](https://forum.freecad.org/)). [FreeCAD's code of conduct](https://github.com/FreeCAD/Website/blob/main/CODE_OF_CONDUCT.md) must be observed at any time. Please also read the [Guidelines](guidelines).
 
 Want to join the current [website team](../teams)? Get in touch!
 
-Contributions of all kinds are welcome: content, translations, bug fixes, theme improvements, testing, documentation, bug reports, and more... Depending on the scope, some basic know-how of Git, Markdown, HTML, CSS, Javascript, YAML/JSON and Hugo template syntax is recommended. Create appropriate [feature issues](https://github.com/FreeCAD/website/issues) to discuss substantial changes before submitting Pull Requests. Also use the appropriate [Pull Request template](https://github.com/FreeCAD/website/pulls) and make sure reviewers are assigned.
+Contributions of all kinds are welcome: content, translations, bug fixes, theme improvements, testing, documentation, bug reports, and more... Depending on the scope, some basic know-how of Git, Markdown, HTML, CSS, Javascript, YAML/JSON and Hugo template syntax is recommended. Create appropriate [feature issues](https://github.com/FreeCAD/Website/issues) to discuss substantial changes before submitting Pull Requests. Also use the appropriate [Pull Request template](https://github.com/FreeCAD/Website/pulls) and make sure reviewers are assigned.
 
-For bug report, use the provided [bug issues](https://github.com/FreeCAD/website/issues) template.
+For bug report, use the provided [bug issues](https://github.com/FreeCAD/Website/issues) template.
 
 Thank you!
 
 
 ## Website ecosystem
 
-- [FreeCAD website](https://www.freecad.org/) and [its source](https://github.com/FreeCAD/website)
+- [FreeCAD website](https://www.freecad.org/) and [its source](https://github.com/FreeCAD/Website)
 - [FreeCAD software source](https://github.com/FreeCAD/FreeCAD)
 - [FreeCAD Wiki](https://wiki.freecad.org/)
 - [FreeCAD Developers Handbook](https://freecad.github.io/DevelopersHandbook/) and [its source](https://github.com/FreeCAD/DevelopersHandbook)
@@ -53,7 +53,7 @@ To build the website locally:
 4. Clone this repository (or download the Code Zip via the green button on the top-right and unzip it):
 
 ```shell
-git clone -b main https://github.com/FreeCAD/website.git
+git clone -b main https://github.com/FreeCAD/Website.git
 ```
 
 5. Open the terminal at the cloned or downloaded repository location.
@@ -72,7 +72,7 @@ To view the website locally, open the web browser at the indicated address, by d
 This project uses a `development` > `testing` > `production` environments logic:
 
 - The `development` environment is the local clone. The result can be seen on the web browser after following the [Building instructions above](#building).
-- The `testing` environment is the `main` branch of this `website` repository. The result can be seen on [GitHub Pages](https://freecad.github.io/website/).
+- The `testing` environment is the `main` branch of this `website` repository. The result can be seen on [GitHub Pages](https://freecad.github.io/Website/).
 - The `production` environment is hosted on FreeCAD's server. The result can be seen on [FreeCAD website](https://www.freecad.org).
 
 Testing builds deployment to GitHub Pages is done automatically by workflow Actions whenever the `main` branch receives a new commit. The built artifacts are stored in the `pages` branch (extracted from the `public` dir when the `hugo` command is run). The official website version is built from the `prod` branch instead.

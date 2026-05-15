@@ -41,4 +41,4 @@ Link to relevant Issues this PR resolves by referencing their number (e.g., fixe
 ### PR checklist
 
 - [ ] This change is verified to work as described. The documentation is added/updated if necessary.
-- [ ] This change complies with the repository [Guidelines](https://github.com/FreeCAD/website?tab=readme-ov-file#guidelines).
+- [ ] This change complies with the repository [Guidelines](https://github.com/FreeCAD/Website?tab=readme-ov-file#guidelines).

@@ -2,9 +2,9 @@
 
 If this Pull Request fits a specific category, use a dedicated PR template:
 
-- New feature or enhancement: [feature template](https://github.com/freecad/website/compare?template=1-FEATURE.md)
-- Bug fix: [bug template](https://github.com/freecad/website/compare?template=2-BUG.md)
-- Meeting and development notes: [notes template](https://github.com/freecad/website/compare?template=3-NOTES.md)
+- New feature or enhancement: [feature template](https://github.com/freecad/Website/compare?template=1-FEATURE.md)
+- Bug fix: [bug template](https://github.com/freecad/Website/compare?template=2-BUG.md)
+- Meeting and development notes: [notes template](https://github.com/freecad/Website/compare?template=3-NOTES.md)
 
 <!--
 Thanks for contributing to the FreeCAD community!
@@ -51,4 +51,4 @@ Link to relevant Issues this PR resolves by referencing their number (e.g., fixe
 ### PR checklist
 
 - [ ] This change is verified to work as described. The documentation is added/updated if necessary.
-- [ ] This change complies with the repository [Guidelines](https://github.com/FreeCAD/website?tab=readme-ov-file#guidelines).
+- [ ] This change complies with the repository [Guidelines](https://github.com/FreeCAD/Website?tab=readme-ov-file#guidelines).

@@ -20,4 +20,4 @@ If the notes are for a specific meeting, please indicate the meeting date.
 ### PR checklist
 
 - [ ] This change is verified to work as described. The documentation is added/updated if necessary.
-- [ ] This change complies with the repository [Guidelines](https://github.com/FreeCAD/website?tab=readme-ov-file#guidelines).
+- [ ] This change complies with the repository [Guidelines](https://github.com/FreeCAD/Website?tab=readme-ov-file#guidelines).
