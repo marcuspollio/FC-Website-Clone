@@ -33,6 +33,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     min-height: auto;
   }
 
+  .logo :is(img, svg) {
+    width: calc(var(--xxl) * 4);
+    height: var(--xxl);
+  }
+
   .menu {
     order: 3;
   }
@@ -89,14 +94,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     height: calc(var(--xxxl) * 1.5);
   }
 
-  .hero .entry-cover img {
+  .cover img {
     height: calc(100vh - var(--header-height));
-  }
-
-  .hero .article-cover img {
-    width: 100%;
-    height: auto;
-    max-height: var(--width);
   }
 
   main:has(> .toc + .content) .content {
@@ -144,15 +143,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     max-width: var(--width);
   }
 
-  .content img:not([popover] img, blockquote img) {
-    max-height: var(--width);
-  }
-
-  .content div[popover] {
-    padding: 0;
-  }
-
-  .content [popover] img {
+  .content .close {
     max-width: 100vw ;
   }
 
@@ -282,6 +273,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   .menu-toggle {
     display: none;
+  }
+
+  .content .close img {
+    height: revert-layer;
   }
 }
 

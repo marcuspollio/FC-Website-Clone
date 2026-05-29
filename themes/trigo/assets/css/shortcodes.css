@@ -286,6 +286,7 @@ input:checked + .branch :is(+ ul, .branch-open) {
   height: auto;
   z-index: 2;
   display: block;
+  border-radius: var(--radius);
 }
 
 .compare .after {
@@ -298,6 +299,7 @@ input:checked + .branch :is(+ ul, .branch-open) {
   overflow: visible;
   clip-path: inset(0 0 0 50%);
   display: block;
+  border-radius: var(--radius);
 }
 
 .compare .divider {

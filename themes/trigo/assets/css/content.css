@@ -246,29 +246,17 @@ sup:target {
 
 /* Single page figures, images and videos */
 
-.content img:not([popover] img, blockquote img) {
-  display: inherit;
-  max-width: 100%;
-  height: auto;
-  max-height: var(--content-width);
-  border-radius: var(--radius);
-  margin: auto;
-}
-
-.content .image-with-popover {
+.content .image {
   margin: var(--gap) auto;
-}
-
-.content video {
-  width: 100%;
-}
-
-.content figure button {
-  position: relative;
-}
-
-.content figure:has(img) {
   text-align: center;
+}
+
+.content .image img {
+  max-height: var(--content-width);
+}
+
+.content .image button {
+  position: relative;
 }
 
 .content button[popovertarget^="img-"] [class^="icon-"] {
@@ -284,7 +272,7 @@ sup:target {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -309,7 +297,19 @@ figure .internal-tooltip {
   z-index: 1;
 }
 
-.content a img:not(blockquote img, .card-cover img):hover {
+.content button[popovertarget^="img-"]:not(.close) {
+  cursor: zoom-in;
+  margin: auto;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.content .image button:not(.close):hover {
+  filter: var(--filter);
+  transform: var(--transform-hover);
+}
+
+.content a img:not(blockquote img, .thumbnail img):hover {
   filter: var(--filter);
   transform: var(--transform-hover);
 }
@@ -324,27 +324,23 @@ figure .internal-tooltip {
   background: var(--backdrop);
 }
 
-.content [popover] img {
-  height: auto;
-  max-height: calc(100vh - (var(--gap) * 2));
-  max-width: calc(100vw - (var(--gap) * 2));
+.content .close {
+  max-width: calc(100vw - (var(--gap) * 4));
   border-radius: var(--radius);
-}
-
-.content button[popovertarget^="img-"]:not(.close) {
-  cursor: zoom-in;
-  margin: auto;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.content button[popovertarget^="img-"].close {
   cursor: zoom-out;
 }
 
-.content button[popovertarget^="img-"]:not(.close):hover {
-  filter: var(--filter);
-  transform: var(--transform-hover);
+.content .close img {
+  width: auto;
+  max-height: calc(100vh - (var(--gap) * 4));
+}
+
+.content [popover] p {
+  color: var(--secondary);
+}
+
+.content video {
+  width: 100%;
 }
 
 .content > .wide {
@@ -454,18 +450,17 @@ figure .internal-tooltip {
   transform: var(--transform-active);
 }
 
-.card :is(figure, .card-color) {
+.card :is(.thumbnail, .card-color) {
   position: relative;
   height: calc(var(--card-width) * 0.5);
   margin-bottom: var(--gap);
   border-radius: var(--radius);
 }
 
-.card img {
-  border-radius: var(--radius);
-  margin: auto;
+.card .thumbnail img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .card-color {
@@ -803,11 +798,7 @@ figure .internal-tooltip {
   text-decoration: underline;
 }
 
-.internal-tooltip:has(.tooltip) {
-  color: var(--accent);
-}
-
-.internal-tooltip:has(.tooltip):hover {
+.internal-tooltip:hover {
   color: var(--accent-hover);
 }
 

@@ -41,8 +41,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 .logo :is(img, svg) {
   float: inline-start;
-  height: auto;
-  width: 8.5rem;
+  width: calc(var(--xl) * 4);
+  height: var(--xl);
   margin-inline-end: var(--gap);
 }
 

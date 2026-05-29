@@ -33,7 +33,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $ordinal := .Ordinal -}}
 {{- $images := slice -}}
 {{- $format := site.Params.resize_format | default "webp" -}}
-{{- $resize_dimensions := site.Params.resize_dimensions.cover | default (slice "500x250" "1000x500") -}}
+{{- $resize_dimensions := site.Params.resize_dimensions | default (slice 400 800) -}}
 
 {{- if and (not .IsNamedParams) (not (.Get "dir")) (gt (len .Params) 0) -}}
   {{- range .Params -}}
@@ -88,7 +88,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- $img = resources.Get $src -}}
         {{- end -}}
 
-        {{- if and (not $img) (strings.HasPrefix $src "http") -}}
+        {{- if and (not $img) (hasPrefix $src "http") (site.Params.allow_remote | default true) -}}
           {{- $remote := try (resources.GetRemote $src) -}}
           {{- with $remote.Err -}}
             {{- warnf "Carousel: failed to fetch remote resource %q: %s" $src . -}}
@@ -102,11 +102,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- $sizes := slice -}}
 
           {{- range $resize_dimensions -}}
-            {{- $width := int (index (split . "x") 0) -}}
-            {{- if lt $width $img.Width -}}
-              {{- $resized := $img.Resize (printf "%dx %s" $width $format) -}}
-              {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink $width) -}}
-              {{- $sizes = $sizes | append (printf "(max-width: %dpx) %dpx" $width $width) -}}
+            {{- $resize_width := int . -}}
+            {{- if lt $resize_width $img.Width -}}
+              {{- $resized := $img.Resize (printf "%dx %s" $resize_width $format) -}}
+              {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink $resize_width) -}}
+              {{- $sizes = $sizes | append (printf "(max-width: %dpx) %dpx" $resize_width $resize_width) -}}
             {{- end -}}
           {{- end -}}
 

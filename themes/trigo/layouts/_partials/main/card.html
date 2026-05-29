@@ -7,7 +7,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- /* Page card:
 
   - Set target page in a clickable card with title, description and metadata.
-  - Use front-matter cover image, or optional icon and color gradient.
+  - Use thumbnail image, or optional icon and color gradient.
 
   @returns {template.HTML}
 */ -}}
@@ -42,7 +42,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   href="{{ $href }}"
   {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
 
-  {{- with (partialCached "main/card_image.html" . $key) -}}
+  {{- with (partialCached "main/thumbnail.html" . $key) -}}
     {{- . -}}
 
   {{- else -}}

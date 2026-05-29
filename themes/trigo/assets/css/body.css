@@ -77,10 +77,17 @@ a:hover {
 
 figure {
   margin: 0;
+  display: block;
+  position: relative;
 }
 
 img {
-  object-fit: cover;
+  display: block;
+  margin: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: var(--radius);
 }
 
 [class^="icon-"] {

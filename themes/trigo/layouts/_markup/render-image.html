@@ -6,9 +6,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- /* Custom rendering for images and videos:
 
-  - Support local or remote resources.
-  - Resize supported processable images and builds responsive set.
-  - Add popover lightbox.
+  - Support local or remote image and video resources.
+  - Add optional caption and popover lightbox.
 
   @returns {template.HTML}
 
@@ -19,82 +18,113 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- $url := urls.Parse .Destination -}}
-{{- $alt := .PlainText | default (i18n "image_fallback" | default "Image fallback") -}}
+{{- $page := .Page -}}
+{{- $destination := .Destination -}}
+{{- $alt := .PlainText -}}
 {{- $title := .Title | default .PlainText -}}
 {{- $attributes := .Attributes -}}
+
+{{- /* {{- $id := printf "img-%03d" .Ordinal -}} NOTE: See https://github.com/gohugoio/hugo/issues/14670 */ -}}
+{{- $page.Store.Add "id" 1 -}}
+{{- $id := printf "img-%03d" ($page.Store.Get "id") -}}
+{{- $url := urls.Parse $destination -}}
+
+{{- $popover := site.Params.show_popover | default true -}}
 {{- $zoom := i18n "image_zoom" | default "Zoom image" -}}
 {{- $close := i18n "image_close" | default "Close image viewer" -}}
 {{- $video_fallback := i18n "video_fallback" | default "Your browser does not support the video tag." -}}
-{{- /* {{- $id := printf "img-%03d" .Ordinal -}} NOTE: See https://github.com/gohugoio/hugo/issues/14670 */ -}}
-{{- $id := printf "img-%03d" (.Page.Store.Get "id") -}}
-{{- .Page.Store.Add "id" 1 -}}
 
 {{- $resource := "" -}}
+
 {{- /* Remote resource. */ -}}
-{{- if $url.Scheme -}}
-  {{- with try (resources.GetRemote .Destination (dict "timeout" site.Params.timeout)) -}}
+{{- if and (hasPrefix $url.Scheme "http") (site.Params.allow_remote | default true) -}}
+
+  {{- with try (
+    resources.GetRemote
+    $destination
+    (dict "timeout" (site.Params.timeout | default "5s"))
+    ) -}}
+
     {{- with .Err -}}
-      {{- warnf "Failed to fetch remote resource %s" . -}}
+      {{- warnf "Failed to fetch remote resource %q in page %q: %s" $destination $page.LinkTitle . -}}
+
     {{- else with .Value -}}
       {{- $resource = . -}}
     {{- end -}}
-  {{- else -}}
-    {{- warnf "Unable to get remote resource %q" .Destination -}}
   {{- end -}}
 
 {{- /* Local (bundled/static) resource. */ -}}
 {{- else -}}
-  {{- $resource = .Page.Resources.GetMatch .Destination | default (resources.Get .Destination) -}}
+  {{- $resource = $page.Resources.Get $destination | default (resources.Get $destination) -}}
 {{- end -}}
 
 {{- with $resource -}}
   {{- if eq .MediaType.MainType "video" -}}
+
     <figure>
-      <video preload="metadata" controls playsinline loading="lazy">
-        <source src="{{ .RelPermalink | safeURL }}">
+      <video
+        preload="metadata"
+        controls
+        playsinline
+        {{- with $alt }} aria-label="{{ . }}"{{- end -}}>
+
+        <source src="{{ .RelPermalink }}">
         {{- $video_fallback -}}
       </video>
+
+      {{- with $title -}}
+        <figcaption>{{ . }}</figcaption>
+      {{- end -}}
     </figure>
 
   {{- else if reflect.IsImageResource . -}}
-    <div class="image-with-popover">
-      <figure>
-        {{- if site.Params.show_popover -}}
-          <button aria-label="{{ $zoom }}" popovertarget="{{ $id }}">
+
+    {{- $processed_image := partialCached "utils/process_image.html" (dict
+      "image" .
+      "alt" $alt
+      "title" $title
+      "attributes" $attributes
+      ) .RelPermalink -}}
+
+    <figure class="image">
+      {{- if $popover -}}
+        <button
+          aria-label="{{ $zoom }}"
+          popovertarget="{{ $id }}"
+          popovertargetaction="show">
           {{- partialCached "utils/icon.html" "zoom" "zoom" -}}
-        {{- end -}}
+      {{- end -}}
 
-        {{- partial "utils/image_resource.html" (dict "image" . "alt" $alt "attributes" $attributes) -}}
+      {{- $processed_image -}}
 
-        {{- if site.Params.show_popover -}}</button>{{- end -}}
-
-        {{- with $title -}}
-          <figcaption>{{ . }}</figcaption>
-        {{- end -}}
-      </figure>
-
-      {{- if site.Params.show_popover -}}
+      {{- if $popover -}}
+        </button>
         <div id="{{ $id }}" popover>
-          <button class="close"
+          <button
+            class="close"
             popovertarget="{{ $id }}"
             popovertargetaction="hide"
             aria-label="{{ $close }}">
-            <img src="{{ .RelPermalink | safeURL }}"
-              title="{{ $title }}"
-              alt="{{ $alt }}"
-              loading="lazy"
-              fetchpriority="low">
+
+            {{- $processed_image -}}
             {{- partialCached "utils/icon.html" "cross" "cross" -}}
           </button>
+
+          {{- with $title -}}
+            <p>{{ . }}</p>
+          {{- end -}}
         </div>
       {{- end -}}
-    </div>
+
+      {{- with $title -}}
+        <figcaption>{{ . }}</figcaption>
+      {{- end -}}
+    </figure>
 
   {{- else -}}
-    {{- warnf "Resource MediaType not supported for %q in page %q" .Destination .Page.File -}}
+    {{- warnf "Resource MediaType not supported for %q in page %q" $destination $page.LinkTitle -}}
   {{- end -}}
 
 {{- else -}}
-  {{- warnf "No resource found for %q in page %q" .Destination .Page.LinkTitle -}}
+  {{- warnf "No resource found for %q in page %q" $destination $page.LinkTitle -}}
 {{- end -}}

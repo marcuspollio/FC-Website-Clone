@@ -13,6 +13,7 @@ style:
   font-sans: '-apple-system, Arial, Helvetica, "Helvetica Neue", Verdana, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", "Noto Sans", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif'
   font-mono: '"Ubuntu Mono", monospace, "Lucida Console", Monaco, Menlo, Consolas, "Andale Mono"'
 
+# Theme features
 show_date: true
 show_taxonomy: true
 show_word_count: true
@@ -31,7 +32,12 @@ enable_js_canvas: true
 enable_js_calendar: true
 enable_js_addons: true
 
+# External and remote interaction
+allow_remote: true
 enable_fediverse: true
+
+# Remote resources fetching
+timeout: 5s
 
 git_repository: https://github.com/freecad/website
 
@@ -49,12 +55,14 @@ socials:
 # Image processing
 resize_format: webp
 resize_dimensions:
-  cover: [500x250, 1000x500]
-  card: [500x250]
+  - 400
+  - 800
+  - 1600
 
-# Remote resources fetching
-timeout: 5s
-
+# Image default attributes
+image_loading: lazy
+image_priority: low
+image_decoding: async
 
 # Custom partials parameters. For localized strings, see relevant content files.
 

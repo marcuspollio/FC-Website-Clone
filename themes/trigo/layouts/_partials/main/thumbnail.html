@@ -4,19 +4,17 @@ SPDX-FileCopyrightText: 2026 FreeCAD
 SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
-{{- /* Hero cover image:
+{{- /* Article thumbnail:
 
   - Support local and remote cover resources with section and category fallbacks.
   - Get responsive images set if processable.
-  - Add optional cover caption.
 
   @returns {template.HTML}
 */ -}}
 
 
 {{- $page := .Page -}}
-{{- $cover := "" -}}
-{{- $caption := "" -}}
+{{- $thumbnail := "" -}}
 
 {{- with $page.Params.cover -}}
   {{- with .image -}}
@@ -29,70 +27,58 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         resources.GetRemote
         .
         (dict "timeout" (site.Params.timeout | default "5s"))
-        ) -}}
+      ) -}}
 
         {{- with .Err -}}
-          {{- warnf "Failed to fetch remote cover %q in page %q: %s" $page.Params.cover.image $page.LinkTitle . -}}
+          {{- warnf "Failed to fetch thumbnail %q in page %q: %s" $page.Params.cover.image $page.LinkTitle . -}}
 
         {{- else with .Value -}}
-          {{- $cover = . -}}
+          {{- $thumbnail = . -}}
         {{- end -}}
+
       {{- end -}}
 
-    {{- /* Local (bundled/static) resource. */ -}}
+    {{- /* Local bundled image. */ -}}
     {{- else -}}
-      {{- $cover = ($page.Resources.ByType "image").Get . | default (resources.Get .) -}}
+      {{- $path := printf "*%s*" . -}}
+      {{- $thumbnail = ($page.Resources.ByType "image").Get . | default (resources.Get .) -}}
     {{- end -}}
   {{- end -}}
-
-  {{- $caption = .caption | plainify -}}
 {{- end -}}
 
-{{- /* Cover fallbacks. */ -}}
-{{- if and (eq .BundleType "single") (not $cover) -}}
-  {{- $first_section := .FirstSection -}}
-  {{- $categories := .Params.categories -}}
+{{- /* Thumbnail fallbacks for RegularPages. */ -}}
+{{- if and (not $thumbnail) (eq $page.BundleType "single") -}}
+  {{- $first_section := $page.FirstSection -}}
+  {{- $categories := $page.Params.categories -}}
   {{- $category := lower (cond (reflect.IsSlice $categories) (index $categories 0) $categories) -}}
 
   {{- if and $first_section $category -}}
-    {{- $cover = ($first_section.Resources.ByType "image").GetMatch (printf "*%s*" $category) -}}
-    {{- $page = $first_section -}}
+    {{- $thumbnail = ($first_section.Resources.ByType "image").GetMatch (printf "*%s*" $category) -}}
   {{- end -}}
 
-  {{- if and (not $cover) $first_section -}}
+  {{- if and (not $thumbnail) $first_section -}}
     {{- with $first_section.Params.cover.image -}}
-      {{- $cover = ($first_section.Resources.ByType "image").GetMatch (printf "*%s*" .) -}}
-      {{- $page = $first_section -}}
+      {{- $thumbnail = ($first_section.Resources.ByType "image").GetMatch (printf "*%s*" .) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-{{- with $cover -}}
+{{- with $thumbnail -}}
   {{- $key := "" -}}
   {{- with $page.File -}}{{- $key = .Path -}}{{- else -}}{{- $key = $page.RelPermalink -}}{{- end -}}
 
-  <figure class="cover">
+  <figure class="thumbnail">
 
     {{- if reflect.IsImageResource . -}}
 
       {{- partialCached "utils/process_image.html" (dict
         "image" .
-        "alt" ""
-        "title" $caption
+        "alt" $page.LinkTitle
         "attributes" dict
-        ) $key -}}
+      ) $key -}}
 
     {{- else -}}
-      {{- warnf "Cover MediaType not supported for %q in page %q" $cover $page.LinkTitle -}}
-    {{- end -}}
-
-    {{- with $caption -}}
-      <figcaption>
-        <div class="internal-tooltip">
-          {{- partialCached "utils/icon.html" "important" "important" -}}
-          <span class="tooltip">{{- . -}}</span>
-        </div>
-      </figcaption>
+      {{- warnf "Thumbnail MediaType not supported for %q in page %q" . $page.LinkTitle -}}
     {{- end -}}
 
   </figure>
