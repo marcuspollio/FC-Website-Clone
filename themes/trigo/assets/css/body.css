@@ -102,7 +102,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   overflow-x: auto;
-  margin-bottom: 2rem;
+  margin-bottom: calc(var(--gap) * 2);
 }
 
 button,

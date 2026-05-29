@@ -186,6 +186,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   flex-direction: row;
   gap: var(--gap);
   justify-content: center;
+  z-index: 1;
 }
 
 .addons-sort button {
@@ -249,6 +250,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   display: flex;
   flex-direction: column;
   gap: calc(var(--gap) * 2);
+  z-index: 1;
 }
 
 .chart {

@@ -85,18 +85,18 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- $visible_entries := first $entries_max $entries -}}
       {{- $overflow_entries := after $entries_max $entries -}}
 
-      {{- if gt (len $overflow_entries) 0 -}}
+      {{- with $overflow_entries -}}
 
         {{- $overflow_value := 0 -}}
         {{- $overflow_percent := 0 -}}
 
-        {{- range $overflow_entries -}}
+        {{- range . -}}
           {{- $overflow_value = add $overflow_value .value -}}
           {{- $overflow_percent = add $overflow_percent .percent -}}
         {{- end -}}
 
         {{- $overflow_percent = div (math.Round (mul $overflow_percent 10)) 10 -}}
-        {{- $overflow_label := printf "Others (%d more)" (len $overflow_entries) -}}
+        {{- $overflow_label := printf "Others (%d more)" (len .) -}}
 
         {{- $visible_entries = $visible_entries | append (dict
           "name" $overflow_label

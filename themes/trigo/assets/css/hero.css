@@ -9,7 +9,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 .hero {
   min-height: calc(var(--width) * 0.25);
   height: auto;
-  overflow: visible;
+  overflow: hidden;
   width: 100vw;
   margin: auto;
   padding: calc(var(--gap) * 2);
@@ -107,7 +107,7 @@ main > :is(.hero:only-child, .not-found) {
 }
 
 .meta svg {
-  vertical-align: calc(var(--gap) * -0.25);
+  vertical-align: calc(var(--gap) * -0.125);
 }
 
 .meta a {

@@ -1,8 +1,28 @@
 # Params default config with custom Theme-related and CMS specifics.
 
-site_keywords: [free, open-source, CAD, software, tool, parametric, modeling, model, design, product, engineering, manufacturing, community, workbench, FOSS, 3D, BIM, CAM, FEM, FEA]
 site_authors: FreeCAD
 site_logo: FreeCAD-wordmark.svg
+site_keywords:
+  - free
+  - open-source
+  - CAD
+  - software
+  - tool
+  - parametric
+  - modeling
+  - model
+  - design
+  - product
+  - engineering
+  - manufacturing
+  - community
+  - workbench
+  - FOSS
+  - 3D
+  - BIM
+  - CAM
+  - FEM
+  - FEA
 
 default_icon: FreeCAD-symbol-mono.svg
 default_chroma: auto # dark or light
@@ -104,7 +124,10 @@ calendar:
   host: https://open-web-calendar.hosted.quelltext.eu/calendar.html
   url: https://cloud.freecad.org/remote.php/dav/public-calendars/ZtJiizXtSqBaacwo
   title: FreeCAD Calendar
-  tabs: [month, week, agenda]
+  tabs:
+    - month
+    - week
+    - agenda
   skin: terrace
   menu: false
   target: _blank

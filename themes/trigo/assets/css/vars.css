@@ -9,7 +9,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 :root {
   --width: clamp(56rem, 20rem + 50vw, 100rem);
-  --content-width: 90ch;
+  --content-width: 80ch;
   --header-height: 4rem;
   --footer-height: 8rem;
   --gap: 1rem;

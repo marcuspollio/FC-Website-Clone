@@ -16,7 +16,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 }
 
 .merge svg {
-  vertical-align: -0.125rem;
+  vertical-align: calc(var(--gap) * -0.125);
 }
 
 
@@ -243,7 +243,7 @@ input:checked + .branch :is(+ ul, .branch-open) {
   user-select: none;
   cursor: pointer;
   transition: var(--transition);
-  z-index: 5;
+  z-index: 4;
 }
 
 .carousel .next {
@@ -284,6 +284,7 @@ input:checked + .branch :is(+ ul, .branch-open) {
   position: relative;
   width: 100%;
   height: auto;
+  max-height: var(--content-width);
   z-index: 2;
   display: block;
   border-radius: var(--radius);
@@ -295,6 +296,7 @@ input:checked + .branch :is(+ ul, .branch-open) {
   left: 0;
   width: 100%;
   height: auto;
+  max-height: var(--content-width);
   z-index: 3;
   overflow: visible;
   clip-path: inset(0 0 0 50%);

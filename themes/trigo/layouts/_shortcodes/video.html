@@ -38,7 +38,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- end -}}
 
   {{- if $poster -}}
-    {{- if (urls.Parse $poster).IsAbs -}}
+    {{- if and (urls.Parse $poster).IsAbs (site.Params.allow_remote | default true) -}}
       {{- with try (resources.GetRemote $poster) -}}
         {{- with .Value }}
           {{- $poster_res = .RelPermalink -}}
@@ -70,7 +70,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       preload="metadata"
       controls
       playsinline
-      loading="lazy"
       {{- with $poster_res }} poster="{{ . }}"{{ end -}}>
 
       {{- with $video -}}

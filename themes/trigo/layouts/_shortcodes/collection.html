@@ -41,6 +41,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $taxonomies := site.Taxonomies -}}
 {{- $show_title := ne $title nil -}}
 {{- $title_link := .Page.CurrentSection.RelPermalink -}}
+{{- $shortcode_parent := .Parent -}}
 
 {{- if and $collection (not $taxonomy) (not $term) -}}
 
@@ -124,7 +125,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- /* Render pages as cards. */ -}}
 {{- with $pages -}}
 
-  <div class="card-list wide">
+  <div {{ with not $shortcode_parent }}class="card-list wide"{{ end }}>
 
     {{- if and $show_title $title -}}
       {{- with site.GetPage $title_link -}}
@@ -159,7 +160,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       </a>
     {{- end -}}
 
-    <div class="cards">
+    <div {{ with $shortcode_parent }}style="padding: 0;" {{ end }}class="cards">
       {{- range . -}}
         {{- $key := "" -}}
         {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}

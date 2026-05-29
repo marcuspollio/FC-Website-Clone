@@ -129,18 +129,20 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   {{- /* Get data from API. */ -}}
   {{- $data := "" -}}
-  {{- with try (resources.GetRemote $api) -}}
-    {{- with .Err -}}
-      {{- errorf "%s" . -}}
-    {{- else with .Value -}}
-      {{- $data = . | transform.Unmarshal -}}
-      {{- /* Handle null aspect ratio for videos uploaded prior to PeerTube API v6.1.0. */ -}}
-      {{- if not $data.aspectRatio -}}
-        {{- $aspectRatio := partial "inline/peertube/get-aspect-ratio.html" (dict "data" $data "name" $.Name "position" $.Position) -}}
-        {{- $data = merge $data (dict "aspectRatio" $aspectRatio) -}}
+  {{- if (site.Params.allow_remote | default true) -}}
+    {{- with try (resources.GetRemote $api) -}}
+      {{- with .Err -}}
+        {{- errorf "%s" . -}}
+      {{- else with .Value -}}
+        {{- $data = . | transform.Unmarshal -}}
+        {{- /* Handle null aspect ratio for videos uploaded prior to PeerTube API v6.1.0. */ -}}
+        {{- if not $data.aspectRatio -}}
+          {{- $aspectRatio := partial "inline/peertube/get-aspect-ratio.html" (dict "data" $data "name" $.Name "position" $.Position) -}}
+          {{- $data = merge $data (dict "aspectRatio" $aspectRatio) -}}
+        {{- end -}}
+      {{- else -}}
+        {{- warnidf "shortcode-peertube" "The %q shortcode was unable to retrieve the remote data. See %s" $.Name $.Position -}}
       {{- end -}}
-    {{- else -}}
-      {{- warnidf "shortcode-peertube" "The %q shortcode was unable to retrieve the remote data. See %s" $.Name $.Position -}}
     {{- end -}}
   {{- end -}}
 
