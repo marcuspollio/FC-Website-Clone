@@ -1,5 +1,5 @@
 ---
-title: FreeCAD 1.0
+title: FreeCAD 1.0 Notes
 description: A new chapter for free and open-source CAD.
 date: 2024-11-19
 lastmod: 2025-08-06
@@ -149,7 +149,7 @@ void ShapeHistory::reset(
 
 {{< block title="Identity Evolution" >}}
 
-![Refreshed FreeCAD logo chosen by the community](/FreeCAD-symbol.webp "Refreshed FreeCAD logo chosen by the community")
+![Refreshed FreeCAD logo chosen by the community](FreeCAD-symbol.webp "Refreshed FreeCAD logo chosen by the community")
 
 {{< /block >}}
 

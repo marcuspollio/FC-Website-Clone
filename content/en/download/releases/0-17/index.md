@@ -1,6 +1,5 @@
 ---
-title: FreeCAD 0.17
-linkTitle: FreeCAD 0.17
+title: FreeCAD 0.17 Notes
 description: Thank you Roland.
 date: 2018-04-06
 versions: "0.17"

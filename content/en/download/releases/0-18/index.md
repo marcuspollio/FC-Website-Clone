@@ -1,6 +1,5 @@
 ---
-title: FreeCAD 0.18
-linkTitle: FreeCAD 0.18
+title: FreeCAD 0.18 Notes
 description: Start, Sketcher, BIM, TechDraw and much more.
 date: 2019-03-12
 lastmod: 2019-10-26

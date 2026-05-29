@@ -6,7 +6,7 @@ draft: false
 categories: announcement
 tags: []
 cover:
-  image: FreeCAD_Book_Cover_Web.webp
+  image: FreeCAD_Book_Cover.webp
   caption: FreeCAD for Makers Book Cover
 ---
 

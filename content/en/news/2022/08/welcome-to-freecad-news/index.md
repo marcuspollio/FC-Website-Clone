@@ -6,7 +6,7 @@ draft: false
 categories: announcement
 tags: []
 cover:
-  image: freecad-news-logo.webp
+  image: freecad-news-logo.svg
   caption: Freecad news logo
 ---
 

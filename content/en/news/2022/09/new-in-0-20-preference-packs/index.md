@@ -7,12 +7,14 @@ categories: feature
 tags:
   - UI
 cover:
-  image: preferencepacksfeaturedimage-1.webp
-  caption: Preference packs in FreeCAD 0.20
+  image:
+  caption:
 ---
 
 
 [FreeCAD 0.20](https://github.com/freecad/freecad/releases/tag/0.20) features [hundreds of enhancements and bug fixes](https://wiki.freecad.org/Release_notes_0.20): the new "Preference Pack" Addon type allows packaging and distribution of any of the settings in a FreeCAD configuration file. The driving application for the new feature was the need to set font and color information along with setting the overall user interface stylesheet, enabling a complete, self-contained "theme" to be applied in a single button click.
+
+![Preference packs in FreeCAD 0.20](preferencepacksfeaturedimage-1.webp "Preference packs in FreeCAD 0.20")
 
 FreeCAD includes the ability to easily save a new Preference Pack storing various appearance settings into a single package that can be applied (and reapplied) any time. Advanced users can customize the Pack by adding any other settings that can be added to a FreeCAD configuration file, and developers can create custom packs designed for distribution via the Addon Manager.
 

@@ -1,5 +1,5 @@
 ---
-title: FreeCAD 1.1
+title: FreeCAD 1.1 Notes
 description: Free and open-source CAD, refined.
 date: 2026-03-24
 lastmod: 2026-04-14
@@ -24,7 +24,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< button url="https://www.youtube.com/watch?v=a9biWv_M8p8" label="Watch the release video" icon="youtube_fill" >}}
 
 
-{{< block title="Your refined user interface and experience" style="background: linear-gradient(135deg, #ffd6e0, #fff3b0, #caffbf);" title_style="color: darkslategrey;" content_style="color: darkslategrey;" >}}
+{{< block title="Your refined user interface and experience" style="background: linear-gradient(var(--gradient-angle), #ffd6e0, #fff3b0, #caffbf);" title_style="color: darkslategrey;" content_style="color: darkslategrey;" >}}
 
 {{< group >}}
 
@@ -82,7 +82,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="CAM, FEM and TechDraw flow" style="background: linear-gradient(135deg, #e0c3fc, #f9f7ff, #c3f0ff);" title_style="color: darkslateblue;" content_style="color: darkslateblue;" >}}
+{{< block title="CAM, FEM and TechDraw flow" style="background: linear-gradient(var(--gradient-angle), #e0c3fc, #f9f7ff, #c3f0ff);" title_style="color: darkslateblue;" content_style="color: darkslateblue;" >}}
 
 - New toolbit library and editor, better multi-pass support and post-processors introduced in CAM.
 - FEM results now support animations, electrostatic analyses, and glyph filters.
@@ -104,7 +104,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="General performance and stability" style="background: linear-gradient(135deg, #dbe6c4 0%, #c3d2a4 40%, #aebf7a 70%, #8f9f5a 100%);" title_style="color: darkolivegreen;" content_style="color: darkolivegreen;" >}}
+{{< block title="General performance and stability" style="background: linear-gradient(var(--gradient-angle), #dbe6c4 0%, #c3d2a4 40%, #aebf7a 70%, #8f9f5a 100%);" title_style="color: darkolivegreen;" content_style="color: darkolivegreen;" >}}
 
 - Continued improvements to topological naming mitigation for greater model stability.
 - Better Wayland support for Linux users.

@@ -26,9 +26,16 @@ _If you are interested in writing an article for FreeCAD News, contact Chris Hen
 
 ![Figure 1. Sample images taken with PUMA configured to various optical modalities](PUMA_Figure_1.webp "Figure 1. Sample images taken with PUMA configured to various optical modalities")
 
-A) Standard transillumination of stained plant cells in mitosis showing chromosomes. B) Unstained human buccal (inner cheek) cells with full aperture transillumination. C) Same specimen but with optical Schlieren phase contrast using a normal (i.e. non-phase) microscope objective. D) Same specimen but showing full phase contrast calculated from 4 Schlieren images. E) Dark ground microscopy of an unstained section of oak leaf. F) and G) Epi-illumination of a silicon chip die showing individual transistors (F) and a set of logic gates (G). H) Human striated muscle seen with crossed polarisation illumination, I) Thin section of a flower bud containing pollen grains, stained with fluorescein and imaged with epi-fluorescence.
+A) Standard transillumination of stained plant cells in mitosis showing chromosomes.
+B) Unstained human buccal (inner cheek) cells with full aperture transillumination.
+C) Same specimen but with optical Schlieren phase contrast using a normal (i.e. non-phase) microscope objective.
+D) Same specimen but showing full phase contrast calculated from 4 Schlieren images.
+E) Dark ground microscopy of an unstained section of oak leaf.
+F) and G) Epi-illumination of a silicon chip die showing individual transistors (F) and a set of logic gates (G).
+H) Human striated muscle seen with crossed polarisation illumination,
+I) Thin section of a flower bud containing pollen grains, stained with fluorescein and imaged with epi-fluorescence.
 
-The **P**ortable, **U**pgradeable, **M**odular, **A**ffordable (**PUMA**) microscope is an advanced open source (GPL v3) microscopy system designed to be built as a DIY project by anyone with access to low cost 3D printing and some basic hand tools [[1](#1)], [[2](#2)], [[3](#3)].
+The **P**ortable, **U**pgradeable, **M**odular, **A**ffordable (**PUMA**) microscope is an advanced open source (GPL v3) microscopy system designed to be built as a DIY project by anyone with access to low cost 3D printing and some basic hand tools.[^1][^2][^3]
 
 The scope has interchangeable modules that allow multiple imaging modalities including phase contrast, dark field, epi-illumination, polarisation and fluorescence microscopy (figure 1).
 
@@ -50,7 +57,7 @@ Video 2. The PUMA Heads-Up Display or HUD is based on the same inexpensive TFT m
 
 {{< youtube id=Scaw8fW-bQM title="Augmented Reality Microscopy and the Trinocular Camera Port" loading=lazy >}}
 
-All the 3D printable parts of the PUMA system were designed in FreeCAD and all the editable parametric FreeCAD models are freely available to download on the project GitHub site [[3](#3)] so anyone can customise the scope to meet their specific project needs.
+All the 3D printable parts of the PUMA system were designed in FreeCAD and all the editable parametric FreeCAD models are freely available to download on the project GitHub site[^3] so anyone can customise the scope to meet their specific project needs.
 
 
 ## Why FreeCAD?
@@ -130,33 +137,24 @@ I am currently working on a stability bracket to reduce vibrations (figure 5a) a
 
 ### New Software
 
-One of my aims is to help people do advanced microscopy with PUMA. I already started the PARDUS microscope control system for automated microscopy [[4](#4)] and hope to develop that in in conjunction with PUMA once the PUMA robotic XYZ stage is finalised. I also would like to create more dedicated software for Fourier aperture manipulation with the SLM of the scope but have not started work on that yet. Further software development will occur in conjunction with the educational outreach discussed next.
+One of my aims is to help people do advanced microscopy with PUMA. I already started the PARDUS microscope control system for automated microscopy[^4] and hope to develop that in in conjunction with PUMA once the PUMA robotic XYZ stage is finalised. I also would like to create more dedicated software for Fourier aperture manipulation with the SLM of the scope but have not started work on that yet. Further software development will occur in conjunction with the educational outreach discussed next.
 
 ### Microscopy and image processing education
 
-I would like to make a series of tutorials on the YouTube channel about image processing in microscopy using my free BiaQIm Image Processing Suite [[5](#5)] as a basis for work-along examples and the first video in the series has already been published [[6](#6)].
+I would like to make a series of tutorials on the YouTube channel about image processing in microscopy using my free BiaQIm Image Processing Suite[^5] as a basis for work-along examples and the first video in the series has already been published[^6].
 
 Most of the basics of microscopy theory have been covered already as 'theory sections' in the PUMA YouTube 'How To' videos published to date. In addition I would like to make a series of more advanced microscopy theory tutorials on topics such as Fourier optics, super-resolution, live cell imaging and deconvolution microscopy using PUMA as the hardware platform to exemplify these subjects.
 
 ### Funding for PUMA
 
-All the above future development plans remain aspirational. If and when they can be delivered depends partly on the interest shown by people in the project and a lot on securing the necessary funding. To date (up to January 2023) PUMA has been a totally self-funded project. I intend to keep the PUMA resources free and open source for all but, of course, they are not free to develop and maintain. Buying components for prototyping, making documentation, videos and maintaining websites get more expensive all the time so I have recently set up a Patreon page [[7](#7)] and PayPal links [[8](#8)] to help make the project viable and sustainable into the future and complete all the aspirational developments mentioned above.
+All the above future development plans remain aspirational. If and when they can be delivered depends partly on the interest shown by people in the project and a lot on securing the necessary funding. To date (up to January 2023) PUMA has been a totally self-funded project. I intend to keep the PUMA resources free and open source for all but, of course, they are not free to develop and maintain. Buying components for prototyping, making documentation, videos and maintaining websites get more expensive all the time so I have recently set up a Patreon page[^7] and PayPal links[^8] to help make the project viable and sustainable into the future and complete all the aspirational developments mentioned above.
 
 
-## References
-
-[[1](#ref-1-2-3-return)] Tadrous, P. J. (2021). PUMA-An open‐source 3D‐printed direct vision microscope with augmented reality and spatial light modulator functions. Journal of Microscopy, 283(3), 259-280. [https://onlinelibrary.wiley.com/doi/10.1111/jmi.13043](https://onlinelibrary.wiley.com/doi/10.1111/jmi.13043)
-
-[[2](#ref-1-2-3-return)] The PUMA Microscope YouTube Channel [https://youtube.com/@PUMAMicroscope](https://youtube.com/@PUMAMicroscope)
-
-[[3](#ref-1-2-3-return)] The PUMA Microscope GitHub page [https://github.com/TadPath/PUMA](https://github.com/TadPath/PUMA)
-
-[[4](#ref-4-return)] The PARDUS motor control GitHub page [https://github.com/TadPath/PARDUS](https://github.com/TadPath/PARDUS)
-
-[[5](#ref-5-6-return)] My BiaQim Image Processing suite website [https://www.optarc.co.uk/bialith/](https://www.optarc.co.uk/bialith/)
-
-[[6](#ref-5-6-return)] First PUMA image processing tutorial video [https://youtu.be/MZOCSkbz3ko](https://youtu.be/MZOCSkbz3ko)
-
-[[7](#ref-7-8-return)] PUMA Microscope Patreon page: [https://www.patreon.com/PUMAMicroscope](https://www.patreon.com/PUMAMicroscope)
-
-[[8](#ref-7-8-return)] PUMA PayPal donation: [https://www.paypal.com/donate/?hosted_button_id=NPMYJKJATDLQ4](https://www.paypal.com/donate/?hosted_button_id=NPMYJKJATDLQ4)
+[^1]: Tadrous, P. J. (2021). PUMA-An open‐source 3D‐printed direct vision microscope with augmented reality and spatial light modulator functions. Journal of Microscopy, 283(3), 259-280. [DOI: 10.1111/jmi.13043](https://onlinelibrary.wiley.com/doi/10.1111/jmi.13043)
+[^2]: [The PUMA Microscope YouTube Channel](https://youtube.com/@PUMAMicroscope)
+[^3]: [The PUMA Microscope repository](https://github.com/TadPath/PUMA)
+[^4]: [The PARDUS motor control repository](https://github.com/TadPath/PARDUS)
+[^5]: [My BiaQim Image Processing suite](https://www.optarc.co.uk/bialith/)
+[^6]: [First PUMA image processing tutorial](https://youtu.be/MZOCSkbz3ko)
+[^7]: [PUMA Microscope Patreon](https://www.patreon.com/PUMAMicroscope)
+[^8]: [PUMA PayPal donation](https://www.paypal.com/donate/?hosted_button_id=NPMYJKJATDLQ4)

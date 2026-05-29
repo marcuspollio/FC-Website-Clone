@@ -1,6 +1,5 @@
 ---
-title: FreeCAD 0.21
-linkTitle: FreeCAD 0.21
+title: FreeCAD 0.21 Notes
 description: Last release of the pre-1.0 days.
 date: 2023-11-19
 lastmod: 2024-11-19

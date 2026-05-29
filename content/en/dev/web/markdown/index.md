@@ -136,12 +136,12 @@ Second Term
 ## Images
 
 ```text {file=Markdown}
-![](FreeCAD-symbol.png)
+![](FreeCAD-symbol.webp)
 ```
 
 <u>How it renders:</u>
 
-![](FreeCAD-symbol.png)
+![](FreeCAD-symbol.webp)
 
 With caption:
 
@@ -221,6 +221,7 @@ For more advanced functionality, use Hugo's built-in [Figure shortcode](https://
 > Don't communicate by sharing memory, share memory by communicating.
 >
 > — <cite>Rob Pike[^1]</cite>
+
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
 
 > Programs must be written for people to read, and only incidentally for machines to execute.

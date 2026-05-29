@@ -6,8 +6,8 @@ draft: false
 categories: announcement
 tags: []
 cover:
-  image: Ethel_Lois_Payne_press_pin_Asian-African_Conference_1955.webp
-  caption: Ethel Lois Payne press pin Asian African Conference 1955
+  image:
+  caption:
 ---
 
 

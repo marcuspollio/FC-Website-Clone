@@ -1,6 +1,5 @@
 ---
-title: FreeCAD 0.19
-linkTitle: FreeCAD 0.19
+title: FreeCAD 0.19 Notes
 description: Links everywhere.
 date: 2021-03-20
 lastmod: 2022-03-01

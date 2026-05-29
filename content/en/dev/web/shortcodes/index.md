@@ -278,7 +278,7 @@ The path is relative to the current page bundle. To use resources in the `static
 
 <u>How it renders:</u>
 
-{{< carousel dir="dir" mode="auto" images="/FreeCAD-symbol.png" >}}
+{{< carousel dir="dir" mode="auto" >}}
 
 <u>Attributes:</u>
 
@@ -539,7 +539,7 @@ Trigo shortcode to display a full-width block layout container with custom inner
 Use the `{{</* group */>}}` shortcode to nest and group related content into vertical columns.
 
 ```html {file="markdown"}
-{{</* block title="My Title" style="background: linear-gradient(135deg, var(--accent-hover), var(--accent));" */>}}
+{{</* block title="My Title" style="background: linear-gradient(var(--gradient-angle), var(--accent-hover), var(--accent));" */>}}
 
 {{</* group */>}}
 
@@ -559,14 +559,14 @@ This is **Markdown** content between `block` and `group` shortcode tags.
 
 {{</* /group */>}}
 
-![](/FreeCAD-symbol.png)
+![](/FreeCAD-symbol.webp)
 
 {{</* /block */>}}
 ```
 
 <u>How it renders:</u>
 
-{{< block title="My Title" style="background: linear-gradient(135deg, var(--accent-hover), var(--accent));" >}}
+{{< block title="My Title" style="background: linear-gradient(var(--gradient-angle), var(--accent-hover), var(--accent));" >}}
 
 {{< group >}}
 
@@ -586,7 +586,7 @@ This is **Markdown** content between `block` and `group` shortcode tags.
 
 {{< /group >}}
 
-![](/FreeCAD-symbol.png)
+![](/FreeCAD-symbol.webp)
 
 {{< /block >}}
 
