@@ -43,7 +43,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- with .First -}}
             {{- if ne $page_number .PageNumber -}}
               <a href="{{ .URL }}"
-                class="page-item"
+                class="button"
                 title="{{ i18n "first_page" | default "First Page" }}"
                 aria-label="First">
                 {{- $start -}} {{ .PageNumber }}
@@ -54,7 +54,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- with .Prev -}}
             {{- if ne .First . -}}
               <a href="{{ .URL }}"
-                class="page-item"
+                class="button"
                 title="{{ i18n "prev_page" | default "Previous Page" }}"
                 aria-label="Previous">
                 {{ $left }} {{ .PageNumber }}
@@ -63,7 +63,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- end -}}
 
           <span aria-current="page"
-            class="page-item active"
+            class="button active"
             aria-label="Current">
             {{ $page_number }}
           </span>
@@ -71,7 +71,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- with .Next -}}
             {{- if ne .Last . -}}
               <a href="{{ .URL }}"
-                class="page-item"
+                class="button"
                 title="{{ i18n "next_page" | default "Next Page" }}"
                 aria-label="Next">
                 {{ .PageNumber }} {{ $right }}
@@ -82,7 +82,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- with .Last -}}
             {{- if ne $page_number .PageNumber -}}
               <a href="{{ .URL }}"
-                class="page-item"
+                class="button"
                 title="{{ i18n "last_page" | default "Last Page" }}"
                 aria-label="Last">
                 {{ .PageNumber }} {{- $end -}}

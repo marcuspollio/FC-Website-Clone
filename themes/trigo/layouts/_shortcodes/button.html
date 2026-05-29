@@ -49,27 +49,29 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- end -}}
   {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
 
-
-  {{- $classes := slice "shortcode-button" -}}
+  {{- $shortcode_parent := .Parent -}}
+  {{- $classes := slice "button" -}}
   {{- with $class -}}{{- $classes = $classes | append . -}}{{- end -}}
 
-  <a href="{{ $url }}"
-    title="{{ $label }}"
-    aria-label="{{ $label }}"
-    class="{{ delimit $classes " " }}"
-    {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}
-    {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+  <p class="shortcode">
+    <a href="{{ $url }}"
+      title="{{ $label }}"
+      aria-label="{{ $label }}"
+      class="{{ delimit $classes " " }}"
+      {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}
+      {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
 
-    {{- with $icon -}}
-      {{- partialCached "utils/icon.html" . . -}}
-    {{- end -}}
+      {{- with $icon -}}
+        {{- partialCached "utils/icon.html" . . -}}
+      {{- end -}}
 
-    {{- $label -}}
+      {{- $label -}}
 
-    {{- if $is_external -}}
-      {{- partialCached "utils/icon.html" "external" "external" -}}
-    {{- end -}}
-  </a>
+      {{- if $is_external -}}
+        {{- partialCached "utils/icon.html" "external" "external" -}}
+      {{- end -}}
+    </a>
+  </p>
 
 {{- else -}}
   {{- warnf "%q shortcode: missing required 'url' argument on %s" .Name .Position -}}

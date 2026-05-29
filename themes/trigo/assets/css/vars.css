@@ -28,12 +28,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   --backdrop: rgba(192, 192, 192, 0.9);
 
   --accent: var(--accent-color);
-  --accent-hover: color-mix(in srgb, var(--accent) 70%, white 30%);
+  --accent-hover: color-mix(in srgb, var(--accent) 70%, black 15%);
 
   --border: var(--line) solid var(--tone);
-  --outline: none;
+  --outline: var(--line) solid var(--tone);
+  --outline-hover: var(--line) solid var(--accent-hover);
+  --outline-focus: calc(var(--line) * 2) solid var(--accent);
   --underline: underline solid currentColor var(--line);
-  --shadow: 0 0 4rem black;
+  --shadow: 1px 2px 8px rgba(16, 16, 32, 0.05);
+
+  /* rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset; */
 
   --filter: brightness(1.1) saturate(110%);
   --transform-hover: scale(1.02);
@@ -54,9 +58,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   --bg2: rgb(224, 224, 224);
   --bg3: rgb(216, 216, 216);
   --bg-gradient: linear-gradient(var(--bg1), var(--bg3));
-  --bg-dots: radial-gradient(var(--entry) 1px, transparent 1px) 0 0 / calc(var(--gap) * 0.5) calc(var(--gap) * 0.5);
-  --bg-grid: repeating-linear-gradient(90deg, var(--entry) 0 1px, transparent 0 calc(var(--gap) * 0.5)),
-    repeating-linear-gradient(180deg, var(--entry) 0 1px, transparent 0 calc(var(--gap) * 0.5));
+  --bg-dots: radial-gradient(var(--entry) var(--line), transparent var(--line)) 0 0 / calc(var(--gap) * 0.5) calc(var(--gap) * 0.5);
+  --bg-grid: repeating-linear-gradient(90deg, var(--entry) 0 var(--line), transparent 0 calc(var(--gap) * 0.5)),
+    repeating-linear-gradient(180deg, var(--entry) 0 var(--line), transparent 0 calc(var(--gap) * 0.5));
 
 }
 

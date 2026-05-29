@@ -70,7 +70,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             {{- $link_title := lower $value.link_title -}}
             {{- $title := i18n $link_title | default $link_title -}}
             <a href="{{ $value.rel_permalink }}"
-              class="hero-button">
+              class="button">
               {{- partialCached "utils/icon.html" $link_title $link_title -}}
               {{ title $title }} ({{ $value.count }})
             </a>
@@ -81,7 +81,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- if and .HasChildren (eq .Identifier $.Section) -}}
             {{- range .Children -}}
               <a href="{{ .URL }}"
-                class="hero-button">
+                class="button">
                 {{ .Name }}
               </a>
             {{- end -}}

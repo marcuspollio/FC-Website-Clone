@@ -6,7 +6,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- /* Download custom partial:
 
-  - Auto-select current release page or fallback to latest release in section.
+  - Get current release page or latest release for download section.
   - Render platform-specific download cards from release front matter metadata and site params.
   - Show version and last modified date.
 
@@ -15,67 +15,79 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- $page := . -}}
+{{- $release := $page -}}
 {{- $releases := site.GetPage "download/releases" -}}
 {{- with $releases -}}
   {{- if not (.InSection $page) -}}
   {{- $pages := sort .RegularPages "Date" "desc" -}}
     {{- with index $pages 0 -}}
-      {{- $page = . -}}
+      {{- $release = . -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-{{- $release := $page.Params.builds -}}
+{{- $builds := $release.Params.builds -}}
 
-{{- if not $page.Params.redirect -}}
+{{- if not $release.Params.redirect -}}
 
-  {{- if .IsPage -}}
-    <hr style="width: var(--width);">
-    <div class="download-release">
-  {{- end -}}
+  {{- with site.Params.download -}}
 
-  <div class="download-box">
-    {{- range $platform := site.Params.download  -}}
-      <div class="card" id="{{ $platform.os }}" style="order: {{ $platform.order }};">
-
-        <span popover id="{{ $platform.os }}-arch"></span>
-        <button popovertarget="{{ $platform.os }}-arch"
-          title="{{ $platform.label }}">
-          {{- partialCached "utils/icon.html" $platform.os (lower $platform.os) -}}
-          <br>
-          <span>{{- $platform.label -}}</span>
-        </button>
-
-        {{- range $package := .packages -}}
-          {{- with index $release (printf "%s_%s" $platform.os $package.key) -}}
-            <a class="app-build"
-              href="{{ . }}"
-              data-url="{{ . }}"
-              aria-label="{{ $package.label }}"
-              title="{{ $package.label }}"
-              target="_blank"
-              rel="noopener noreferrer">
-              {{- partialCached "utils/icon.html" $package.key (lower $package.key) -}}
-              <br>
-              <span>{{- $package.label -}}</span>
-            </a>
-          {{- else -}}
-            {{- warnf "Release %s: failed to get %s_%s build link" $page.LinkTitle $platform.os $package.key -}}
-          {{- end -}}
-        {{- end -}}
-
-      </div>
+    {{- if $page.IsPage -}}
+      <hr style="width: var(--width);">
+      <div class="download-release">
     {{- end -}}
-  </div>
 
-  <h4 class="description">
-    {{- printf "%s %s · %s"
-      (i18n "download" | default "Download")
-      (partial "utils/format_semver.html" $page.Params.versions)
-      ($page.Lastmod | time.Format ":date_long")
-    -}}
-  </h4>
+    <h4 class="description">
+      {{- printf "%s %s · %s"
+        (i18n "download" | default "Download")
+        (partial "utils/format_semver.html" $release.Params.versions)
+        ($release.Lastmod | time.Format ":date_long")
+      -}}
+    </h4>
 
-  {{- if .IsPage -}}</div>{{- end -}}
+    <div class="download-box">
 
+      {{- range $platform := . -}}
+
+        <div class="download-card" id="{{ $platform.os }}" style="order: {{ $platform.order }};">
+          <div class="download-platform">
+            {{- partialCached "utils/icon.html" $platform.os (lower $platform.os) -}}
+            <h3>{{ $platform.label }}</h3>
+
+            {{- with $platform.subtitle -}}
+              <p>{{ . }}</p>
+            {{- end -}}
+          </div>
+
+          {{- with $platform.packages -}}
+            <div class="download-buttons">
+
+              {{- range $package := . -}}
+
+                {{- $key := printf "%s_%s" $platform.os $package.key -}}
+                {{- with index $builds $key -}}
+                  <a class="button"
+                    href="{{ . }}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    {{- partialCached "utils/icon.html" "download" "download" -}}
+                    <strong>{{ $package.label }}</strong>
+
+                    {{- with $package.meta -}}
+                      <span>{{ . }}</span>
+                    {{- end -}}
+                  </a>
+                {{- end -}}
+              {{- end -}}
+
+            </div>
+          {{- end -}}
+        </div>
+
+      {{- end -}}
+    </div>
+
+  {{- if $page.IsPage -}}</div>{{- end -}}
+
+  {{- end -}}
 {{- end -}}

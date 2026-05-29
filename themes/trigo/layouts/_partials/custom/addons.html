@@ -58,6 +58,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- range $sorts -}}
 
         <button
+          class="button"
           data-sort="{{ .key }}"
           data-order="{{ .order }}"
           aria-pressed="{{ .pressed }}">

@@ -123,25 +123,7 @@ li .active:not(.button):hover {
 }
 
 .menu-list .button {
-  padding: var(--padding);
   line-height: 2.5;
-  box-shadow: none;
-  color: var(--cover);
-  background: var(--accent);
-  border-radius: var(--radius);
-  box-shadow: none;
-  transition: none;
-}
-
-.menu-list :is(.button, .button.active):hover {
-  color: var(--cover);
-  background: var(--accent-hover);
-  box-shadow: none;
-}
-
-.button.active  {
-  color: var(--entry);
-  background: var(--primary);
 }
 
 /* Languages and Menu in media mode */

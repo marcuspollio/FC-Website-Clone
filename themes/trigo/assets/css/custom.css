@@ -10,74 +10,56 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 /* Download box */
 
 .download-box {
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-content: space-evenly;
-  text-align: center;
+  flex-wrap: wrap;
   gap: var(--gap);
   width: var(--width);
   margin: var(--gap) auto;
   z-index: 2;
 }
 
-.download-box .card {
-  flex-direction: row;
+.download-card {
+  flex: 1 1 25%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
-}
-
-.download-box button {
-  padding: var(--padding);
-  color: var(--secondary);
-  flex: 1;
-}
-
-.download-box svg {
-  height: var(--xxxl);
-  width: var(--xxxl);
-  color: var(--secondary);
-}
-
-.download-box button:hover svg {
-  color: var(--accent-hover);
-}
-
-.download-box .app-build {
-  padding: var(--padding);
-  color: var(--secondary);
-}
-
-.download-box .app-build svg {
-  padding: calc(var(--gap) * 0.5);
-  background: var(--secondary);
-  color: var(--entry);
+  padding: var(--gap);
   border-radius: var(--radius);
+  background: var(--entry);
+  box-shadow: var(--shadow);
 }
 
-.download-box .app-build:hover svg {
-  background: var(--accent-hover);
+.download-platform {
+  text-align: center;
 }
 
-:is(#windows:has(#windows-arch:popover-open),
-#mac:has(#mac-arch:popover-open),
-#linux:has(#linux-arch:popover-open)) .app-build {
+.download-platform svg {
+  width: var(--xxxl);
+  height: var(--xxxl);
+  color: var(--secondary);
+}
+
+.download-platform p {
+  color: var(--tertiary);
+  font-size: var(--s);
+}
+
+.download-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.download-buttons .button {
   display: inline-block;
 }
 
-.card:has(#windows-arch:popover-open,
-#mac-arch:popover-open,
-#linux-arch:popover-open) {
-  filter: var(--filter);
-  transform: var(--transform-hover);
-  outline: var(--outline);
-}
-
-:is(#windows:has(#windows-arch:popover-open),
-#mac:has(#mac-arch:popover-open),
-#linux:has(#linux-arch:popover-open)) [popovertarget*="arch"],
-[id*="arch"],
-.app-build {
-  display: none;
+.download-buttons span {
+  margin-inline-start: calc(var(--gap) * 0.5);
+  color: var(--tertiary);
+  font-size: var(--s);
 }
 
 .download-release {
@@ -93,72 +75,51 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 /* Welcome contributors box */
 
 .welcome {
-  width: calc(var(--content-width) * 0.5);
+  max-width: var(--content-width);
   margin: var(--gap) auto;
 }
 
 .welcome input,
-[class^="wel-level"] {
+[class^="level"] {
   display: none;
 }
 
-#wel-root:checked ~ .wel-level-1 {
+.welcome #root:checked ~ .level-1 {
   display: grid;
 }
 
-.wel-panel {
+.welcome .panel {
   display: none;
   margin-top: calc(var(--gap) * 0.5);
-  padding: 0 var(--gap);
+  padding: 0 calc(var(--gap) * 0.5);
 }
 
-#wel-root:checked ~ .wel-level-1,
-.welcome input:checked + label + .wel-panel > [class^="wel-level"] {
+.welcome #root:checked ~ .level-1,
+.welcome input:checked + label + .panel > [class^="level"] {
   display: block;
 }
 
-.welcome input:checked + label + .wel-panel {
+.welcome input:checked + label + .panel {
   display: block;
   margin: var(--gap) auto;
 }
 
-.wel-button {
+.welcome .button {
   display: block;
-  padding: var(--padding);
   margin: var(--gap) 0;
-  border-radius: var(--radius);
-  background: var(--theme);
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--secondary);
-  font-size: var(--m);
-  transition: var(--transition);
 }
 
-.welcome input:checked + .wel-button {
-  color: var(--primary);
-  background: var(--entry);
-  font-weight: bold;
-}
-
-.wel-button:hover,
-.wel-link:hover,
-.welcome input:checked + .wel-button:hover {
-  background: var(--accent-hover);
-  color: var(--primary);
-}
-
-.wel-button::after {
+.welcome .button::after {
   content: "›";
   float: right;
   opacity: 0.5;
 }
 
-.wel-link::after {
+.welcome .link::after {
   content: "";
 }
 
-.wel-other {
+.welcome .other {
   margin-top: calc(var(--gap) * 2);
   padding-top: var(--gap);
   border-top: var(--border);
@@ -173,6 +134,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   height: calc(var(--width) * 0.5);
   border: none;
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
   z-index: 3;
 }
 
@@ -189,31 +151,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   z-index: 1;
 }
 
-.addons-sort button {
-  padding: var(--padding);
-  color: var(--secondary);
-  background: var(--entry);
-  border-radius: var(--radius);
-}
-
-.addons-sort button .label-asc,
-.addons-sort button .label-desc {
+.addons-sort .button .label-asc,
+.addons-sort .button .label-desc {
   display: none;
 }
 
 .addons-sort button[data-order="asc"] .label-asc,
 .addons-sort button[data-order="desc"] .label-desc {
   display: inline;
-}
-
-.addons-sort button.active {
-  font-weight: bold;
-  background: var(--accent);
-  color: var(--entry);
-}
-
-.addons-sort :is(button, button.active):hover {
-  background: var(--accent-hover);
 }
 
 .addons-sort svg {
@@ -257,6 +202,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   background: var(--entry);
   border-radius: var(--radius);
   padding: var(--gap);
+  box-shadow: var(--shadow);
 }
 
 .chart-title {
@@ -268,6 +214,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 .chart-row {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .chart-label {
@@ -300,8 +247,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   background:
     linear-gradient(
       var(--gradient-angle),
-      color-mix(in srgb, var(--tone), var(--entry) 25%),
-      var(--tone)
+      color-mix(in srgb, var(--tone) 25%, var(--entry) 50%),
+      color-mix(in srgb, var(--tone) 50%, var(--entry) 25%)
   );
 }
 
@@ -316,11 +263,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   );
 }
 
+.chart-row:hover .chart-segment {
+  background: color-mix(in srgb, var(--tone) 50%, var(--color) 25%);
+}
+
 .chart-row:hover .chart-bar {
   outline: var(--line) solid var(--color);
   background: var(--color);
-}
-
-.chart-row:hover .chart-segment {
-  background: color-mix(in srgb, var(--tone), var(--color) 25%);
 }

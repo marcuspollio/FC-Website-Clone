@@ -37,7 +37,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- range .Alphabetical -}}
           {{- $term := .Term | anchorize -}}
           {{- with index (index $taxonomy_map $taxonomy) $term -}}
-            <a href="{{ .rel_permalink }}">
+            <a class="button" href="{{ .rel_permalink }}">
               {{- .link_title }} ({{ .count -}})
             </a>
           {{- end -}}

@@ -74,7 +74,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- end -}}
           {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
-          <a class="page-item {{ $direction }}"
+          <a class="button {{ $direction }}"
             href="{{ $href }}"
             title="{{ i18n (printf "%s_%s" $direction $type) | default (printf "%s %s" (title $direction) $type) }}"
             {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>

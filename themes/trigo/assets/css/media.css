@@ -102,7 +102,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     padding-block-start: 0;
   }
 
-  main:has(.toc-toggle-checkbox:checked)::before {
+  main:has(.toc-checkbox:checked)::before {
     content: "";
     position: fixed;
     inset: 0;
@@ -116,11 +116,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     top: calc(var(--header-height) + var(--gap));
   }
 
-  .toc-toggle-checkbox:not(:checked) + .toc-toggle span {
+  .toc-checkbox:not(:checked) + .toc-toggle span {
     display: none;
   }
 
-  .toc-toggle-checkbox:not(:checked) + .toc-toggle {
+  .toc-checkbox:not(:checked) + .toc-toggle {
     border-radius: calc(var(--radius) * 10);
     width: fit-content;
     padding: var(--gap);
@@ -131,7 +131,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     width: var(--l);
   }
 
-  .toc-toggle-checkbox:checked + .toc-toggle {
+  .toc-checkbox:checked + .toc-toggle {
     width: var(--width);
   }
 
@@ -168,15 +168,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     flex-wrap: wrap;
   }
 
-  .download-box {
-    flex-direction: column;
-  }
-
   .addons-sort {
     flex-direction: column;
   }
 
-  .addons-sort button {
+  .addons-sort .button {
     width: 100%;
   }
 

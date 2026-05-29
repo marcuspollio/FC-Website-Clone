@@ -91,34 +91,37 @@ image_decoding: async
 download:
   - os: windows
     label: Windows
+    subtitle: Windows 10+
     order: 1
     packages:
       - key: msi
-        label: x86_64 Installer
-        alt: WINDOWS-MSI
+        label: Installer
+        meta: x86-64
       - key: zip
-        label: x86_64 Portable
-        alt: WINDOWS-ZIP
+        label: Portable
+        meta: x86-64
   - os: mac
     label: macOS
+    subtitle: macOS 12+ Monterey
     order: 2
     packages:
       - key: x86
-        label: Intel x86
-        alt: MACOS-X86
+        label: Intel
+        meta: x86-64
       - key: arm
         label: Apple Silicon
-        alt: MACOS-ARM
+        meta: arm64
   - os: linux
     label: GNU/Linux
+    subtitle: Multiple Distributions
     order: 3
     packages:
       - key: x86
-        label: x86_64 AppImage
-        alt: LINUX-X86
+        label: x86-64 AppImage
+        meta: amd64
       - key: arm
         label: AArch64 AppImage
-        alt: LINUX-AARCH64
+        meta: arm64
 
 # Calendar in Community
 calendar:

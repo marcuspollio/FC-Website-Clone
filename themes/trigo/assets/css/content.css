@@ -428,6 +428,7 @@ figure .internal-tooltip {
   color: var(--tertiary);
   background: var(--entry);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
   transition: var(--transition);
 }
 
@@ -442,11 +443,14 @@ figure .internal-tooltip {
 .card:hover, .card:focus {
   filter: var(--filter);
   transform: var(--transform-hover);
-  outline: var(--outline);
 }
 
 .card:active {
   transform: var(--transform-active);
+}
+
+.card:focus {
+  outline: var(--outline-focus);
 }
 
 .card :is(.thumbnail, .card-color) {
@@ -541,24 +545,6 @@ figure .internal-tooltip {
   z-index: 2;
 }
 
-.terms a {
-  display: block;
-  padding: 0.5rem var(--gap);
-  color: var(--cover);
-  background: var(--accent);
-  border-radius: var(--radius);
-  transition: var(--transition);
-}
-
-.terms a:hover {
-  background: var(--accent-hover);
-}
-
-.terms a:active {
-  background: black;
-  transform: var(--transform-active);
-}
-
 
 /* Table of Contents (ToC) Styles */
 
@@ -572,20 +558,14 @@ figure .internal-tooltip {
   z-index: 4;
 }
 
-.toc-toggle-checkbox {
+.toc-checkbox {
   display: none;
 }
 
 .toc-toggle {
   position: relative;
-  display: inline-block;
   width: 100%;
-  text-align: center;
-  padding: var(--padding);
-  border-radius: var(--radius);
-  background: var(--entry);
-  font-weight: bold;
-  cursor: pointer;
+  margin: 0 0 calc(var(--gap) * 0.5) 0;
 }
 
 .toc-content {
@@ -601,26 +581,17 @@ figure .internal-tooltip {
   overflow-y: auto;
 }
 
-.toc-toggle-checkbox:checked + .toc-toggle + .toc-content {
+.toc-checkbox:checked + .toc-toggle + .toc-content {
   display: block;
 }
 
-.toc-toggle-checkbox:checked + .toc-toggle .icon-cross {
+.toc-checkbox:checked + .toc-toggle .icon-cross {
   display: inline;
 }
 
 .toc-toggle .icon-cross,
-.toc-toggle-checkbox:checked + .toc-toggle .icon-toc {
+.toc-checkbox:checked + .toc-toggle .icon-toc {
   display: none;
-}
-
-.toc-toggle:hover,
-.toc-toggle-checkbox:checked + .toc-toggle:hover {
-  background: var(--accent-hover);
-}
-
-.toc-toggle-checkbox:checked + .toc-toggle {
-  background: var(--tone);
 }
 
 .toc svg {
@@ -698,28 +669,8 @@ figure .internal-tooltip {
   padding: var(--gap) calc((100vw - var(--width)) * 0.5);
 }
 
-.page-item {
-  padding: var(--padding);
-  color: var(--cover);
-  font-size: var(--s);
-  text-transform: capitalize;
-  background: var(--accent);
-  border-radius: var(--radius);
-  transition: var(--transition);
-}
-
-.page-item:hover {
-  color: var(--cover);
-  background: var(--accent-hover);
-}
-
-.page-item.active {
-  color: var(--entry);
-  background: var(--primary);
-}
-
-.page-item svg:not(.icon-external) {
-  vertical-align: -0.25rem;
+.pagination svg:not(.icon-external) {
+  vertical-align: -0.125rem;
 }
 
 

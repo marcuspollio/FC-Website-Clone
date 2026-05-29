@@ -17,19 +17,19 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   <div class="welcome">
 
-    <input type="radio" name="wel-root" id="wel-root" checked>
+    <input type="radio" name="root" id="root" checked>
 
-    <div class="wel-level-1">
+    <div class="level-1">
       {{- range $i, $item := . -}}
 
         {{- if $item.children -}}
 
-          {{- $id := printf "wel-l1-%s" ($item.id | default (printf "%d" $i)) -}}
+          {{- $id := printf "l1-%s" ($item.id | default (printf "%d" $i)) -}}
 
-          <input type="radio" name="wel-l1" id="{{ $id }}">
-          <label class="wel-button" for="{{ $id }}">{{- $item.label -}}</label>
+          <input type="radio" name="l1" id="{{ $id }}">
+          <label class="button" for="{{ $id }}">{{- $item.label -}}</label>
 
-          <div class="wel-panel">
+          <div class="panel">
             {{- partial "inline/welcome-level.html" (dict
               "nodes" $item.children
               "parent" $id
@@ -50,8 +50,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
           {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
-          <div class="wel-other">
-            <a class="wel-button wel-link"
+          <div class="other">
+            <a class="button link"
               href="{{ $href }}"
               {{- if $is_external }} target="_blank" rel="noopener"{{ end -}}>
               {{- $item.label -}}
@@ -74,7 +74,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $parent := .parent -}}
   {{- $level := .level -}}
 
-  <div class="wel-level-{{ $level }}">
+  <div class="level-{{ $level }}">
 
     {{- range $i, $node := $nodes -}}
 
@@ -82,10 +82,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- if $node.children -}}
 
-        <input type="radio" name="wel-l{{ $level }}" id="{{ $id }}">
-        <label class="wel-button" for="{{ $id }}">{{- $node.label -}}</label>
+        <input type="radio" name="l{{ $level }}" id="{{ $id }}">
+        <label class="button" for="{{ $id }}">{{- $node.label -}}</label>
 
-        <div class="wel-panel">
+        <div class="panel">
           {{- partial "inline/welcome-level.html" (dict
             "nodes" $node.children
             "parent" $id
@@ -106,7 +106,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
-        <a class="wel-button wel-link"
+        <a class="button link"
           href="{{ $href }}"
           {{- if $is_external }} target="_blank" rel="noopener"{{ end -}}>
           {{- $node.label -}}

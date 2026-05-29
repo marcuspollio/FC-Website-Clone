@@ -62,7 +62,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             {{- end -}}
 
             <a href="{{ $button_link }}"
-              class="hero-button"
+              class="button"
               {{- with .style }} style="{{ . | safeCSS }}"{{ end -}}
               {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
               {{- title $button_label -}}

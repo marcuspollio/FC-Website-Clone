@@ -94,9 +94,8 @@ main > :is(.hero:only-child, .not-found) {
 
 .title,
 .description,
-.hero-button,
+.hero .button,
 .metadata {
-  margin: 0 auto;
   display: inline-flex;
   max-width: var(--width);
   z-index: 2;
@@ -115,21 +114,53 @@ main > :is(.hero:only-child, .not-found) {
   width: var(--xxl);
 }
 
-.hero-button {
+.button {
+  display: inline-block;
   margin: calc(var(--gap) * 0.5);
   padding: var(--padding);
-  color: var(--entry);
+  color: var(--secondary);
   font-size: var(--m);
-  background: var(--accent);
+  background: var(--entry);
   border-radius: var(--radius);
+  outline: var(--outline);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
   transition: var(--transition);
+  box-shadow: var(--shadow);
   z-index: 2;
 }
 
-.hero-button:hover {
+.button:hover {
+  color: var(--primary);
+  outline: var(--outline-hover);
   filter: var(--filter);
-  transform: var(--transform-hover);
-  color: var(--cover);
+}
+
+.button:disabled {
+  background: var(--tone);
+  color: var(--tertiary);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+input:checked + .button,
+.button:active,
+.button.active {
+  color: var(--primary);
+  font-weight: bold;
+  background: var(--header);
+  outline: var(--line) solid var(--backdrop);
+  cursor: default;
+}
+
+:is(input:checked + .button, .button:active, .button.active):hover {
+  outline: var(--line) solid var(--tertiary);
+}
+
+.button:focus {
+  outline: var(--outline-focus);
 }
 
 .meta {
