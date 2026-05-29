@@ -57,7 +57,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $label := i18n "ics_calendar" | default "ICS Calendar" -}}
   {{- $href := printf "%s?export" .url -}}
 
-  <a href="https://cloud.freecad.org/remote.php/dav/public-calendars/ZtJiizXtSqBaacwo/?export"
+  <a href="{{ $href }}"
     class="button"
     title="{{ $label }}">
     {{- partialCached "utils/icon.html" "download" "download" -}}
