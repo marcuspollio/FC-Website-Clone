@@ -32,6 +32,42 @@ main {
   white-space: normal;
   background: var(--theme);
   overflow-wrap: break-word;
+  --section-hue: calc(180deg + var(--hue) * 1.5deg);
+  --section-bg:
+    radial-gradient(
+      80% 70% at 105% 5%,
+      hsl(var(--section-hue) 80% 75% / 35%),
+      transparent 60%
+    ),
+    radial-gradient(
+      70% 60% at -5% 95%,
+      hsl(calc(var(--section-hue) - 30deg) 60% 75% / 25%),
+      transparent 70%
+    ),
+    linear-gradient(
+      var(--gradient-angle),
+      hsl(var(--section-hue) 40% 95%),
+      hsl(var(--section-hue) 20% 90%)
+    );
+}
+
+.dark main {
+  --section-bg:
+    radial-gradient(
+      80% 70% at 105% 5%,
+      hsl(var(--section-hue) 80% 25% / 35%),
+      transparent 60%
+    ),
+    radial-gradient(
+      70% 60% at -5% 95%,
+      hsl(calc(var(--section-hue) - 30deg) 60% 25% / 25%),
+      transparent 70%
+    ),
+    linear-gradient(
+      var(--gradient-angle),
+      hsl(var(--section-hue) 40% 5%),
+      hsl(var(--section-hue) 20% 10%)
+    );
 }
 
 h1 {

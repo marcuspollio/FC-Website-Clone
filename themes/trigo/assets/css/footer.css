@@ -9,7 +9,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 .site-footer {
   min-height: var(--footer-height);
-  background: var(--footer);
+  background: var(--tone);
 }
 
 #top-link {

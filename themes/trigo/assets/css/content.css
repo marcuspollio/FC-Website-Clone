@@ -463,9 +463,9 @@ figure .internal-tooltip {
 }
 
 .card-color {
-  --card-hue: calc(var(--hue) * 3deg);
+  --card-hue: calc(120deg + var(--hue) * 1.5deg);
   background: linear-gradient(
-    135deg,
+    var(--gradient-angle),
     hsl(var(--card-hue), 50%, 75%) 0%,
     hsl(calc(var(--card-hue) + 30deg), 50%, 75%) 100%
   );
@@ -473,7 +473,7 @@ figure .internal-tooltip {
 
 .dark .card-color {
   background: linear-gradient(
-    135deg,
+    var(--gradient-angle),
     hsl(var(--card-hue), 50%, 25%) 0%,
     hsl(calc(var(--card-hue) + 30deg), 50%, 25%) 100%
   );

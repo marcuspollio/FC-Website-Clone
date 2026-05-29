@@ -254,7 +254,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 }
 
 .chart {
-  background: var(--theme);
+  background: var(--entry);
   border-radius: var(--radius);
   padding: var(--gap);
 }
@@ -299,7 +299,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   width: 100%;
   background:
     linear-gradient(
-      135deg,
+      var(--gradient-angle),
       color-mix(in srgb, var(--tone), var(--entry) 25%),
       var(--tone)
   );
@@ -310,7 +310,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   min-width: var(--s);
   background:
     linear-gradient(
-      135deg,
+      var(--gradient-angle),
       color-mix(in srgb, var(--color), var(--entry) 25%),
       var(--color)
   );
