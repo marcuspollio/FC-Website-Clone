@@ -57,7 +57,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     <p class="card-description">{{ . }}</p>
   {{- end -}}
 
-  {{- if not hugo.IsProduction -}}
+  {{- if and site.Params.enable_debug (not hugo.IsProduction) -}}
     {{- with .Weight -}}
       <h2 style="color: crimson;">Weight: {{ . }}</h2>
     {{- end -}}

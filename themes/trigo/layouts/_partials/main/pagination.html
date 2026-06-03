@@ -80,7 +80,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
               {{- partialCached "utils/icon.html" $icon $icon -}}
             {{- end -}}
 
-            {{- if not hugo.IsProduction -}}
+            {{- if and site.Params.enable_debug (not hugo.IsProduction) -}}
               {{- with .Weight -}}
                 <span style="color: crimson;">Weight: {{ . }}</span>
               {{- end -}}

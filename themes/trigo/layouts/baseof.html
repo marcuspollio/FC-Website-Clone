@@ -42,7 +42,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- partial "header/page_header.html" . -}}
 
     {{- /* Debug info for current Page. */ -}}
-    {{- if not hugo.IsProduction -}}
+    {{- if and site.Params.enable_debug (not hugo.IsProduction) -}}
       {{- partial "utils/debug_info.html" . -}}
     {{- end -}}
 

@@ -39,8 +39,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     </div>
   {{- end -}}
 
-  {{- /* List bundled icons for dev/debug purpose. */ -}}
-  {{- if not hugo.IsProduction -}}
+  {{- /* List bundled icons for development. */ -}}
+  {{- if and site.Params.enable_debug (not hugo.IsProduction) -}}
     {{- partialCached "utils/debug_icons.html" . "debug_icons" -}}
   {{- end -}}
 

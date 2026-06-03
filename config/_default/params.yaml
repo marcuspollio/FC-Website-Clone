@@ -57,6 +57,9 @@ enable_js_addons: true
 allow_remote: true
 enable_fediverse: true
 
+# Theme and pages debug info
+enable_debug: false
+
 # Remote resources fetching
 timeout: 5s
 

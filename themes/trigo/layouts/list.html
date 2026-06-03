@@ -52,7 +52,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       </h3>
     {{- end -}}
 
-    {{- if not hugo.IsProduction -}}
+    {{- if and site.Params.enable_debug (not hugo.IsProduction) -}}
       {{- with .Page.Menus.main -}}
         <h2 style="color: crimson; z-index:2;">Weight: {{ .Weight }}</h2>
       {{- end -}}
