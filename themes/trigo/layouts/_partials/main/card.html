@@ -14,29 +14,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- $params := site.Params -}}
-{{- $page := .Page -}}
 {{- $href := .RelPermalink -}}
-
-{{- with $page.Params.redirect -}}
-  {{- if and $page.IsSection (eq . "auto") -}}
-    {{- $pages := sort $page.Pages -}}
-    {{- with index $pages 0 -}}
-      {{- $href = .RelPermalink -}}
-    {{- end -}}
-  {{- else -}}
-    {{- $target := site.GetPage . -}}
-    {{- with $target -}}
-      {{- $href = .RelPermalink -}}
-    {{- else -}}
-      {{- $href = . -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-
-{{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
 {{- $key := "" -}}
 {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+{{- $href = partialCached "utils/link_redirect.html" . $key -}}
+{{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
 <a class="card"
   href="{{ $href }}"

@@ -30,11 +30,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $style := cond (.IsNamedParams) (.Get "style") (.Get 4) -}}
 
   {{- with site.GetPage $url -}}
-    {{- with .Params.redirect -}}
-      {{- $url = . -}}
-    {{- else -}}
-      {{- $url = .RelPermalink -}}
-    {{- end -}}
+    {{- $key := "" -}}
+    {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+    {{- $url = partialCached "utils/link_redirect.html" . $key -}}
     {{- if not $icon -}}
       {{- with .Params.icon -}}
         {{- $icon = . -}}
@@ -44,9 +42,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- $label = .LinkTitle -}}
     {{- end -}}
   {{- end -}}
+
   {{- if not $label -}}
     {{- $label = i18n "open_link" | default "Open link" -}}
   {{- end -}}
+
   {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
 
   {{- $shortcode_parent := .Parent -}}

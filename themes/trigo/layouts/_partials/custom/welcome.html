@@ -40,11 +40,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- else if not .children -}}
 
           {{- $href := $item.url -}}
-          {{- with site.GetPage $href -}}
-            {{- with .Params.redirect -}}
-              {{- $href = . -}}
-            {{- else -}}
-              {{- $href = .RelPermalink -}}
+          {{- with $href -}}
+            {{- with site.GetPage . -}}
+              {{- $key := "" -}}
+              {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+              {{- $href = partialCached "utils/link_redirect.html" . $key -}}
             {{- end -}}
           {{- end -}}
 
@@ -96,11 +96,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- else -}}
 
         {{- $href := $node.url -}}
-        {{- with site.GetPage $href -}}
-          {{- with .Params.redirect -}}
-            {{- $href = . -}}
-          {{- else -}}
-            {{- $href = .RelPermalink -}}
+        {{- with $href -}}
+          {{- with site.GetPage . -}}
+            {{- $key := "" -}}
+            {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+            {{- $href = partialCached "utils/link_redirect.html" . $key -}}
           {{- end -}}
         {{- end -}}
 

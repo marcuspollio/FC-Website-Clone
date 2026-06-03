@@ -129,9 +129,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
     {{- if and $show_title $title -}}
       {{- with site.GetPage $title_link -}}
-        {{- with .Params.redirect -}}
-          {{- $title_link = . -}}
-        {{- end -}}
+        {{- $key := "" -}}
+        {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+        {{- $title_link = partialCached "utils/link_redirect.html" . $key -}}
         {{- if not $title_icon -}}
           {{- with .Params.icon -}}
             {{- $title_icon = . -}}

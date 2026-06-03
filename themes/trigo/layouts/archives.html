@@ -39,14 +39,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
               {{- range $month.Pages -}}
                 <article class="archive-entry">
-                  <a href="{{ .RelPermalink }}">
+                  {{- $href := .RelPermalink -}}
+                  {{- $key := "" -}}
+                  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = $href -}}{{- end -}}
+                  {{- $href = partialCached "utils/link_redirect.html" . $key -}}
+                  <a href="{{ $href }}">
                     <h4 class="archive-entry-title">
                       {{ title .Title }}
                       {{- if .Draft -}}<sup><span>[{{ i18n "draft" | default "Draft" }}]</span></sup>{{- end -}}
                     </h4>
                   </a>
-                  {{- $key := "" -}}
-                  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
                   {{- partialCached "main/metadata.html" . $key -}}
                 </article>
               {{- end -}}

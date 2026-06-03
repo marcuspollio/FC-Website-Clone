@@ -46,57 +46,53 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
             {{- with $button_link -}}
               {{- with site.GetPage . -}}
-                {{- with .Params.redirect -}}
-                  {{- $button_link = . -}}
-                {{- else -}}
-                  {{- $button_link = .RelPermalink -}}
-                {{- end -}}
+                {{- $key := "" -}}
+                {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+                {{- $button_link = partialCached "utils/link_redirect.html" . $key -}}
                 {{- if not $button_label -}}
                   {{- $button_label = .LinkTitle -}}
                 {{- end -}}
               {{- end -}}
-            {{- end -}}
 
-            {{- $is_external := and (hasPrefix $button_link "http") (not (hasPrefix $button_link site.BaseURL)) -}}
+              {{- $is_external := and (hasPrefix $button_link "http") (not (hasPrefix $button_link site.BaseURL)) -}}
 
-            {{- if not $button_label -}}
-              {{- $button_label = i18n "explore" | default "Explore" -}}
-            {{- end -}}
-
-            <a href="{{ $button_link }}"
-              class="button"
-              {{- with .style }} style="{{ . | safeCSS }}"{{ end -}}
-              {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
-              {{- title $button_label -}}
-
-              {{- if $is_external -}}
-                {{- partialCached "utils/icon.html" "external" "external" -}}
+              {{- if not $button_label -}}
+                {{- $button_label = i18n "explore" | default "Explore" -}}
               {{- end -}}
-            </a>
+
+              <a href="{{ $button_link }}"
+                class="button"
+                {{- with .style }} style="{{ . | safeCSS }}"{{ end -}}
+                {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+                {{- title $button_label -}}
+
+                {{- if $is_external -}}
+                  {{- partialCached "utils/icon.html" "external" "external" -}}
+                {{- end -}}
+              </a>
+            {{- end -}}
 
           {{- end -}}
         </div>
       {{- end -}}
     </div>
 
-    {{- if $hero -}}
+    {{- with $hero -}}
 
-      {{- $hero_link := $hero.link -}}
-      {{- $hero_title := $hero.title -}}
-      {{- $hero_cover := $hero.cover -}}
+      {{- $hero_link := .link -}}
+      {{- $hero_title := .title -}}
+      {{- $hero_cover := .cover -}}
 
       {{- with $hero_link -}}
         {{- with site.GetPage . -}}
-          {{- with .Params.redirect -}}
-            {{- $hero_link = . -}}
-          {{- else -}}
-            {{- $hero_link = .RelPermalink -}}
-          {{- end -}}
+          {{- $key := "" -}}
+          {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+          {{- $hero_link = partialCached "utils/link_redirect.html" . $key -}}
           {{- if not $hero_title -}}
             {{- $hero_title = .LinkTitle -}}
           {{- end -}}
           {{- if not $hero_cover -}}
-            {{- $hero_cover = . -}}
+            {{- $hero_cover = .Page -}}
           {{- end -}}
         {{- end -}}
       {{- end -}}

@@ -55,23 +55,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         {{- with $item -}}
 
-          {{- $item_page := .Page -}}
           {{- $href := .RelPermalink -}}
-          {{- with $item_page.Params.redirect -}}
-            {{- if and $item_page.IsSection (eq . "auto") -}}
-              {{- $item_pages := sort $item_page.Pages -}}
-              {{- with index $item_pages 0 -}}
-                {{- $href = .RelPermalink -}}
-              {{- end -}}
-            {{- else -}}
-              {{- $target := site.GetPage . -}}
-              {{- with $target -}}
-                {{- $href = .RelPermalink -}}
-              {{- else -}}
-                {{- $href = . -}}
-              {{- end -}}
-            {{- end -}}
-          {{- end -}}
+          {{- $key := "" -}}
+          {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = $href -}}{{- end -}}
+          {{- $href = partialCached "utils/link_redirect.html" . $key -}}
           {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
           <a class="button {{ $direction }}"

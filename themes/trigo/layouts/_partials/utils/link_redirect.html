@@ -1,0 +1,33 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Internal pages redirect:
+
+  - Resolve redirect links.
+*/ -}}
+
+{{- $page := . -}}
+{{- $link := "" -}}
+
+{{- with $page.Params.redirect -}}
+  {{- if and $page.IsSection (eq . "auto") -}}
+    {{- $pages := sort $page.Pages -}}
+    {{- with index $pages 0 -}}
+      {{- $link = .RelPermalink -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $target := site.GetPage . -}}
+    {{- with $target -}}
+      {{- $link = .RelPermalink -}}
+    {{- else -}}
+      {{- $link = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $link = $page.RelPermalink -}}
+{{- end -}}
+
+{{- return $link -}}

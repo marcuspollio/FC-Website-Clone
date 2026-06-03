@@ -21,9 +21,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- $url := .URL -}}
       {{- with .Page -}}
-        {{- with .Params.redirect -}}
-          {{- $url = . -}}
-        {{- end -}}
+        {{- $key := "" -}}
+        {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+        {{- $url = partialCached "utils/link_redirect.html" . $key -}}
       {{- end -}}
       {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
 
@@ -65,9 +65,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
                 {{- $child_url := .URL -}}
                 {{- with .Page -}}
-                  {{- with .Params.redirect -}}
-                    {{- $child_url = . -}}
-                  {{- end -}}
+                  {{- $key := "" -}}
+                  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+                  {{- $child_url = partialCached "utils/link_redirect.html" . $key -}}
                 {{- end -}}
                 {{- $is_external := and (hasPrefix $child_url "http") (not (hasPrefix $child_url site.BaseURL)) -}}
 
@@ -94,9 +94,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                   {{- range .Pages.ByWeight -}}
 
                     {{- $page_url := .RelPermalink -}}
-                    {{- with .Page.Params.redirect -}}
-                      {{- $page_url = . -}}
-                    {{- end -}}
+                    {{- $key := "" -}}
+                    {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = $page_url -}}{{- end -}}
+                    {{- $page_url = partialCached "utils/link_redirect.html" . $key -}}
                     {{- $is_external := and (hasPrefix $page_url "http") (not (hasPrefix $page_url site.BaseURL)) -}}
 
                     <li>
