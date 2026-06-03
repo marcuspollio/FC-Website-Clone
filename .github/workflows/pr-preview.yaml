@@ -3,6 +3,20 @@ name: PR Preview (build PR, deploy to pages branch, and clean with cache)
 on:
   pull_request:
     types: [closed]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE"
+      - "CODE_OF_CONDUCT.md"
+      - "CONTRIBUTING.md"
+      - ".editorconfig"
+      - ".gitignore"
+      - ".vscode/settings.json"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/PULL_REQUEST_TEMPLATE/**"
+      - ".github/pull_request_template.md"
+      - ".github/labeler.yml"
+      - "notes/**"
+      - "tools/**"
   delete:
   issue_comment:
     types: [created]

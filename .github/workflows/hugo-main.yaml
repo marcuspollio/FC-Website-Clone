@@ -5,15 +5,20 @@ name: Hugo main (build main, and deploy to pages branch with cache)
 
 on:
   push:
-    # Ignore root files only changes (e.g README).
     paths-ignore:
       - "README.md"
       - "LICENSE"
+      - "CODE_OF_CONDUCT.md"
+      - "CONTRIBUTING.md"
       - ".editorconfig"
       - ".gitignore"
       - ".vscode/settings.json"
-      - ".github/PULL_REQUEST_TEMPLATE.md"
-      - ".github/ISSUE_TEMPLATE"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/PULL_REQUEST_TEMPLATE/**"
+      - ".github/pull_request_template.md"
+      - ".github/labeler.yml"
+      - "notes/**"
+      - "tools/**"
     branches:
       - main
 
