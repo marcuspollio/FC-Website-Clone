@@ -47,7 +47,7 @@ Thank you!
 
 To build the website locally:
 
-1. Install [Hugo](https://gohugo.io/installation/).
+1. Install [Hugo](https://gohugo.io/installation/) (standard edition).
 2. Install [Git](https://git-scm.com/).
 3. Optionally if developing Hugo modules, install [Go](https://go.dev/doc/install).
 4. Clone this repository (or download the Code Zip via the green button on the top-right and unzip it):

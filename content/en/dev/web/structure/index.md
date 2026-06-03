@@ -5,6 +5,9 @@ weight: 3
 ---
 
 
+The website is structured and managed in a [git](https://git-scm.com/) version-controlled repository. The files are organized in main root directories, such as `/content` for the website content (list and single pages, translations, resources such as illustrations), `/config`, `/data`, `/themes`, etc.
+
+
 ## Directory Structure
 
 By default, Hugo looks for Markdown files in the `/content` directory, and the structure of the directory determines the final output structure of your website.
@@ -34,7 +37,12 @@ Take this site as an example:
   {{< /branch >}}
 {{< /tree >}}
 
-Each `_index.md` file is the index page for the corresponding section. The other Markdown files are regular pages, placed directly in the section directory, or nested in their own sub-directory.
+Each `_index.md` file is the **List** page for the corresponding Section. The other Markdown `index.md` or `my-page.md` files are regular **Single** pages, placed directly in the section directory, or nested in their own sub-directory.
+
+- **Single** (`index.md`) pages are in general where most changes are made.
+- **List** (`_index.md`) pages in general gather content from related **Single** pages and need little changes.
+
+Content files are mostly written with Markdown and contain a metadata header called the `Front Matter` at the top of the file in-between the YAML `---` characters. The content of **Single** and **List** pages is then generated into HTML by Hugo templates in the [Theme](theme).
 
 ### Configure Content Directory
 
@@ -53,9 +61,9 @@ In addition to text content, Hugo supports a wide range of additional resources,
 
 ### Page bundles
 
-To add resources, the easiest way is to place these files together in the same directory as the Markdown file.
+To add linked resources for a specific page, the easiest way is to place these files together in the same folder as the page Markdown file.
 
-The [page bundles][page-bundles] feature of Hugo allows to organize content and resource files neatly. To achieve that, turn the `my-page.md` file into a directory `my-page`, put the content into a Markdown file named `index.md`, and put the resource files inside the `my-page` directory.
+The method called [page bundles][page-bundles] is a Hugo feature that allows to organize content and resource files neatly and makes relative links easy. To achieve that, turn the `my-page.md` file into a directory `my-page`, put the content into a Markdown file named `index.md`, and put the resource files inside the `my-page` directory.
 
 For example, add an image file `image.webp` alongside the `my-page.md` file:
 

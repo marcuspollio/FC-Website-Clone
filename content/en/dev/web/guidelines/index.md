@@ -24,6 +24,14 @@ Nevertheless, please read the few following guidelines to ensure contributions a
 
 To improve translations and add locales, see the dedicated [locales page](locales).
 
+Current supported languages are defined in the general site configuration `config/_default/languages.yaml`.
+
+Content translations are stored in separate content root directories, e.g. `/content/en/` and `/content/zh/`. Page resources such as images, videos, and more, only need to be placed in the default language site (`en` for English), using the [page bundle](https://gohugo.io/content-management/page-bundles/) approach, as they are automatically linked among languages.
+
+Translations of the Theme are handled by translations tables in `themes/trigo/i18n`.
+
+Before a new language is enabled, the main navigation pages (Homepage, Features, Download, News, Community, Documentation and Donate) and the Theme strings must be translated. If willing to add a new language, use the provided [feature issue](https://github.com/FreeCAD/Website/issues) template indicating who will translate and who will proof-read/review.
+
 
 ## Illustrations
 
