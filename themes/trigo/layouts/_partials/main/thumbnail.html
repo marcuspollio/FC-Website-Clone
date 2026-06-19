@@ -21,7 +21,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- $url := urls.Parse . -}}
 
     {{- /* Remote resource. */ -}}
-    {{- if and (hasPrefix $url.Scheme "http") (site.Params.allow_remote | default true) -}}
+    {{- if and
+      (hasPrefix $url.Scheme "http")
+      (site.Params.allow_remote | default true)
+    -}}
 
       {{- with try (
         resources.GetRemote
@@ -50,7 +53,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- if and (not $thumbnail) (eq $page.BundleType "single") -}}
   {{- $first_section := $page.FirstSection -}}
   {{- $categories := $page.Params.categories -}}
-  {{- $category := lower (cond (reflect.IsSlice $categories) (index $categories 0) $categories) -}}
+  {{- $category := cond (reflect.IsSlice $categories)
+    (index $categories 0)
+    $categories
+    | lower
+  -}}
 
   {{- if and $first_section $category -}}
     {{- $thumbnail = ($first_section.Resources.ByType "image").GetMatch (printf "*%s*" $category) -}}
@@ -64,8 +71,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- end -}}
 
 {{- with $thumbnail -}}
-  {{- $key := "" -}}
-  {{- with $page.File -}}{{- $key = .Path -}}{{- else -}}{{- $key = $page.RelPermalink -}}{{- end -}}
+  {{- $key := partialCached "utils/cache_key.html" $page $page -}}
 
   <figure class="thumbnail">
 

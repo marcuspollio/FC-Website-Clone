@@ -13,8 +13,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- $params := site.Params -}}
-{{- $key := "" -}}
-{{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+{{- $key := partialCached "utils/cache_key.html" . . -}}
 
 <div class="metadata">
 

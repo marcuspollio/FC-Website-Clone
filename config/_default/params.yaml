@@ -44,6 +44,7 @@ show_popover: true
 enable_hue: true
 
 # JS scripts
+enable_js_chroma: true
 enable_js_copy: true
 enable_js_details: true
 enable_js_toc: true

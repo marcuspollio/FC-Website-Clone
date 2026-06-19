@@ -33,7 +33,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $text := .Text -}}
 {{- $cite := .Attributes.cite -}}
-{{- $is_external := strings.HasPrefix $cite "http" -}}
+{{- $is_external := partialCached "utils/is_external.html" $cite $cite -}}
 {{- $caption := .Attributes.caption | markdownify -}}
 {{- $is_alert := eq .Type "alert" -}}
 {{- $type := cond $is_alert .AlertType "quote" -}}
@@ -52,10 +52,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         <a href="{{ $cite }}"
           title="{{ $caption | plainify }}"
           target="_blank"
-          rel="external noreferrer noopener">
+          rel="external noreferrer nofollow">
       {{- end -}}
 
-      {{ $caption }}
+      {{- $caption -}}
 
       {{- if $is_external -}}
         {{- partialCached "utils/icon.html" "external" "external" -}}

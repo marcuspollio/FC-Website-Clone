@@ -25,7 +25,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- range $page_terms -}}
           {{- $term := index $tax (. | anchorize) -}}
           {{- with $term -}}
-            <a href="{{ .rel_permalink }}">{{ .link_title }} ({{ .count }})</a>
+            <a href="{{ .rel_permalink }}">
+              {{- printf "%s (%d)" .link_title .count -}}
+            </a>
           {{- end -}}
         {{- end -}}
       </span>

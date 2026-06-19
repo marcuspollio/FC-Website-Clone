@@ -28,12 +28,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
   {{- end -}}
 
-  {{- $key := "" -}}
-  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+  {{- $key := partialCached "utils/cache_key.html" . . -}}
 
   <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}">
 
-      {{- title .Title -}}
     <h1 class="title{{ with .Params.title_class }} {{ . }}{{ end -}}">
       {{- .Title -}}
 
@@ -55,20 +53,26 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
 
     {{/* Dynamically include custom hero partials. */}}
-    {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "hero" "auto" true) $key -}}
+    {{- partial "utils/custom_partials.html" (dict "page" . "where" "hero" "auto" true) $key -}}
 
-    {{- if and (eq .Section (index site.MainSections 0)) (or site.Taxonomies site.Menus.footer) -}}
+    {{- if and
+      (eq .Section (index site.MainSections 0))
+      (or site.Taxonomies site.Menus.footer)
+    -}}
       <div class="buttons">
 
         {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
         {{- range $key, $value := $taxonomy_map -}}
+
           {{- if and (hasSuffix $key "_data") (gt $value.count 0) -}}
             {{- $link_title := lower $value.link_title -}}
             {{- $title := i18n $link_title | default $link_title -}}
-            <a href="{{ $value.rel_permalink }}"
+            <a
+              href="{{ $value.rel_permalink }}"
               class="button">
+
               {{- partialCached "utils/icon.html" $link_title $link_title -}}
-              {{ title $title }} ({{ $value.count }})
+              {{- printf "%s (%d)" (title $title) $value.count -}}
             </a>
           {{- end -}}
         {{- end -}}
@@ -76,9 +80,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- range site.Menus.footer -}}
           {{- if and .HasChildren (eq .Identifier $.Section) -}}
             {{- range .Children -}}
-              <a href="{{ .URL }}"
+              <a
+                href="{{ .URL }}"
                 class="button">
-                {{ .Name }}
+                {{- .Name -}}
               </a>
             {{- end -}}
           {{- end -}}
@@ -90,8 +95,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       <div class="card-list wide">
         <div class="cards">
           {{- range . -}}
-            {{- $card := "" -}}
-            {{- with .File -}}{{- $card = .Path -}}{{- else -}}{{- $card = .RelPermalink -}}{{- end -}}
+            {{- $card := partialCached "utils/cache_key.html" . . -}}
             {{- partialCached "main/card.html" . $card -}}
           {{- end -}}
         </div>
@@ -107,7 +111,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- if and .Params.toc .Content (not .Pages) -}}
     {{- partial "main/table_contents.html" . -}}
   {{- end -}}
-  {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "content") $key -}}
+  {{- partial "utils/custom_partials.html" (dict "page" . "where" "content") $key -}}
 
   {{- /* Get page content. */ -}}
   {{- partial "main/content.html" . -}}

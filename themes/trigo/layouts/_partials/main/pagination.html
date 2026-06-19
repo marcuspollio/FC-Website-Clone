@@ -56,21 +56,24 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- with $item -}}
 
           {{- $href := .RelPermalink -}}
-          {{- $key := "" -}}
-          {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = $href -}}{{- end -}}
+          {{- $key := partialCached "utils/cache_key.html" . . -}}
           {{- $href = partialCached "utils/link_redirect.html" . $key -}}
-          {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
-          <a class="button {{ $direction }}"
+          {{- $is_external := partialCached "utils/is_external.html" $href $href -}}
+
+          {{- $title := i18n (printf "%s_%s" $direction $type) | default (printf "%s %s" (title $direction) $type) -}}
+
+          <a
+            class="button {{ $direction }}"
             href="{{ $href }}"
-            title="{{ i18n (printf "%s_%s" $direction $type) | default (printf "%s %s" (title $direction) $type) }}"
-            {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+            title="{{ $title }}"
+            {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
 
             {{- if eq $direction "next" -}}
               {{- partialCached "utils/icon.html" $icon $icon -}}
             {{- end -}}
 
-            {{- title .LinkTitle -}}
+            {{- .LinkTitle -}}
 
             {{- if $is_external -}}
               {{- partialCached "utils/icon.html" "external" "external" -}}

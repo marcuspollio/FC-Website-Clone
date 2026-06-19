@@ -22,9 +22,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $url := urls.Parse .Destination -}}
 {{- $href := $url.String -}}
+{{- $is_fragment := false -}}
 
-{{- if strings.HasPrefix .Destination "#" -}}
+{{- if strings.HasPrefix $href "#" -}}
   {{- $href = printf "%s#%s" .PageInner.RelPermalink $url.Fragment -}}
+  {{- $is_fragment = true -}}
+
 {{- else if and $href (not $url.IsAbs) -}}
   {{- $path := strings.TrimPrefix "./" $url.Path -}}
   {{- with or
@@ -38,44 +41,37 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
     {{- with $url.Fragment -}}
       {{- $href = printf "%s#%s" $href . -}}
+      {{- $is_fragment = true -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-{{- $base := strings.TrimSuffix "/" site.BaseURL -}}
-{{- $is_external := and
-  (strings.HasPrefix $href "http")
-  (not (strings.HasPrefix (strings.TrimSuffix "/" $href) $base))
--}}
-
-{{- $title := .Title | plainify | default (i18n "open_link" | default "Open link") -}}
-{{- $text := .Text -}}
+{{- $is_external := partialCached "utils/is_external.html" $href $href -}}
 
 {{- $classes := slice (cond $is_external "external-link" "internal-tooltip") -}}
-{{- if strings.HasPrefix $url "#" -}}
+{{- if $is_fragment -}}
   {{- $classes = $classes | append "hash-link" -}}
 {{- end -}}
 
-<a href="{{ $href }}"
+<a
+  href="{{ $href }}"
   class="{{ delimit $classes " " }}"
-  {{- if $is_external }} title="{{ $title }}" target="_blank" rel="external noreferrer noopener"{{ end -}}>
+  {{- with .Title }} title="{{ . | plainify }}"{{ end -}}
+  {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
 
-  {{- if strings.HasPrefix $url "#" -}}
+  {{- if $is_fragment -}}
     {{- partialCached "utils/icon.html" "hash" "hash" -}}
   {{- end -}}
 
-  {{- with $text -}}
-    {{ . }}
-  {{- end -}}
+  {{- with .Text -}}{{ . }}{{- end -}}
 
   {{- if $is_external -}}
     {{- partialCached "utils/icon.html" "external" "external" -}}
-  {{- end -}}
 
-  {{- if not $is_external -}}
+  {{- else -}}
     {{- with .Page.GetPage .Destination -}}
       <span class="tooltip">
-        <strong>{{- title .Title -}}</strong>
+        <strong>{{ .Title }}</strong>
         {{- .Description -}}
       </span>
     {{- end -}}

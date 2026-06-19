@@ -12,9 +12,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $title := i18n "return_homepage" | default "Return to Homepage" -}}
 
   <div class="not-found">
-    <a href="{{ site.Home.RelPermalink }}"
+    <a
+      href="{{ site.Home.RelPermalink }}"
       title="{{ $title }}"
       aria-label="{{ $title }}">
+
       {{- partialCached "utils/icon.html" "unicorn" "unicorn" -}}
   </div>
 

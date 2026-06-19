@@ -49,7 +49,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       display: none;
     }
   </style>
-  {{- if and (ne site.Params.default_chroma "light") (ne site.Params.default_chroma "dark") -}}
+  {{- if and
+    (ne site.Params.default_chroma "light")
+    (ne site.Params.default_chroma "dark")
+  -}}
     <style>
       @media (prefers-color-scheme: dark) {
         :root {

@@ -12,34 +12,46 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- define "main" -}}
 
-  {{- $taxonomy := .Data.Plural -}}
+  {{- $taxonomy := lower .Data.Plural -}}
   {{- $title := i18n $taxonomy | default $taxonomy -}}
   {{- $terms := .Data.Terms -}}
 
-  {{- $key := "" -}}
-  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+  {{- $key := partialCached "utils/cache_key.html" . . -}}
 
-  <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}">
+  {{- $classes := slice "hero" -}}
+  {{- with .Params.background_class -}}
+    {{- $classes = $classes | append . -}}
+  {{- end -}}
+
+  <section class="{{ delimit $classes " " }}">
 
     <h1 class="title">
-      {{ partialCached "utils/icon.html" (lower .LinkTitle) (lower .LinkTitle) }}
-      {{ title $title }} ({{ len $terms }})
+      {{- partialCached "utils/icon.html" $taxonomy $taxonomy -}}
+
+      {{- with $terms -}}
+        {{- printf "%s (%d)" (title $title) (len .) -}}
+      {{- end -}}
     </h1>
 
     {{- with .Description -}}
-      <h3 class="description">{{- . -}}</h3>
+      <h3 class="description">{{ . }}</h3>
     {{- end -}}
 
     {{- with $terms -}}
       {{- $taxonomy_map := partialCached "utils/taxonomy_map.html" . "taxonomy_map" -}}
       <ul class="terms">
         {{- range .Alphabetical -}}
+
           {{- $term := .Term | anchorize -}}
           {{- with index (index $taxonomy_map $taxonomy) $term -}}
-            <a class="button" href="{{ .rel_permalink }}">
-              {{- .link_title }} ({{ .count -}})
+            <a
+              class="button"
+              href="{{ .rel_permalink }}">
+
+              {{- printf "%s (%d)" (title .link_title) .count -}}
             </a>
           {{- end -}}
+
         {{- end -}}
       </ul>
     {{- end -}}

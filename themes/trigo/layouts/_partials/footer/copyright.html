@@ -16,19 +16,34 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <span>{{ . }}</span>
 {{- else with site.Home -}}
   <span>
-    &copy; {{ now.Year }} <a href="{{ .RelPermalink }}" title="{{ .LinkTitle }}">{{ title .Title }}</a>
+    &copy; {{ now.Year }}
+    <a
+      href="{{ .RelPermalink }}"
+      title="{{ .LinkTitle }}">
+
+      {{- .Title -}}
+    </a>
   </span>
 {{- end -}}
 
 <span>
-  <a href="https://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons" rel="license">
+  <a
+    href="https://creativecommons.org/licenses/by-sa/4.0/"
+    title="Creative Commons"
+    target="_blank" rel="license external noreferrer nofollow">
+
     CC BY-SA
     {{- partialCached "utils/icon.html" "external" "external" -}}
   </a>
 </span>
 
 <span>
-  Made with ♥︎ thanks to <a href="https://gohugo.io/" title="Hugo SSG" rel="external noreferrer" target="_blank">
+  Made with ♥︎ thanks to
+  <a
+    href="https://gohugo.io/"
+    title="Hugo SSG"
+    target="_blank" rel="external noreferrer nofollow">
+
     Hugo
     {{- partialCached "utils/icon.html" "external" "external" -}}
   </a>

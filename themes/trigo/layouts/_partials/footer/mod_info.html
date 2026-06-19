@@ -19,9 +19,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- if and hugo.IsProduction site.Params.git_repository -}}
   {{- with .GitInfo -}}
+    {{- $href := printf "%s/commit/%s" (trim site.Params.git_repository "/") .Hash -}}
     <span>
-      Commit: <a href="{{ printf "%s/commit/%s" (trim site.Params.git_repository "/") .Hash }}">
-        {{ .AbbreviatedHash }}
+      Commit: <a href="{{ $href }}">
+
+        {{- .AbbreviatedHash -}}
         {{- partialCached "utils/icon.html" "external" "external" -}}
       </a>
     </span>

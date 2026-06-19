@@ -21,18 +21,19 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $hue := 0 -}}
 {{- if site.Params.enable_hue -}}
-  {{- $key := "" -}}
-  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+  {{- $key := partialCached "utils/cache_key.html" . . -}}
   {{- $hue = partialCached "utils/color_hue.html" . $key -}}
 {{- end -}}
 
 <!DOCTYPE html>
-<html lang="{{ site.Language.Locale }}"
+<html
+  lang="{{ site.Language.Locale }}"
   dir="{{ site.Language.Direction | default "auto" }}">
 
   {{- partial "head/page_head.html" . -}}
 
-  <body class="{{ delimit $classes " " }}"
+  <body
+    class="{{ delimit $classes " " }}"
     id="top">
 
     {{- /* Notice for old browser, e.g. IE. */ -}}
@@ -47,8 +48,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- end -}}
 
     {{- /* Define main block for standard and kind templates. */ -}}
-    <main
-      {{- with $hue }} style="--hue: {{ . }};"{{ end -}}>
+    <main {{- with $hue }} style="--hue: {{ . }};"{{ end -}}>
       {{- block "main" . -}}
       {{- end -}}
     </main>

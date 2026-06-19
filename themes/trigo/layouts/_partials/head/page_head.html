@@ -11,7 +11,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- $title := cond .IsHome site.Title (printf "%s | %s" site.Title (title .LinkTitle)) -}}
+{{- $title := cond .IsHome site.Title (printf "%s | %s" site.Title .LinkTitle) -}}
 {{- $description := or .Description site.Params.site_description -}}
 
 <head>
@@ -19,18 +19,36 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- partialCached "head/static_head.html" . "static_head" -}}
 
   <title>{{ $title }}</title>
-  <meta name="description" content="{{ $description }}">
+  <meta
+    name="description"
+    content="{{ $description }}">
+
   {{- with .Params.tags -}}
-    <meta name="keywords" content="{{ delimit . ", " }}">
+    <meta
+      name="keywords"
+      content="{{ delimit . ", " }}">
+
   {{- else with site.Params.site_keywords -}}
-    <meta name="keywords" content="{{ delimit . ", " }}">
+    <meta
+      name="keywords"
+      content="{{ delimit . ", " }}">
   {{- end -}}
-  <link rel="canonical" href="{{ .Permalink }}">
+
+  <link
+    rel="canonical"
+    href="{{ .Permalink }}">
 
   {{- range .AllTranslations -}}
-    <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">
+    <link
+      rel="alternate"
+      hreflang="{{ .Language.Locale }}"
+      href="{{ .Permalink }}">
   {{- end -}}
-  <link rel="alternate" hreflang="x-default" href="{{ site.Home.Permalink }}">
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="{{ site.Home.Permalink }}">
 
   {{- if hugo.IsProduction -}}
     {{- /* Get google analytics. */ -}}

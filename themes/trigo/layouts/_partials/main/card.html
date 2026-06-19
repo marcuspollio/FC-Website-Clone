@@ -16,14 +16,15 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $params := site.Params -}}
 {{- $href := .RelPermalink -}}
 
-{{- $key := "" -}}
-{{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+{{- $key := partialCached "utils/cache_key.html" . . -}}
 {{- $href = partialCached "utils/link_redirect.html" . $key -}}
-{{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
 
-<a class="card"
+{{- $is_external := partialCached "utils/is_external.html" $href $href -}}
+
+<a
+  class="card"
   href="{{ $href }}"
-  {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+  {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
 
   {{- with (partialCached "main/thumbnail.html" . $key) -}}
     {{- . -}}
@@ -41,7 +42,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- end -}}
 
   <h3 class="card-title">
-    {{- title .Title -}}
+    {{- .Title -}}
 
     {{- if $is_external -}}
       {{- partialCached "utils/icon.html" "external" "external" -}}

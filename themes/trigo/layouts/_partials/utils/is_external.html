@@ -1,0 +1,31 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* External links check:
+
+  - Return true for external links.
+*/ -}}
+
+
+{{- $input := . -}}
+{{- $is_external := false -}}
+
+{{- with try (urls.Parse $input) -}}
+
+  {{- with .Value -}}
+    {{- if .IsAbs -}}
+      {{- $is_external = and
+        (ne .Hostname (urls.Parse (absURL "")).Hostname)
+        (ne .Hostname "")
+      -}}
+    {{- end -}}
+
+  {{- else with .Err -}}
+    {{- warnf "is_external: fail to parse URL %s: %s" $input . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $is_external -}}

@@ -16,33 +16,41 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $menu_label := i18n "menu" | default "Menu" -}}
 
 <nav class="menu">
-  <button popovertarget="menu-list"
+  <button
+    popovertarget="menu-list"
     popovertargetaction="toggle"
     class="menu-toggle"
     aria-controls="menu-list"
     aria-haspopup="menu"
     title="{{ $menu_label }}"
     aria-label="{{ $menu_label }}">
+
     {{- partialCached "utils/icon.html" "hamburger" "hamburger" -}}
     {{- partialCached "utils/icon.html" "cross" "cross" -}}
   </button>
 
-  <ul popover id="menu-list" class="menu-list">
+  <ul
+    popover
+    id="menu-list"
+    class="menu-list">
     {{- range site.Menus.main -}}
 
       {{- $url := .URL -}}
       {{- with .Page -}}
-        {{- $key := "" -}}
-        {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+        {{- $key := partialCached "utils/cache_key.html" . . -}}
         {{- $url = partialCached "utils/link_redirect.html" . $key -}}
       {{- end -}}
-      {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
+
+      {{- $is_external := partialCached "utils/is_external.html" $url $url -}}
 
       {{- $name := i18n (lower .KeyName) | default .Name -}}
 
       {{- $aria := "" -}}
       {{- $class := slice -}}
-      {{- if or ($first_section.IsMenuCurrent .Menu .) ($first_section.HasMenuCurrent .Menu .) -}}
+      {{- if or
+        ($first_section.IsMenuCurrent .Menu .)
+        ($first_section.HasMenuCurrent .Menu .)
+      -}}
         {{- $aria = "page" -}}
         {{- $class = $class | append "active" -}}
       {{- end -}}
@@ -52,11 +60,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- if or .Page $is_external -}}
         <li>
-          <a href="{{ $url }}"
+          <a
+            href="{{ $url }}"
             {{- with $aria }} aria-current="{{ . }}"{{ end -}}
             {{- with $class }} class="{{ delimit . " " }}"{{ end -}}
-            {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
-            {{- title $name -}}
+            {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
+            {{- $name -}}
 
             {{- if $is_external -}}
               {{- partialCached "utils/icon.html" "external" "external" -}}

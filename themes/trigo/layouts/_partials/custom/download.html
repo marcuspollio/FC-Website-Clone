@@ -49,7 +49,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- range $platform := . -}}
 
-        <div class="download-card" id="{{ $platform.os }}" style="order: {{ $platform.order }};">
+        <div
+          class="download-card"
+          id="{{ $platform.os }}"
+          style="order: {{ $platform.order }};">
+
           <div class="download-platform">
             {{- partialCached "utils/icon.html" $platform.os (lower $platform.os) -}}
             <h3>{{ $platform.label }}</h3>
@@ -69,7 +73,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                   <a class="button"
                     href="{{ . }}"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="external noreferrer nofollow">
                     {{- partialCached "utils/icon.html" "download" "download" -}}
                     <strong>{{ $package.label }}</strong>
 

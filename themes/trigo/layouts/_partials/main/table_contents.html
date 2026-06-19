@@ -23,14 +23,23 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $toc_label := i18n "toc" | default "Table of Contents" -}}
 
 <nav class="toc">
-  <input type="checkbox" id="toc-checkbox" class="toc-checkbox">
-  <label for="toc-checkbox" class="toc-toggle button" title="Table of Contents">
+  <input
+    type="checkbox"
+    id="toc-checkbox"
+    class="toc-checkbox">
+  <label
+    for="toc-checkbox"
+    class="toc-toggle button"
+    title="Table of Contents">
+
     {{- partialCached "utils/icon.html" "toc" "toc" -}}
     {{- partialCached "utils/icon.html" "cross" "cross" -}}
     <span>{{ $toc_label -}}</span>
   </label>
 
-  <div id="toc-content" class="toc-content">
+  <div
+    id="toc-content"
+    class="toc-content">
     <ul class="section-nav">
       {{- range $index, $ancestor := $ancestors.Reverse -}}
 
@@ -43,9 +52,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- $icon = "tri_left" -}}
         {{- end -}}
         <li>
-          <a href="{{ .RelPermalink }}"
+          <a
+            href="{{ .RelPermalink }}"
             class="current-section">
-            {{- partialCached "utils/icon.html" $icon $icon }} {{ title .LinkTitle -}}
+
+            {{- partialCached "utils/icon.html" $icon $icon }} {{ .LinkTitle -}}
           </a>
         </li>
       {{- end -}}
@@ -54,9 +65,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         <ul>
           {{- range $pages -}}
             <li>
-              <a href="{{ .RelPermalink }}"
+              <a
+                href="{{ .RelPermalink }}"
                 {{- if eq .RelPermalink $current_page.RelPermalink }} id="current-page" class="active" aria-current="page"{{ end -}}>
-                {{- title .LinkTitle -}}
+
+                {{- .LinkTitle -}}
               </a>
             </li>
           {{- end -}}

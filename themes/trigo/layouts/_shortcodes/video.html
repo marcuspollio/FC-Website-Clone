@@ -28,7 +28,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $poster := cond (.IsNamedParams) (.Get "poster") (.Get 1) -}}
   {{- $caption := cond (.IsNamedParams) (.Get "caption") (.Get 2) -}}
 
-  {{- $is_external := and (hasPrefix $src "http") (not (hasPrefix $src (absURL ""))) -}}
+  {{- $is_external := partialCached "utils/is_external.html" $src $src -}}
 
   {{- if $is_external -}}
     {{- $video = $src -}}

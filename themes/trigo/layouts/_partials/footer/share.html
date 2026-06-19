@@ -44,8 +44,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   (.Permalink | safeURL)
 -}}
 
-<a href="{{ $url }}"
+<a
+  href="{{ $url }}"
   title="{{ i18n "share_on" | default "Share on" }} {{ i18n "fediverse" | default "Fediverse" }}"
-  target="_blank" rel="noopener">
+  target="_blank" rel="external noreferrer nofollow">
   {{- partialCached "utils/icon.html" "fediverse" "fediverse" -}}
 </a>

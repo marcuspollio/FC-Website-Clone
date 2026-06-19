@@ -17,7 +17,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   <div class="welcome">
 
-    <input type="radio" name="root" id="root" checked>
+    <input
+      type="radio"
+      name="root"
+      id="root"
+      checked>
 
     <div class="level-1">
       {{- range $i, $item := . -}}
@@ -26,8 +30,17 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
           {{- $id := printf "l1-%s" ($item.id | default (printf "%d" $i)) -}}
 
-          <input type="radio" name="l1" id="{{ $id }}">
-          <label class="button" for="{{ $id }}">{{- $item.label -}}</label>
+          <input
+            type="radio"
+            name="l1"
+            id="{{ $id }}">
+
+          <label
+            class="button"
+            for="{{ $id }}">
+
+            {{- $item.label -}}
+          </label>
 
           <div class="panel">
             {{- partial "inline/welcome-level.html" (dict
@@ -42,18 +55,19 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- $href := $item.url -}}
           {{- with $href -}}
             {{- with site.GetPage . -}}
-              {{- $key := "" -}}
-              {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+              {{- $key := partialCached "utils/cache_key.html" . . -}}
               {{- $href = partialCached "utils/link_redirect.html" . $key -}}
             {{- end -}}
           {{- end -}}
 
-          {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
+          {{- $is_external := partialCached "utils/is_external.html" $href $href -}}
 
           <div class="other">
-            <a class="button link"
+            <a
+              class="button link"
               href="{{ $href }}"
-              {{- if $is_external }} target="_blank" rel="noopener"{{ end -}}>
+              {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
+
               {{- $item.label -}}
 
               {{- if $is_external -}}
@@ -82,8 +96,17 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- if $node.children -}}
 
-        <input type="radio" name="l{{ $level }}" id="{{ $id }}">
-        <label class="button" for="{{ $id }}">{{- $node.label -}}</label>
+        <input
+          type="radio"
+          name="l{{ $level }}"
+          id="{{ $id }}">
+
+        <label
+          class="button"
+          for="{{ $id }}">
+
+          {{- $node.label -}}
+        </label>
 
         <div class="panel">
           {{- partial "inline/welcome-level.html" (dict
@@ -98,17 +121,18 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- $href := $node.url -}}
         {{- with $href -}}
           {{- with site.GetPage . -}}
-            {{- $key := "" -}}
-            {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+            {{- $key := partialCached "utils/cache_key.html" . . -}}
             {{- $href = partialCached "utils/link_redirect.html" . $key -}}
           {{- end -}}
         {{- end -}}
 
-        {{- $is_external := and (hasPrefix $href "http") (not (hasPrefix $href site.BaseURL)) -}}
+        {{- $is_external := partialCached "utils/is_external.html" $href $href -}}
 
-        <a class="button link"
+        <a
+          class="button link"
           href="{{ $href }}"
-          {{- if $is_external }} target="_blank" rel="noopener"{{ end -}}>
+          {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
+
           {{- $node.label -}}
 
           {{- if $is_external -}}

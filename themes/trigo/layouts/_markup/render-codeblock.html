@@ -32,23 +32,28 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $content = strings.TrimSpace $content -}}
 {{- end -}}
 
-{{- $is_url := and $file_path (strings.HasPrefix $file_path "http") -}}
-{{- $is_external := and $is_url (not (strings.HasPrefix $file_path site.BaseURL)) -}}
-{{- $file := cond $is_url (path.Base $file_path) $file_path -}}
+{{- $is_external := partialCached "utils/is_external.html" $file_path $file_path -}}
+{{- $file := cond $is_external (path.Base $file_path) $file_path -}}
 
-{{- $lang := or .Type .Attributes.lang (strings.TrimPrefix "." (path.Ext $file)) "text" -}}
-{{- if in (slice "html" "gotmpl") $lang -}}
+{{- $lang := or
+  .Type
+  .Attributes.lang
+  (strings.TrimPrefix "." (path.Ext $file))
+  "text"
+-}}
+{{- if in (slice "html" "gotmpl" "hugo") $lang -}}
   {{- $lang = "go-html-template" -}}
 {{- end -}}
 
 <div class="codeblock">
   {{- with $file -}}
     <div class="codeblock-file">
-      {{- if $is_url -}}
-        <a class="codeblock-link"
+      {{- if $is_external -}}
+        <a
+          class="codeblock-link"
           href="{{ $file_path }}"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="external noreferrer nofollow">
       {{- end -}}
 
       {{- partialCached "utils/icon.html" "words" "words" -}}
@@ -56,9 +61,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- if $is_external -}}
         {{- partialCached "utils/icon.html" "external" "external" -}}
-      {{- end -}}
-
-      {{- if $is_url -}}
         </a>
       {{- end -}}
     </div>
@@ -66,7 +68,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- if transform.CanHighlight $lang -}}
   {{- highlight $content $lang (.Options | default dict) -}}
+
 {{- else -}}
-  <pre><code>{{- $content -}}</code></pre>
+  <pre><code>{{ $content }}</code></pre>
 {{- end -}}
 </div>

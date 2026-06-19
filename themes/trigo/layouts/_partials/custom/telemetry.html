@@ -113,7 +113,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         {{- if not (isset $entry "color") -}}
           {{- $count := sub (len $visible_entries) 1 -}}
-          {{- $hue := cond (gt $count 0) (sub 240 (div (mul 240 $index) $count)) 240 -}}
+          {{- $hue := cond (gt $count 0)
+            (sub 240 (div (mul 240 $index) $count))
+            240
+          -}}
           {{- $color := printf "hsl(%d, 60%%, 75%%)" $hue -}}
           {{- $entry = merge $entry (dict "color" $color) -}}
         {{- end -}}
@@ -129,9 +132,13 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         <p>
           {{- printf "%v %s / %v %s"
             $total_records
-            (cond (gt $total_records 1) (i18n "record" 2 | default "records") (i18n "record" 1 | default "record"))
+            (cond (gt $total_records 1)
+              (i18n "record" 2 | default "records")
+              (i18n "record" 1 | default "record"))
             $total_users
-            (cond (gt $total_users 1) (i18n "user" 2 | default "users") (i18n "user" 1 | default "user"))
+            (cond (gt $total_users 1)
+              (i18n "user" 2 | default "users")
+              (i18n "user" 1 | default "user"))
             -}}
         </p>
 
@@ -140,7 +147,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             {{- $percent := printf "%v%%" $entry.display_percent -}}
             {{- $value := printf "%v %s (%v)"
               $entry.value
-              (cond (gt $entry.value 1) (i18n "user" 2 | default "users") (i18n "user" 1 | default "user"))
+              (cond (gt $entry.value 1)
+                (i18n "user" 2 | default "users")
+                (i18n "user" 1 | default "user"))
               ($entry.display_percent | lang.FormatPercent 1)
             -}}
 

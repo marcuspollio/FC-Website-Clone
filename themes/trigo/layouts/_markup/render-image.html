@@ -37,13 +37,15 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $resource := "" -}}
 
 {{- /* Remote resource. */ -}}
-{{- if and (hasPrefix $url.Scheme "http") (site.Params.allow_remote | default true) -}}
+{{- if and (hasPrefix $url.Scheme "http")
+  (site.Params.allow_remote | default true)
+-}}
 
   {{- with try (
     resources.GetRemote
     $destination
     (dict "timeout" (site.Params.timeout | default "5s"))
-    ) -}}
+  ) -}}
 
     {{- with .Err -}}
       {{- warnf "Failed to fetch remote resource %q in page %q: %s" $destination $page.LinkTitle . -}}

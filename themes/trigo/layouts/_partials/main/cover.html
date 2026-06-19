@@ -23,13 +23,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- $url := urls.Parse . -}}
 
     {{- /* Remote resource. */ -}}
-    {{- if and (hasPrefix $url.Scheme "http") (site.Params.allow_remote | default true) -}}
+    {{- if and
+      (hasPrefix $url.Scheme "http")
+      (site.Params.allow_remote | default true)
+    -}}
 
       {{- with try (
         resources.GetRemote
         .
         (dict "timeout" (site.Params.timeout | default "5s"))
-        ) -}}
+      ) -}}
 
         {{- with .Err -}}
           {{- warnf "Failed to fetch remote cover %q in page %q: %s" $page.Params.cover.image $page.LinkTitle . -}}
@@ -52,7 +55,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- if and (eq .BundleType "single") (not $cover) -}}
   {{- $first_section := .FirstSection -}}
   {{- $categories := .Params.categories -}}
-  {{- $category := lower (cond (reflect.IsSlice $categories) (index $categories 0) $categories) -}}
+  {{- $category := cond (reflect.IsSlice $categories)
+    (index $categories 0)
+    $categories
+    | lower
+  -}}
 
   {{- if and $first_section $category -}}
     {{- $cover = ($first_section.Resources.ByType "image").GetMatch (printf "*%s*" $category) -}}
@@ -68,8 +75,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- end -}}
 
 {{- with $cover -}}
-  {{- $key := "" -}}
-  {{- with $page.File -}}{{- $key = .Path -}}{{- else -}}{{- $key = $page.RelPermalink -}}{{- end -}}
+  {{- $key := partialCached "utils/cache_key.html" $page $page -}}
 
   <figure class="cover">
 
@@ -90,7 +96,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       <figcaption>
         <div class="internal-tooltip">
           {{- partialCached "utils/icon.html" "important" "important" -}}
-          <span class="tooltip">{{- . -}}</span>
+          <span class="tooltip">{{ . }}</span>
         </div>
       </figcaption>
     {{- end -}}

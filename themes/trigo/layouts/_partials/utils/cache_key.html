@@ -1,0 +1,21 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Get unique cache key:
+
+  - Return cache key from File Path or RelPermalink for internal page.
+*/ -}}
+
+
+{{- $key := "" -}}
+{{- with .File -}}
+  {{- $key = .Path -}}
+
+{{- else -}}
+  {{- $key = .RelPermalink -}}
+{{- end -}}
+
+{{- return $key -}}

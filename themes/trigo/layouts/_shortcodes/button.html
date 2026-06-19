@@ -28,8 +28,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 3) -}}
 
   {{- with site.GetPage $url -}}
-    {{- $key := "" -}}
-    {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+    {{- $key := partialCached "utils/cache_key.html" . . -}}
     {{- $url = partialCached "utils/link_redirect.html" . $key -}}
     {{- if not $icon -}}
       {{- with .Params.icon -}}
@@ -45,7 +44,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- $label = i18n "open_link" | default "Open link" -}}
   {{- end -}}
 
-  {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url (absURL ""))) -}}
+  {{- $is_external := partialCached "utils/is_external.html" $url $url -}}
 
   {{- $classes := slice "button" -}}
   {{- with $class -}}{{- $classes = $classes | append . -}}{{- end -}}

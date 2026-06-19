@@ -7,51 +7,75 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- /* Centralize JavaScript dependencies and custom scripts:
 
   - Defer loading of JS after HTML is fully parsed and DOM elements are available (also performance).
+  - Define contextual conditions for each script to avoid unless loading.
 */ -}}
 
 
-{{- $page_key := "" -}}
-{{- with .File -}}{{- $page_key = .ContentBaseName -}}{{- else -}}{{- $page_key = trim .RelPermalink "/" -}}{{- end -}}
+{{- $page := .Page -}}
+{{- $content := .Content -}}
+{{- $kind := .Kind -}}
+{{- $layout := .Layout -}}
+{{- $params := .Params -}}
 
-{{- /* Theme Chroma toggle. */ -}}
-{{- partialCached "scripts/chroma.html" . "chroma" -}}
+{{- $page_basename := "" -}}
+{{- with .File -}}
+  {{- $page_basename = .ContentBaseName -}}
 
-{{- /* Copy Code block content to clipboard. */ -}}
-{{- if and site.Params.enable_js_copy (in (slice "page" "section") .Kind) (ne .Layout "archives") (in .Content "<code") -}}
-  {{- partialCached "scripts/copy.html" . "copy" -}}
+{{- else -}}
+  {{- $page_basename = path.BaseName .RelPermalink -}}
 {{- end -}}
 
-{{- /* Auto-open Details block with anchor link. */ -}}
-{{- if and site.Params.enable_js_details (in (slice "page" "section") .Kind) (ne .Layout "archives") (in .Content "<details") -}}
-  {{- partialCached "scripts/details.html" . "details" -}}
-{{- end -}}
+{{- $scripts := slice
+  (dict
+    "name" "chroma"
+  )
+  (dict
+    "name" "copy"
+    "kind" (slice "page" "section")
+    "content" "<code"
+  )
+  (dict
+    "name" "details"
+    "kind" (slice "page" "section")
+    "content" "<details"
+  )
+  (dict
+    "name" "toc"
+    "kind" (slice "page" "section")
+    "params" true
+  )
+  (dict
+    "name" "carousel"
+    "shortcode" true
+  )
+  (dict
+    "name" "compare"
+    "shortcode" true
+  )
+  (dict
+    "name" "canvas"
+    "shortcode" true
+  )
+  (dict
+    "name" "calendar"
+    "basename" true
+  )
+  (dict
+    "name" "addons"
+    "basename" true
+  )
+-}}
 
-{{- /* Table of Contents position highlight. */ -}}
-{{- if and site.Params.enable_js_toc (in (slice "page" "section") .Kind) (ne .Layout "archives") -}}
-  {{- partialCached "scripts/toc.html" . "toc" -}}
-{{- end -}}
-
-{{- /* Images carousel Shortcode script. */ -}}
-{{- if and site.Params.enable_js_carousel (.HasShortcode "carousel") -}}
-  {{- partialCached "scripts/carousel.html" . "carousel" -}}
-{{- end -}}
-
-{{- /* Images compare Shortcode script. */ -}}
-{{- if and site.Params.enable_js_compare (.HasShortcode "compare") -}}
-  {{- partialCached "scripts/compare.html" . "compare" -}}
-{{- end -}}
-
-{{- /* Images canvas Shortcode script. */ -}}
-{{- if and site.Params.enable_js_canvas (.HasShortcode "canvas") -}}
-  {{- partialCached "scripts/canvas.html" . "canvas" -}}
-{{- end -}}
-
-{{- /* Calendar skin toggle script on Community. */ -}}
-{{- if and site.Params.enable_js_calendar site.Params.calendar (hasSuffix $page_key "calendar") -}}
-  {{- partialCached "scripts/calendar.html" . "calendar" -}}
-{{- end -}}
-
-{{- /* Addons sorting script on Community. */ -}}
-{{- if and site.Params.enable_js_addons hugo.Data.addons (hasSuffix $page_key "addons") -}}
-  {{- partialCached "scripts/addons.html" . "addons" -}}
+{{- range $scripts -}}
+  {{- if index site.Params (printf "enable_js_%s" .name) -}}
+    {{- if and
+      (cond (.kind) (in .kind $kind) true)
+      (cond (.content) (in $content .content) true)
+      (cond (.params) (index $page.Params .name) true)
+      (cond (.shortcode) ($page.HasShortcode .name) true)
+      (cond (.basename) (eq $page_basename .name) true)
+    -}}
+      {{- partialCached "scripts/load_script.html" .name .name }}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}

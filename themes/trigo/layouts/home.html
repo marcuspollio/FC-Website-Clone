@@ -39,32 +39,29 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             {{- $button_link := .link -}}
             {{- $button_label := .label -}}
 
-            {{- with $button_link -}}
-              {{- with site.GetPage . -}}
-                {{- $key := "" -}}
-                {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
-                {{- $button_link = partialCached "utils/link_redirect.html" . $key -}}
-                {{- if not $button_label -}}
-                  {{- $button_label = .LinkTitle -}}
-                {{- end -}}
-              {{- end -}}
-
-              {{- $is_external := and (hasPrefix $button_link "http") (not (hasPrefix $button_link site.BaseURL)) -}}
-
+            {{- with site.GetPage $button_link -}}
+              {{- $key := partialCached "utils/cache_key.html" . . -}}
+              {{- $button_link = partialCached "utils/link_redirect.html" . $key -}}
               {{- if not $button_label -}}
-                {{- $button_label = i18n "explore" | default "Explore" -}}
+                {{- $button_label = .LinkTitle -}}
               {{- end -}}
-
-              <a href="{{ $button_link }}"
-                class="button{{ with .class }} {{ . }}{{ end }}"
-                {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
-                {{- title $button_label -}}
-
-                {{- if $is_external -}}
-                  {{- partialCached "utils/icon.html" "external" "external" -}}
-                {{- end -}}
-              </a>
             {{- end -}}
+
+            {{- $is_external := partialCached "utils/is_external.html" $button_link $button_link -}}
+
+            {{- if not $button_label -}}
+              {{- $button_label = i18n "explore" | default "Explore" -}}
+            {{- end -}}
+
+            <a href="{{ $button_link }}"
+              class="button{{ with .class }} {{ . }}{{ end }}"
+              {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
+
+              {{- $button_label -}}
+              {{- if $is_external -}}
+                {{- partialCached "utils/icon.html" "external" "external" -}}
+              {{- end -}}
+            </a>
 
           {{- end -}}
         </div>
@@ -77,30 +74,27 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- $hero_title := .title -}}
       {{- $hero_cover := .cover -}}
 
-      {{- with $hero_link -}}
-        {{- with site.GetPage . -}}
-          {{- $key := "" -}}
-          {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
-          {{- $hero_link = partialCached "utils/link_redirect.html" . $key -}}
-          {{- if not $hero_title -}}
-            {{- $hero_title = .LinkTitle -}}
-          {{- end -}}
-          {{- if not $hero_cover -}}
-            {{- $hero_cover = .Page -}}
-          {{- end -}}
+      {{- with site.GetPage $hero_link -}}
+        {{- $key := partialCached "utils/cache_key.html" . . -}}
+        {{- $hero_link = partialCached "utils/link_redirect.html" . $key -}}
+        {{- if not $hero_title -}}
+          {{- $hero_title = .LinkTitle -}}
+        {{- end -}}
+        {{- if not $hero_cover -}}
+          {{- $hero_cover = .Page -}}
         {{- end -}}
       {{- end -}}
 
-      {{- $is_external := and (hasPrefix $hero_link "http") (not (hasPrefix $hero_link site.BaseURL)) -}}
+      {{- $is_external := partialCached "utils/is_external.html" $hero_link $hero_link -}}
 
       {{- with $hero_link -}}
-        <a class="hero-column"
+        <a
+          class="hero-column"
           href="{{ . }}"
-          {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+          {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
       {{- end -}}
 
       {{- with $hero_title -}}
-          {{- title . -}}
         <h2 class="title{{ with $hero.class }} {{ . }}{{ end -}}">
           {{- . -}}
 

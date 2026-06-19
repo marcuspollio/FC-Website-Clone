@@ -23,6 +23,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         (in .Filename (printf "/content/%s/" $default))
         (not (eq $.Section (index site.MainSections 0)))
       -}}
+
         {{- $note := i18n "note_notranslation" |
           default "This page is not translated yet so the English version is used instead. Interested in helping out?" -}}
         {{- $contrib := i18n "contributing" | default "Contributing" -}}
@@ -31,6 +32,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- end -}}
     {{- end -}}
 
-    {{ . }}
+    {{- . -}}
   </div>
 {{- end -}}

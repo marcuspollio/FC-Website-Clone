@@ -29,7 +29,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- if hugo.IsProduction -}}
       {{- $fedishare = $fedishare | minify | fingerprint -}}
     {{- end -}}
-    <script src="{{ $fedishare.RelPermalink }}"
+    <script
+      src="{{ $fedishare.RelPermalink }}"
       type="text/javascript"
       defer
       {{- if hugo.IsProduction }} integrity="{{ $fedishare.Data.Integrity }}" crossorigin="anonymous"{{ end -}}>
@@ -54,20 +55,24 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     <main class="fedishare">
       <noscript>
         <div class="warning">
-          {{ i18n "javascript_required" | default "Javascript is required" }}
+          {{- i18n "javascript_required" | default "Javascript is required" -}}
         </div>
       </noscript>
 
       <h2>
-        {{ i18n "share_on" | default "Share on" }} {{ i18n "fediverse" | default "Fediverse" }}
+        {{- i18n "share_on" | default "Share on" }} {{ i18n "fediverse" | default "Fediverse" -}}
       </h2>
 
       <form id="shareForm">
         <label>
           <strong>
-            {{ i18n "title" | default "Title" }}
+            {{- i18n "title" | default "Title" -}}
           </strong>
-          <input type="text" id="title" class="fedishare-title" readonly>
+          <input
+            type="text"
+            id="title"
+            class="fedishare-title"
+            readonly>
           <small>
             This field is readonly.
           </small>
@@ -75,16 +80,24 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         <label>
           <strong>
-            {{ i18n "description" | default "Description" }}
+            {{- i18n "description" | default "Description" -}}
           </strong>
-          <textarea id="description" class="fedishare-description" rows="5"></textarea>
+          <textarea
+            id="description"
+            class="fedishare-description"
+            rows="5">
+          </textarea>
         </label>
 
         <label>
           <strong>
-            {{ i18n "url" | default "URL" }}
+            {{- i18n "url" | default "URL" -}}
           </strong>
-          <input type="url" id="url" class="fedishare-url" readonly>
+          <input
+            type="url"
+            id="url"
+            class="fedishare-url"
+            readonly>
           <small>
             This field is readonly.
           </small>
@@ -92,11 +105,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         <label for="instance">
           <strong>
-            {{ i18n "instance" | default "Instance" }}
+            {{- i18n "instance" | default "Instance" -}}
           </strong>
           <span class="fedishare-instance-container">
             https://
-            <input type="text"
+            <input
+              type="text"
               id="instance"
               class="fedishare-instance"
               inputmode="url"
@@ -110,12 +124,18 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         </label>
 
         <label for="rememberInstance">
-          <input type="checkbox" id="rememberInstance">
-          {{ i18n "remember_instance" | default "Remember instance" }}
+          <input
+            type="checkbox"
+            id="rememberInstance">
+
+            {{- i18n "remember_instance" | default "Remember instance" -}}
         </label>
 
-        <button type="submit" id="submit">
-          {{ i18n "share_on" | default "Share on" }} {{ i18n "fediverse" | default "Fediverse" }}
+        <button
+          type="submit"
+          id="submit">
+
+          {{- i18n "share_on" | default "Share on" }} {{ i18n "fediverse" | default "Fediverse" -}}
         </button>
       </form>
     </main>

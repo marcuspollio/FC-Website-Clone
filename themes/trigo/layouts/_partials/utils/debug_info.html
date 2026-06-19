@@ -53,7 +53,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- $key := index $pair 0 -}}
       {{- $val := index $pair 1 -}}
       <p class="{{ if $val }}ok{{ else }}fail{{ end }}">
-        {{ $key }}: <b>{{ if $val }}{{ printf "%v" $val }}{{ else }}<i>nil</i>{{ end }}</b>
+        {{- $key -}}: <b>{{- cond $val (printf "%v" $val) (print "<i>nil</i>") -}}</b>
       </p>
     {{- end -}}
   {{- end -}}
@@ -61,7 +61,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   <hr>
 
   <p class="{{ if or .IsHome .Parent.IsHome }}ok{{ else }}fail{{ end }}">
-    Is Top-Level: <b>{{ if or .IsHome .Parent.IsHome }}true{{ else }}false{{ end }}</b>
+    Is Top-Level: <b>{{- or .IsHome .Parent.IsHome false -}}</b>
   </p>
 
   {{- $counts := slice
@@ -71,7 +71,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   {{- range $counts -}}
     <p class="{{ if gt (index . 1) 0 }}ok{{ else }}fail{{ end }}">
-      {{ index . 0 }}: <b>{{ if gt (index . 1) 0 }}{{ index . 1 }}{{ else }}<i>0</i>{{ end }}</b>
+      {{- index . 0 -}}: <b>{{- cond (gt (index . 1) 0) (index . 1) (print "<i>0</i>") -}}</b>
     </p>
   {{- end -}}
 

@@ -111,8 +111,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- if $shortcode_parent }} style="padding: 0;"{{ end -}}>
 
       {{- range . -}}
-        {{- $key := "" -}}
-        {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+        {{- $key := partialCached "utils/cache_key.html" . . -}}
         {{- partialCached "main/card.html" . $key -}}
       {{- end -}}
 

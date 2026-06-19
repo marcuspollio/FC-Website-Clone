@@ -13,12 +13,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- define "main" -}}
 
-  {{- $key := "" -}}
-  {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
+  {{- $key := partialCached "utils/cache_key.html" . . -}}
 
   <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}">
 
-      {{- title .Title -}}
     <h2 class="title{{ with .Params.title_class }} {{ . }}{{ end -}}">
       {{- .Title -}}
 
@@ -50,7 +48,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- partial "main/content.html" . -}}
 
   {{/* Dynamically include custom content partials. */}}
-  {{- partial "utils/include_custom_partials.html" (dict "page" . "where" "content" "auto" true) $key -}}
+  {{- partial "utils/custom_partials.html" (dict "page" . "where" "content" "auto" true) $key -}}
 
   {{- /* Get pagination to previous and next pages. */ -}}
   {{- if site.Params.show_pagination -}}
