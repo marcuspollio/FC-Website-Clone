@@ -124,6 +124,8 @@ main > :is(.hero:only-child, .not-found) {
   border-radius: var(--radius);
   outline: var(--outline);
   text-align: center;
+  justify-content: center;
+  align-content: center;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -152,11 +154,12 @@ input:checked + .button,
   font-weight: bold;
   background: var(--header);
   outline: var(--line) solid var(--backdrop);
-  cursor: default;
 }
 
 :is(input:checked + .button, .button:active, .button.active):hover {
-  outline: var(--line) solid var(--tertiary);
+  color: var(--primary);
+  outline: var(--outline-hover);
+  filter: var(--filter);
 }
 
 .button:focus {

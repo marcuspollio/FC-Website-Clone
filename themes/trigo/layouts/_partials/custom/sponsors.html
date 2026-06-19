@@ -1,0 +1,94 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Sponsors list:
+
+  - Get Sponsors data from JSON file.
+  - Display Sponsors data grouped by tiers.
+*/ -}}
+
+
+{{- $sponsors := slice -}}
+{{- range hugo.Data.sponsors -}}
+  {{- if and (ne .label nil) (ne .start_date nil) -}}
+    {{- $sponsors = $sponsors | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $tiers := slice "corporate" "gold" "early" "silver" "bronze" -}}
+
+{{- with $sponsors -}}
+  <div class="sponsors">
+    <h2 class="sponsors-title">
+      {{- i18n "sponsors_title" | default "Current Sponsors" -}}
+    </h2>
+
+    {{- range $tier := $tiers -}}
+
+      {{- $tier_sponsors := where $sponsors "tier" $tier -}}
+      {{- with $tier_sponsors -}}
+        <h3>{{ $tier | title }}</h3>
+        <div class="sponsors-tier">
+
+          {{- range $sponsor := sort . "label" -}}
+
+            {{- if in (slice "corporate" "gold" "early" "silver") $tier -}}
+              {{- $title := cond $sponsor.description (printf "%s - %s" $sponsor.label $sponsor.description) $sponsor.label -}}
+              {{- with $sponsor.link -}}
+                <a
+                  class="sponsor-entry {{ $tier }}"
+                  href="{{ . }}"
+                  target="_blank"
+                  rel="external noreferrer nofollow"
+                  {{- with $title -}} title="{{ . }}"{{ end -}}>
+
+              {{- else -}}
+                <div
+                  class="sponsor-entry {{ $tier }}"
+                  {{- with $title -}} title="{{ . }}"{{ end -}}>
+              {{- end -}}
+
+              {{- if in (slice "corporate" "gold" "early") $tier -}}
+                {{- $logo_path := print "sponsors/" $sponsor.logo -}}
+                {{- with resources.Get $logo_path -}}
+                  {{- if eq .MediaType.SubType "svg" -}}
+                    <svg
+                      class="sponsor-logo"
+                      aria-hidden="true"
+                      focusable="false">
+                      <use href="{{ .RelPermalink }}#{{ path.BaseName $sponsor.logo }}"></use>
+                    </svg>
+
+                  {{- else -}}
+                    <img
+                      class="sponsor-logo"
+                      src="{{ .RelPermalink }}"
+                      alt="{{ $sponsor.label }}"/>
+                  {{- end -}}
+
+                {{- else -}}
+                  <h3>{{ $sponsor.label }}</h3>
+                {{- end -}}
+
+              {{- else -}}
+                <h4>{{ $sponsor.label }}</h4>
+              {{- end -}}
+
+              {{- with $sponsor.link -}}</a>{{- else -}}</div>{{- end -}}
+
+            {{- else -}}
+              <div class="sponsor-entry {{ $tier }}">
+                {{- $sponsor.label -}}
+              </div>
+            {{- end -}}
+          {{- end -}}
+
+        </div>
+      {{- end -}}
+    {{- end -}}
+
+  </div>
+{{- end -}}

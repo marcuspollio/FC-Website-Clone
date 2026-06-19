@@ -1,0 +1,528 @@
+- id: 1
+  label: Aleph Objects
+  description: Creators of Lulzbot 3D printers based in Loveland, Colorado
+  logo: aleph.svg
+  link: https://www.lulzbot.com
+  tier: early
+  start_date: 2022-06-16
+
+- id: 2
+  label: Imetric 4d
+  description: Information technology company in medical and health
+  logo: imetric4d.webp
+  link: https://www.imetric4d.com
+  tier: early
+  start_date: 2022-06-16
+
+- id: 3
+  label: KiCad Services Corp
+  description: Commercial support corporation, helping professional users succeed and thrive with KiCad
+  logo: kicad.svg
+  link: https://www.kipro-pcb.com
+  tier: early
+  start_date: 2022-06-16
+
+- id: 4
+  label: OpeningDesign
+  description: (Uberly) transparent and open source architectural studio
+  logo: openingdesign.webp
+  link: https://openingdesign.com
+  tier: early
+  start_date: 2022-06-16
+
+- id: 5
+  label: PCBWay
+  description: Manufacturer of PCB boards, 3D-printed and CNC-produced parts
+  logo: pcbway.svg
+  link: https://pcbway.com
+  tier: silver
+  start_date: 2022-06-15
+
+- id: 6
+  label: Packt Publishing
+  description: Publisher of books about open-source software
+  logo:
+  link: https://www.packtpub.com
+  tier: silver
+  start_date: 2022-06-16
+
+- id: 7
+  label: Wetpaint Designs
+  description: Small scale manufacturer and product design firm
+  logo: wetpaint.svg
+  link: https://www.wetpaintdesigns.com
+  tier: early
+  start_date: 2022-06-16
+
+- id: 8
+  label: Lukas Alberts
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2022-07-15
+
+- id: 9
+  label: Anonymous user
+  description:
+  logo:
+  link:
+  tier: silver
+  start_date: 2022-07-19
+
+- id: 10
+  label: Ton Roosendaal
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2022-07-19
+
+- id: 11
+  label: Ian Rees
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2022-07-20
+
+- id: 12
+  label: 3BM Ingenieursbureau
+  description: Cooperative of practical engineers acting in construction
+  logo: 3bm.webp
+  link: https://3bm.co.nl
+  tier: gold
+  start_date: 2022-07-22
+
+- id: 13
+  label: Epiray
+  description: Manufacturer of equipment for Thermal Laser Epitaxy
+  logo: epiray.svg
+  link: http://www.epiray.de
+  tier: gold
+  start_date: 2022-07-29
+
+- id: 14
+  label: Spacecruft
+  description:
+  logo:
+  link: https://spacecruft.org
+  tier: gold
+  start_date: 2022-09-21
+
+- id: 15
+  label: Marius Grunca
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2023-04-19
+
+- id: 16
+  label: Markus Vogt
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2023-05-01
+
+- id: 17
+  label: Jose Alonso Mendoza
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2023-05-09
+
+- id: 18
+  label: Oaktree engineering
+  description:
+  logo: oaktree.svg
+  link: https://www.oaktreellc.com
+  tier: gold
+  start_date: 2023-07-31
+
+- id: 19
+  label: Chudovo
+  description: International software development company since 2006 in video security, logistics, medicine, and finance
+  logo:
+  link: https://chudovo.com
+  tier: silver
+  start_date: 2023-09-27
+
+- id: 20
+  label: James Debono
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2023-11-27
+
+- id: 21
+  label: Libre Space Foundation
+  description: Non-profit foundation for open source hardware and software in space
+  logo: librespace.svg
+  link: https://libre.space
+  tier: gold
+  start_date: 2023-12-06
+
+- id: 22
+  label: Brian Smith
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-01-08
+
+- id: 23
+  label: Kliment / Future Bits
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-01-08
+
+- id: 24
+  label: Lex Heles
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-02-06
+
+- id: 25
+  label: Flaviu Tamas
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-03-22
+
+- id: 26
+  label: RobotMachines
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-03-25
+
+- id: 27
+  label: Damian Toczek
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-03-25
+
+- id: 28
+  label: Robert
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-03-25
+
+- id: 29
+  label: plasmapotential
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-04-04
+
+- id: 30
+  label: Amplituda d.o.o.
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-07-04
+
+- id: 31
+  label: David Yeung
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-07-08
+
+- id: 32
+  label: Un voyageur avec serviette
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-07-19
+
+- id: 33
+  label: Route4Me Route Planner
+  description: Last-mile route planning and route optimization
+  logo:
+  link: https://route4me.com
+  tier: silver
+  start_date: 2024-09-16
+
+- id: 34
+  label: Vinicius Dupuit
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-10-01
+
+- id: 35
+  label: Brian Smith
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-10-01
+
+- id: 36
+  label: JR
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-10-28
+
+- id: 37
+  label: Genysys Engine ltd
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-12-03
+
+- id: 38
+  label: Mario Zuena
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2024-12-20
+
+- id: 39
+  label: MabeeSteve
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-02-28
+
+- id: 40
+  label: Elevated Sensors
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-05-23
+
+- id: 41
+  label: Colombe Du Pouget De Nadaillac
+  description: French C, C++ and Python developer developing parametric drone aircrafts with FreeCAD
+    and sometimes even contributes to it by fixing bugs she encounters
+  logo:
+  link:
+  tier: silver
+  start_date: 2025-07-02
+
+- id: 42
+  label: Microsoft
+  description: Donating hardware to the FreeCAD project
+  logo: microsoft.svg
+  link: https://www.microsoft.com
+  tier: gold
+  start_date: 2025-07-12
+
+- id: 43
+  label: Glen G
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-07-12
+
+- id: 44
+  label: Ustun Design
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-07-28
+
+- id: 45
+  label: flightmansam
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-09-11
+
+- id: 46
+  label: Hydroexigiantiki SA
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-09-25
+
+- id: 47
+  label: Bystroushaak
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-10-31
+
+- id: 48
+  label: Artem Vasiatkin
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2025-12-23
+
+- id: 49
+  label: Kanardia
+  description: Manufacturer of high-performance avionics for ultralight aeroplanes, helicopters, and autogyros
+  logo: kanardia.svg
+  link: https://www.kanardia.eu
+  tier: gold
+  start_date: 2026-01-13
+
+- id: 50
+  label: JetBrains
+  description: Donating software licenses to the FreeCAD project
+  logo: jetbrains.svg
+  link: https://jb.gg/OpenSource
+  tier: gold
+  start_date: 2026-02-26
+
+- id: 51
+  label: itWorks AG
+  description:
+  logo:
+  link: https://itworks.ag
+  tier: silver
+  start_date: 2026-06-08
+
+- id: 52
+  label: Björn Jürgens
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 53
+  label: Daniel Davison
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 54
+  label: Custom Cut GmbH
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 55
+  label: Sintesi Labs Design
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 56
+  label: Andrzej Skarżyński
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 57
+  label: William Walker
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 58
+  label: Matt Valentine
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 59
+  label: 3xxx
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 60
+  label: schreinermueller
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 61
+  label: P-i-U UG & Co. KG
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 62
+  label: P. Smith
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 63
+  label: James Waples
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 64
+  label: nerd-sniped
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 65
+  label: NateXVI
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08
+
+- id: 66
+  label: Marcos Hernandez
+  description:
+  logo:
+  link:
+  tier: bronze
+  start_date: 2026-06-08

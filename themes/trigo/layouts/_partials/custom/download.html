@@ -70,7 +70,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
                 {{- $key := printf "%s_%s" $platform.os $package.key -}}
                 {{- with index $builds $key -}}
-                  <a class="button"
+                  <a class="button download-link"
                     href="{{ . }}"
                     target="_blank"
                     rel="external noreferrer nofollow">
@@ -90,6 +90,18 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
       {{- end -}}
     </div>
+
+    <script>
+    const DONATE_PAGE = '{{ with (site.GetPage "donate") }}{{ .RelPermalink }}{{ else }}#{{ end }}';
+
+    document.querySelectorAll('.download-link').forEach(link => {
+      link.addEventListener('click', () => {
+        setTimeout(() => {
+          window.location.assign(DONATE_PAGE);
+        }, 1500);
+      });
+    });
+    </script>
 
   {{- if $page.IsPage -}}</div>{{- end -}}
 

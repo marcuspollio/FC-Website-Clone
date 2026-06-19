@@ -24,7 +24,7 @@ menus:
     parent: docs
   - pageRef: /donate
     params:
-      class: button
+      class: donate-button
 
   footer:
   - pageRef: /
@@ -140,6 +140,14 @@ cascade:
     target:
       kind: page
       path: /download/releases/**
+
+  - params:
+      no_listing: true
+      partials:
+        content:
+          - sponsors
+    target:
+      path: /donate
 
   - params:
       toc: true

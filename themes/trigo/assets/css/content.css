@@ -258,7 +258,7 @@ sup:target {
   position: relative;
 }
 
-.content button[popovertarget^="img-"] [class^="icon-"] {
+.content button[popovertarget] [class^="icon-"] {
   position: absolute;
   top: var(--gap);
   right: var(--gap);
@@ -266,7 +266,7 @@ sup:target {
   height: 2rem;
   color: var(--tertiary);
   background: var(--backdrop);
-  border-radius: calc(var(--radius) * 10);
+  border-radius: 50%;
   padding: calc(var(--gap) * 0.25);
   display: flex;
   align-items: center;
@@ -275,7 +275,7 @@ sup:target {
   pointer-events: none;
 }
 
-.content button[popovertarget^="img-"]:hover [class^="icon-"] {
+.content button[popovertarget]:hover [class^="icon-"] {
   color: var(--accent);
 }
 
@@ -295,7 +295,7 @@ figure .internal-tooltip {
   z-index: 1;
 }
 
-.content button[popovertarget^="img-"]:not(.close) {
+.content button[popovertarget]:not(.close) {
   cursor: zoom-in;
   margin: auto;
   text-align: center;

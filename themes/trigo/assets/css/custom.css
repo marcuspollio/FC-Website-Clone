@@ -273,6 +273,274 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 }
 
 
+/* Donate box */
+
+#donation-form {
+  width: var(--content-width);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  padding: var(--gap);
+  align-items: center;
+  background: var(--entry);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  z-index: 3;
+}
+
+#donation-type {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: none;
+  padding: 0;
+}
+
+#donation-amount {
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  border: none;
+  padding: 0;
+}
+
+#donation-type input,
+#donation-amount input:not([type="number"]) {
+  display: none;
+}
+
+#donation-amount .tiers {
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#donation-amount .custom {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#donation-type label,
+.tiers label:not([for="custom-amount"]) {
+  flex: 1 1 0;
+}
+
+[id^="message-monthly-"],
+#donation-form:has(#once:checked) :is(#corporate-sponsor, #message-monthly-default),
+#donation-form:has(#once:checked):has(#donate-checkbox:disabled) #message-once-choice,
+#donation-form:has(#once:checked):not(:has(#donate-checkbox:disabled)) #message-once-default,
+#donation-form:has(#once:checked):has(#custom-amount:invalid) :is(#message-once-default, #message-once-choice),
+#message-once-error,
+#donation-form:has(#monthly:checked) :is(#custom-amount-box, #message-once-default, #message-once-choice) {
+  display: none;
+}
+
+#donation-form:has(#monthly:checked):not(:has([id^="monthly-"]:checked)) #message-monthly-default {
+  display: block;
+}
+
+#donation-form:has(#once:checked):has(#custom-amount:invalid) #message-once-error {
+  display: block;
+  background: crimson;
+}
+
+#custom-amount:not(:valid) {
+  color: crimson;
+}
+
+#donation-form:has(#once:checked) .once,
+#donation-form:has(#monthly:checked) .monthly {
+  display: grid;
+}
+
+#custom-amount-box {
+  grid-column: span 3;
+  display: flex;
+  justify-content: center;
+  padding: calc(var(--gap) * 0.25);
+}
+
+#corporate-sponsor {
+  grid-column: span 3;
+  display: flex;
+  justify-content: center;
+}
+
+#custom-amount-box label {
+  margin: auto var(--gap);
+}
+
+#custom-amount {
+  width: 100%;
+  padding: calc(var(--gap) * 0.25);
+  color: var(--secondary);
+  text-align: center;
+}
+
+#currency-toggle {
+  grid-column: span 1;
+  border: none;
+}
+
+#donation-payment {
+  width: 100%;
+  display: flex;
+  border: none;
+  padding: 0;
+}
+
+[for="donate-checkbox"], [id^="payment-"] {
+  width: 100%;
+  margin: calc(var(--gap) * 0.5);
+  padding: var(--padding);
+  font-weight: bold;
+  border: none;
+}
+
+[for="donate-checkbox"]:not([id$="default"]), [id^="payment-"] {
+  color: var(--secondary);
+  background: var(--theme);
+  outline: var(--outline);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+:is([for="donate-checkbox"]:not([id$="default"]), [id^="payment-"]):hover:not(:disabled) {
+  color: var(--primary);
+  outline: var(--outline-hover);
+  filter: var(--filter);
+}
+
+#donation-payment:has(#donate-checkbox:checked) [id^="payment-"] {
+  display: block;
+}
+
+#donate-checkbox,
+#donation-payment:has(#donate-checkbox:not(:disabled):checked) [for="donate-checkbox"],
+#donation-payment:has(:is(#donate-checkbox:not(:checked), #donate-checkbox:disabled)) [id^="payment-"],
+#donation-form:has(#monthly:checked) [id="payment-stripe"] {
+  display: none;
+}
+
+#donation-popover {
+  position: relative;
+  padding: calc(var(--gap) * 2);
+  color: var(--secondary);
+  background: var(--entry);
+  border: none;
+  border-radius: var(--radius);
+}
+
+#donation-popover::backdrop {
+  background: var(--backdrop);
+}
+
+#donation-popover .close {
+  position: absolute;
+  top: var(--gap);
+  right: var(--gap);
+}
+
+#donation-popover .close svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--tertiary);
+  background: var(--backdrop);
+  border-radius: calc(var(--radius) * 10);
+  padding: calc(var(--gap) * 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Sponsors list */
+
+.sponsors {
+  padding-bottom: calc(var(--gap) * 2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  background: var(--bg-gradient);
+}
+
+.sponsors-tier {
+  width: var(--width);
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-entry {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: var(--padding);
+  background: var(--entry);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+a.sponsor-entry:hover {
+  filter: var(--filter);
+}
+
+.sponsor-entry svg,
+.sponsor-logo {
+  height: var(--xxl);
+  width: auto;
+  max-width: calc(var(--xxl) * 2.5);
+  color: var(--secondary);
+  border-radius: 0;
+}
+
+
+/* Custom classes. */
+
+.donate-button {
+  display: inline-block;
+  margin: calc(var(--gap) * 0.5);
+  padding: var(--padding);
+  color: var(--secondary);
+  font-size: var(--m);
+  background: linear-gradient(
+    var(--angle),
+    color-mix(in srgb, var(--accent) 25%, var(--header) 75%),
+    color-mix(in srgb, var(--accent-hover) 50%, var(--header) 50%)
+  );
+  border-radius: var(--radius);
+  outline: var(--line) solid var(--header);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 2;
+}
+
+.donate-button.active:not(.button) {
+  color: var(--primary);
+  outline: var(--line) solid var(--tertiary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+:is(.donate-button, .donate-button.active):hover {
+  color: var(--primary);
+  outline: var(--outline-hover);
+  filter: var(--filter);
+}
+
+:is(.donate-button, .donate-button.active):focus {
+  outline: var(--outline-focus);
+}
+
+
 /* Custom content classes */
 
 .section {

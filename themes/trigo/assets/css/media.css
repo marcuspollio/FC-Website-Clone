@@ -193,6 +193,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     width: var(--width);
   }
 
+  #donation-type {
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
   #donation-amount {
     grid-template-rows: calc(2fr + var(--gap)) 1fr;
   }
@@ -253,7 +258,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   .menu-list a {
     text-align: center;
     margin: 0.5rem;
-    padding: 0;
     display: inline-block;
   }
 

@@ -53,6 +53,7 @@ enable_js_compare: true
 enable_js_canvas: true
 enable_js_calendar: true
 enable_js_addons: true
+enable_js_donate: true
 
 # External and remote interaction
 allow_remote: true
@@ -156,3 +157,54 @@ telemetry:
     - navigation_orbit_style
     - ui_toolbar_icon_size
     - python_version
+
+# Donate
+donate:
+  currencies:
+    - code: EUR
+      symbol: €
+      selected: true
+    - code: USD
+      symbol: $
+  once:
+    tiers:
+      - amount: 25
+      - amount: 50
+      - amount: 100
+      - amount: 200
+  monthly:
+    tiers:
+      - type: normal
+        amount: 5
+      - type: bronze
+        amount: 25
+        color: "#A86A27"
+      - type: silver
+        amount: 100
+        color: "#9A9A9A"
+      - type: gold
+        amount: 200
+        color: "#D4A715"
+  payment:
+    - platform: Paypal
+      weight: 1
+      url: https://www.paypal.com/donate/?hosted_button_id=M3Z8BGW6DB69Q
+    - platform: Stripe
+      weight: 2
+      url: https://donate.stripe.com/14k3ei9TYgwFclq145
+    - platform: GitHub
+      weight: 3
+      url: https://github.com/sponsors/freecad
+    - platform: OpenCollective
+      weight: 4
+      url: https://opencollective.com/freecad/donate
+    - platform: SEPA
+      weight: 5
+      title: SEPA Bank transfer
+      details:
+        - Beneficiary: The FreeCAD Project Association
+        - Beneficiary_Address: Rue Docteur Kuborn 31/46, 1070 Anderlecht, Belgium
+        - IBAN: BE04 0019 2896 4531
+        - BIC-SWIFT: GEBABEBBXXX
+        - Bank: BNP Paribas Fortis
+        - Bank_Address: Rue de la Station 64, 1360 Perwez, Belgium
