@@ -24,7 +24,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< button url="https://www.youtube.com/watch?v=a9biWv_M8p8" label="Watch the release video" icon="youtube_fill" >}}
 
 
-{{< block title="Your refined user interface and experience" style="background: linear-gradient(var(--gradient-angle), #ffd6e0, #fff3b0, #caffbf);" title_style="color: darkslategrey;" content_style="color: darkslategrey;" >}}
+{{< block title="Your refined user interface and experience" class="pastel1" >}}
 
 {{< group >}}
 
@@ -55,7 +55,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="Part Design and Assembly on the move" style="background: var(--bg-gradient);" >}}
+{{< block title="Part Design and Assembly on the move" class="background: var(--gradient);" >}}
 
 ![Feature preview and adjustments by gizmos](pd_1-1.webp)
 
@@ -67,7 +67,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="Born to Sketch" style="background: var(--bg-dots);" >}}
+{{< block title="Born to Sketch" class="dots" >}}
 
 {{< group >}}
 
@@ -82,7 +82,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="CAM, FEM and TechDraw flow" style="background: linear-gradient(var(--gradient-angle), #e0c3fc, #f9f7ff, #c3f0ff);" title_style="color: darkslateblue;" content_style="color: darkslateblue;" >}}
+{{< block title="CAM, FEM and TechDraw flow" class="pastel2" >}}
 
 - New toolbit library and editor, better multi-pass support and post-processors introduced in CAM.
 - FEM results now support animations, electrostatic analyses, and glyph filters.
@@ -93,7 +93,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="Build on BIM and Draft" style="background: var(--bg-grid);" >}}
+{{< block title="Build on BIM and Draft" class="grid" >}}
 
 ![Better layers, dimensions, and style management](plan_1-1.webp)
 
@@ -104,7 +104,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="General performance and stability" style="background: linear-gradient(var(--gradient-angle), #dbe6c4 0%, #c3d2a4 40%, #aebf7a 70%, #8f9f5a 100%);" title_style="color: darkolivegreen;" content_style="color: darkolivegreen;" >}}
+{{< block title="General performance and stability" class="pastel3" >}}
 
 - Continued improvements to topological naming mitigation for greater model stability.
 - Better Wayland support for Linux users.

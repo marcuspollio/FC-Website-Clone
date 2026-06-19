@@ -7,10 +7,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- /* Branch shortcode:
 
   @param {string} [label] – Optional label for tree branch.
-  @param {string} [type=folder] – Icon for tree branch: folder, document, container, group, part, assembly, arrow, branch, fork, or merge.
+  @param {string} [icon=folder] – Icon for tree branch: folder, document, container, group, part, assembly, arrow, branch, fork, pr, or versions.
   @param {string} [state=open] – Initial open or closed state.
   @param {string} [class] – Optional CSS class for tree branch.
-  @param {string} [style] – Optional CSS style for tree branch.
 
   @return {HTML} Render collapsible tree branch with nested children (e.g. branches or leaves).
 
@@ -21,48 +20,50 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) | plainify -}}
-{{- $type := cond (.IsNamedParams) (.Get "type") (.Get 1) | default "folder" -}}
-{{- $state := cond (.IsNamedParams) (.Get "state") (.Get 2) | default "open" -}}
+{{- $icon := cond (.IsNamedParams) (.Get "icon") (.Get 1) | lower | default "folder" -}}
+{{- $state := cond (.IsNamedParams) (.Get "state") (.Get 2) | lower | default "open" -}}
 {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 3) -}}
-{{- $style := cond (.IsNamedParams) (.Get "style") (.Get 4) -}}
 
 {{- $valid := slice "folder" "document" "container" "group" "part" "assembly" "arrow" "branch" "fork" "merge" -}}
-{{- if not (in $valid $type) -}}
-  {{- $type = "folder" -}}
+{{- if not (in $valid $icon) -}}
+  {{- $icon = "folder" -}}
 {{- end -}}
 {{- $state = cond (in (slice "open" "closed") $state) $state "open" -}}
 
+{{- $classes := slice "branch" -}}
+{{- with $class -}}
+  {{- $classes = $classes | append . -}}
+{{- end -}}
+
+{{- $id := printf "%s-%03d-%s-%03d-%s" .Parent.Name .Parent.Ordinal .Name .Ordinal (anchorize $label) -}}
+
+{{- $icon_open := printf "%s_open" $icon -}}
+{{- $icon_closed := printf "%s_closed" $icon -}}
+
 {{- $is_root := not .Parent -}}
-{{- $id := printf "branch-%03d" .Ordinal -}}
-
-{{- $icon_open := printf "%s_open" (lower $type) -}}
-{{- $icon_closed := printf "%s_closed" (lower $type) -}}
-
 {{- if $is_root -}}<ul class="tree">{{- end -}}
 
 <li>
-  <input type="checkbox"
+  <input
+    type="checkbox"
     id="{{ $id }}"
-    {{- if eq $state "open" }} checked {{ end -}}
-    hidden>
+    hidden
+    {{- if eq $state "open" }} checked {{ end -}}>
 
-  <label class="branch"
+  <label
     for="{{ $id }}"
-    {{- with $class }} class="{{ . }}"{{ end -}}
-    {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}>
+    class="{{ delimit $classes " " }}">
 
-    <span class="branch-open">
-      {{- partialCached "utils/icon.html" $icon_open $icon_open -}}
-    </span>
+    <span class="open">{{ partialCached "utils/icon.html" $icon_open $icon_open }}</span>
 
-    <span class="branch-closed">
-      {{- partialCached "utils/icon.html" $icon_closed $icon_closed -}}
-    </span>
+    <span class="closed">{{ partialCached "utils/icon.html" $icon_closed $icon_closed }}</span>
 
-    {{- with $label -}}{{- . -}}{{- end -}}
+    {{- with $label -}}{{ . }}{{- end -}}
   </label>
 
-  {{- with .InnerDeindent -}}<ul>{{- . -}}</ul>{{- end -}}
+  {{- with .InnerDeindent -}}
+    <ul>{{ . }}</ul>
+  {{- end -}}
 </li>
 
 {{- if $is_root -}}</ul>{{- end -}}

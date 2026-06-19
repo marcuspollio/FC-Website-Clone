@@ -6,11 +6,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- /* Button shortcode:
 
-  @param {string} url – Button link.
+  @param {string} url – Button link (external URL or internal page).
   @param {string} [label] – Optional button label (default to page title if any).
   @param {string} [icon] – Optional icon before the label.
   @param {string} [class] – Optional CSS class for button.
-  @param {string} [style] – Optional CSS style for button.
 
   @return {HTML} Render clickable button with optional icon and label.
 
@@ -27,7 +26,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 1) -}}
   {{- $icon := cond (.IsNamedParams) (.Get "icon") (.Get 2) -}}
   {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 3) -}}
-  {{- $style := cond (.IsNamedParams) (.Get "style") (.Get 4) -}}
 
   {{- with site.GetPage $url -}}
     {{- $key := "" -}}
@@ -47,19 +45,17 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- $label = i18n "open_link" | default "Open link" -}}
   {{- end -}}
 
-  {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url site.BaseURL)) -}}
+  {{- $is_external := and (hasPrefix $url "http") (not (hasPrefix $url (absURL ""))) -}}
 
-  {{- $shortcode_parent := .Parent -}}
   {{- $classes := slice "button" -}}
   {{- with $class -}}{{- $classes = $classes | append . -}}{{- end -}}
 
-  <p class="shortcode">
-    <a href="{{ $url }}"
+  <div class="button-shortcode">
+    <a
+      href="{{ $url }}"
       title="{{ $label }}"
-      aria-label="{{ $label }}"
       class="{{ delimit $classes " " }}"
-      {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}
-      {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
+      {{- if $is_external }} target="_blank" rel="external noreferrer nofollow"{{ end -}}>
 
       {{- with $icon -}}
         {{- partialCached "utils/icon.html" . . -}}
@@ -71,7 +67,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- partialCached "utils/icon.html" "external" "external" -}}
       {{- end -}}
     </a>
-  </p>
+  </div>
 
 {{- else -}}
   {{- warnf "%q shortcode: missing required 'url' argument on %s" .Name .Position -}}

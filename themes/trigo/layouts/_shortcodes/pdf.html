@@ -7,6 +7,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- /* PDF shortcode:
 
   @param {string} path – URL or path to PDF document.
+  @param {string} [title] – Optional PDF title.
 
   @return {HTML} Render embedded PDF.
 
@@ -17,14 +18,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- $path := cond (.IsNamedParams) (.Get "path") (.Get 0) -}}
+{{- $title := cond (.IsNamedParams) (.Get "title") (.Get 1) | default (path.BaseName $path) -}}
 
 {{- with $path -}}
 
   <div class="pdf">
-    <iframe src="{{ . | safeURL }}"
-      width="100%"
-      style="min-height: 50vh; max-width: var(--width);"
-      frameborder="0">
+    <iframe
+      src="{{ . | safeURL }}"
+      title="{{ $title }}"
+      loading="lazy"
+      allowfullscreen>
     </iframe>
   </div>
 

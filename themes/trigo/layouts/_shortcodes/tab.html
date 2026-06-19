@@ -16,23 +16,24 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- if .Inner -}}
+{{- $inner := .InnerDeindent -}}
+
+{{- if $inner -}}
 
   {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) | default (i18n "tab" | default "Tab") -}}
   {{- $group := printf "tabs-%v" (default .Parent.Ordinal (.Parent.Get 0)) -}}
   {{- $tab := printf "%s-%d" $group .Ordinal -}}
 
-  <input type="radio"
+  <input
+    type="radio"
     name="{{ $group }}"
     id="{{ $tab }}"
-    {{- if not .Ordinal }} checked="checked"{{ end -}}>
+    {{- if not .Ordinal }} checked{{ end -}}>
 
-  <label for="{{ $tab }}">
-    {{- $label -}}
-  </label>
+  <label for="{{ $tab }}">{{ $label }}</label>
 
-  <div class="tabs-content">
-    {{- .Inner | .Page.RenderString -}}
+  <div class="tab-content">
+    {{- $inner | strings.TrimSpace | .Page.RenderString (dict "display" "block") -}}
   </div>
 
 {{- else -}}

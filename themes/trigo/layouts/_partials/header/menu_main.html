@@ -8,7 +8,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   - Horizontal list on desktop, dropdown hamburger on mobile.
   - Set active for current Section.
-  - Handle external links, optional classes, and style support.
+  - Handle external links and optional class.
 */ -}}
 
 
@@ -55,7 +55,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           <a href="{{ $url }}"
             {{- with $aria }} aria-current="{{ . }}"{{ end -}}
             {{- with $class }} class="{{ delimit . " " }}"{{ end -}}
-            {{- with .Params.style }} style="{{ . | safeCSS }}"{{ end -}}
             {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
             {{- title $name -}}
 

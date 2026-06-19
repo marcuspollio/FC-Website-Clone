@@ -17,20 +17,15 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $buttons := .Params.buttons -}}
   {{- $hero := .Params.hero | default hugo.Sites.Default.Home.Params.hero -}}
 
-  <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}"
-    {{- with .Params.background_style }} style="{{ . | safeCSS }}"{{ end -}}>
+  <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}">
 
     <div class="hero-column">
-      <h1 class="title"
-        {{- with .Params.title_class }} class="{{ . }}"{{ end -}}
-        {{- with .Params.title_style }} style="{{ . | safeCSS }}"{{ end -}}>
-        {{- title .Title -}}
+      <h1 class="title{{ with .Params.title_class }} {{ . }}{{ end -}}">
+        {{- .Title -}}
       </h1>
 
       {{- with .Description -}}
-        <h3 class="description"
-          {{- with $.Params.description_class }} class="{{ . }}"{{ end -}}
-          {{- with $.Params.description_style }} style="{{ . | safeCSS }}"{{ end -}}>
+        <h3 class="description{{ with $.Params.description_class }} {{ . }}{{ end -}}">
           {{- . -}}
         </h3>
       {{- end -}}
@@ -61,8 +56,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
               {{- end -}}
 
               <a href="{{ $button_link }}"
-                class="button"
-                {{- with .style }} style="{{ . | safeCSS }}"{{ end -}}
+                class="button{{ with .class }} {{ . }}{{ end }}"
                 {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
                 {{- title $button_label -}}
 
@@ -106,10 +100,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       {{- end -}}
 
       {{- with $hero_title -}}
-        <h2 class="title"
-          {{- with $hero.class }} class="{{ . }}"{{ end -}}
-          {{- with $hero.style }} style="{{ . | safeCSS }}"{{ end -}}>
           {{- title . -}}
+        <h2 class="title{{ with $hero.class }} {{ . }}{{ end -}}">
+          {{- . -}}
 
           {{- if $is_external -}}
             {{- partialCached "utils/icon.html" "external" "external" -}}

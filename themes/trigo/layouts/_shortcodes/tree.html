@@ -8,31 +8,33 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   @param {string} [label] – Optional label for tree.
   @param {string} [class] – Optional CSS class for whole tree.
-  @param {string} [style] – Optional CSS style for whole tree.
 
   @return {HTML} Render tree-like directory or list with inner content/branches/leaves and optional label.
 
-  @example {{< tree label="Tutorials" style="background: green;" >}}...{{< /tree >}}
-  @example {{< tree "Tutorials" "background: green;" >}}...{{< /tree >}}
+  @example {{< tree label="Tutorials" class="accent" >}}...{{< /tree >}}
+  @example {{< tree "Tutorials" "accent" >}}...{{< /tree >}}
 
 */ -}}
 
 
-{{- if .InnerDeindent -}}
+{{- $inner := .InnerDeindent -}}
+
+{{- if $inner -}}
 
   {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) -}}
   {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 1) -}}
-  {{- $style := cond (.IsNamedParams) (.Get "style") (.Get 2) -}}
 
-  <ul class="tree"
-    {{- with $class }} class="{{ . }}"{{ end -}}
-    {{- with $style }} style="{{ . | safeCSS }}"{{ end -}}>
-    {{- .InnerDeindent -}}
+  {{- $classes := slice "tree" -}}
+  {{- with $class -}}
+    {{- $classes = $classes | append . -}}
+  {{- end -}}
+
+  <ul class="{{ delimit $classes " " }}">
+
+    {{- $inner -}}
 
     {{- with $label -}}
-      <li class="tree-label">
-        {{- . | title -}}
-      </li>
+      <li class="tree-label">{{ . }}</li>
     {{- end -}}
   </ul>
 

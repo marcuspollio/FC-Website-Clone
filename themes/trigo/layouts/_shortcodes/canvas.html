@@ -13,8 +13,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   - Support optional animation speed and title.
   - Add noscript fallback.
 
-  Note: the animation order is based on image filenames sorting, e.g. `01.webp`, `02.webp`, etc.
-
   @param {string} path – Path to images resources (page bundle or static/assets dirs).
   @param {int} [fps=12] – Animation speed in frames per second when playing.
   @param {string} [title] – Optional Title to show on canvas hover.
@@ -22,6 +20,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   @return {HTML} Render animated canvas of images with controls and interaction.
 
   @example {{< canvas path="directory-path" fps="24" title="An animated canvas." >}}
+
+  Note: the animation order is based on image filenames sorting, e.g. `01.webp`, `02.webp`, etc.
 
 */ -}}
 
@@ -52,28 +52,43 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   {{- if gt (len $frames) 0 -}}
 
-<div class="canvas"
+<div
+  class="canvas"
   id="{{ $id }}"
   tabindex="0"
   {{- with $title }} title="{{ . }}"{{ end -}}>
 
   <canvas aria-label="Canvas animation">
-    <img src="{{ index $frames 0 }}" alt="{{ $alt }}">
+    <img
+      src="{{ index $frames 0 }}"
+      alt="{{ $alt }}">
   </canvas>
 
   <div class="controls">
-    <button class="play" aria-label="Play animation">
+    <button
+      class="play"
+      aria-label="Play animation">
       {{- partialCached "utils/icon.html" "play" "play" -}}
     </button>
 
-    <button class="pause" aria-label="Pause animation">
+    <button
+      class="pause"
+      aria-label="Pause animation">
       {{- partialCached "utils/icon.html" "pause" "pause" -}}
     </button>
 
-    <input class="slider" type="range" min="0" max="{{ sub (len $frames) 1 }}" value="0" aria-label="Animation frame">
+    <input
+      class="slider"
+      type="range"
+      min="0"
+      max="{{ sub (len $frames) 1 }}"
+      value="0"
+      aria-label="Animation frame">
   </div>
 
-  <script type="application/json" class="canvas-data">
+  <script
+    type="application/json"
+    class="canvas-data">
   {
     "fps": {{ $fps }},
     "frames": {{ $frames | jsonify | safeJS }}
@@ -82,7 +97,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   <noscript>
     <figure>
-      <img src="{{ index $frames 0 }}"
+      <img
+        src="{{ index $frames 0 }}"
         alt="{{ $alt }}"
         style="max-width:100%; border-radius:var(--radius);"
         loading="lazy"

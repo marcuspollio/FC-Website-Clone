@@ -13,13 +13,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- define "main" -}}
 
-  <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}"
-    {{- with .Params.background_style }} style="{{ . | safeCSS }}"{{ end -}}>
+  <section class="hero{{ with .Params.background_class }} {{ . }}{{ end }}">
 
-    <h1 class="title"
-      {{- with .Params.title_class }} class="{{ . }}"{{ end -}}
-      {{- with .Params.title_style }} style="{{ . | safeCSS }}"{{ end -}}>
-      {{- title .Title -}}
+    <h1 class="title{{ with .Params.title_class }} {{ . }}{{ end -}}">
+      {{- .Title -}}
     </h1>
 
     {{- with .Description -}}

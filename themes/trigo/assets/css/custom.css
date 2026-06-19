@@ -246,7 +246,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   width: 100%;
   background:
     linear-gradient(
-      var(--gradient-angle),
+      var(--angle),
       color-mix(in srgb, var(--tone) 25%, var(--entry) 50%),
       color-mix(in srgb, var(--tone) 50%, var(--entry) 25%)
   );
@@ -257,7 +257,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   min-width: var(--s);
   background:
     linear-gradient(
-      var(--gradient-angle),
+      var(--angle),
       color-mix(in srgb, var(--color), var(--entry) 25%),
       var(--color)
   );
@@ -270,4 +270,200 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 .chart-row:hover .chart-bar {
   outline: var(--line) solid var(--color);
   background: var(--color);
+}
+
+
+/* Custom content classes */
+
+.section {
+  background: var(--section);
+}
+
+.gradient {
+  background: linear-gradient(
+    var(--entry),
+    var(--tone)
+  );
+}
+
+.dots {
+  background: radial-gradient(
+    var(--entry) var(--line),
+    transparent var(--line))
+    0 0 / calc(var(--gap) * 0.5) calc(var(--gap) * 0.5
+  );
+}
+
+.grid {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--entry) 0 var(--line),
+      transparent 0 calc(var(--gap) * 0.5)
+    ),
+    repeating-linear-gradient(
+      180deg,
+      var(--entry) 0 var(--line),
+      transparent 0 calc(var(--gap) * 0.5)
+    );
+}
+
+:not(h1, h2, h3, h4, h5, h6).accent {
+  background: linear-gradient(
+    var(--gradient-angle),
+    color-mix(in srgb, var(--accent) 25%, var(--header) 75%),
+    color-mix(in srgb, var(--accent-hover) 50%, var(--header) 50%)
+  );
+}
+
+:is(h1, h2, h3).accent, .accent :is(h1, h2, h3) {
+  background: linear-gradient(
+    var(--angle),
+    var(--accent-hover),
+    var(--accent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+:not(h1, h2, h3, h4, h5, h6).pastel1 {
+  color: dimgrey;
+  background: linear-gradient(
+    var(--angle),
+    #ffd6e0,
+    #fff3b0,
+    #caffbf
+  );
+}
+
+:is(h1, h2, h3).pastel1, .pastel1 :is(h1, h2, h3) {
+  background: linear-gradient(
+    var(--angle),
+    #ff5c8a,
+    #4caf50
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+:not(h1, h2, h3, h4, h5, h6).pastel2 {
+  color: dimgrey;
+  background: linear-gradient(
+    var(--angle),
+    #e0c3fc,
+    #f9f7ff,
+    #c3f0ff
+  );
+}
+
+:is(h1, h2, h3).pastel2, .pastel2 :is(h1, h2, h3) {
+  background: linear-gradient(
+    var(--angle),
+    #7c4dff,
+    #3b82f6
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+:not(h1, h2, h3, h4, h5, h6).pastel3 {
+  color: dimgrey;
+  background: linear-gradient(
+    var(--angle),
+    #dbe6c4,
+    #c3d2a4,
+    #aebf7a,
+    #8f9f5a
+  );
+}
+
+:is(h1, h2, h3).pastel3, .pastel3 :is(h1, h2, h3) {
+  background: linear-gradient(
+    var(--angle),
+    #7a8f3d,
+    #556b2f
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+:not(h1, h2, h3, h4, h5, h6).pastel4 {
+  color: dimgrey;
+  background: linear-gradient(
+    var(--angle),
+    #ffe7d6,
+    #ffd6e7,
+    #e6d6ff
+  );
+}
+
+:is(h1, h2, h3).pastel4, .pastel4 :is(h1, h2, h3) {
+  background: linear-gradient(
+    var(--angle),
+    #c86b5a,
+    #7b61c9
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+:not(h1, h2, h3, h4, h5, h6).pastel5 {
+  color: dimgrey;
+  background: linear-gradient(
+    var(--angle),
+    #dfffe2,
+    #d6fff5,
+    #d6ecff
+  );
+}
+
+:is(h1, h2, h3).pastel5, .pastel5 :is(h1, h2, h3) {
+  background: linear-gradient(
+    var(--angle),
+    #2f9a73,
+    #3d74d8
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+:not(h1, h2, h3, h4, h5, h6).pastel6 {
+  color: dimgrey;
+  background: linear-gradient(
+    var(--angle),
+    #fff8e7,
+    #ffe4e1,
+    #fff0c9
+  );
+}
+
+:is(h1, h2, h3).pastel6, .pastel6 :is(h1, h2, h3) {
+  background: linear-gradient(
+    var(--angle),
+    #ce4125,
+    #c78b09
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.group-center {
+  padding: var(--gap);
+  text-align: center;
+  background: var(--entry);
+  border-radius: var(--radius);
 }

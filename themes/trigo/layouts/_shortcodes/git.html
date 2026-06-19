@@ -1,0 +1,70 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* Git shortcode:
+
+  @param {string} url – URL to git commit or pull/merge request.
+
+  @return {HTML} Render link with icon and label (#id or short commit hash).
+
+  @example {{< git url="https://github.com/user/repo/pull/123" >}}
+  @example {{< git "https://gitlab.com/user/repo/-/commit/abcdef123456" >}}
+
+*/ -}}
+
+
+{{- $url := cond (.IsNamedParams) (.Get "url") (.Get 0) -}}
+
+{{- with $url -}}
+  {{- with urls.Parse . -}}
+
+    {{- $icon := "" -}}
+    {{- $fallback := i18n "code_changes" | default "View code change" -}}
+    {{- $text := $fallback -}}
+
+    {{- if hasPrefix .Scheme "http" -}}
+      {{- $path := trim .Path "/" -}}
+      {{- $parts := split $path "/" -}}
+
+      {{- if ge (len $parts) 2 -}}
+        {{- $type := index (last 2 $parts) 0 -}}
+        {{- with (index (last 1 $parts) 0) -}}
+
+          {{- if in (slice "pull" "pulls" "merge_request" "merge_requests") $type -}}
+            {{- $text = printf "#%s" . -}}
+            {{- $icon = "pr" -}}
+
+          {{- else if in (slice "commit" "commits") $type -}}
+            {{- if ge (len .) 8 -}}
+              {{- $text = substr . 0 8 -}}
+            {{- else -}}
+              {{- $text = . -}}
+            {{- end -}}
+            {{- $icon = "commit" -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+
+      <a
+        href="{{ $url | safeURL }}"
+        class="git"
+        title="{{ $fallback }}"
+        target="_blank"
+        rel="external noreferrer nofollow">
+
+        {{- partialCached "utils/icon.html" $icon $icon -}}
+        {{- $text -}}
+        {{- partialCached "utils/icon.html" "external" "external" -}}
+      </a>
+    {{- end -}}
+
+  {{- else -}}
+    {{- warnf "%q shortcode: invalid 'url' argument on %s: %q" $.Name $.Position $url -}}
+  {{- end -}}
+
+{{- else -}}
+  {{- warnf "%q shortcode: missing required 'url' argument on %s" .Name .Position -}}
+{{- end -}}

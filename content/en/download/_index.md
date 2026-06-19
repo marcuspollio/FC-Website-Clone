@@ -5,7 +5,7 @@ description: Get FreeCAD and start with freedom right away.
 ---
 
 
-{{< block style="background: var(--section-bg);" >}}
+{{< block class="section" >}}
 
 {{< group >}}
 
@@ -29,7 +29,7 @@ designing with FreeCAD is more fun and powerful than ever. Oh, full freedom incl
 {{< button url="https://github.com/FreeCAD/FreeCAD" label="FreeCAD code" icon="code" >}}
 
 ## See the source code, it's open!
-{style="background: linear-gradient(var(--gradient-angle), var(--accent-hover), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"}
+{class="accent"}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -38,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 {{< group >}}
 
 ## Additional modules and macros
-{style="background: linear-gradient(var(--gradient-angle), var(--accent), var(--accent-hover)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"}
+{class="accent"}
 
 The FreeCAD community provides a wealth of additional workbenches, macros, interface themes, templates and various assets. They can easily be installed directly from within FreeCAD using the Addon Manager.
 

@@ -12,52 +12,42 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   @param {string} [sort] – Optional sort by date, weight, or title.
   @param {int} [first] – Optional limit number of returned pages.
   @param {bool} [reverse] – Optional reverse sort order.
-  @param {string} [title] – Optional collection title. Defaults to LinkTitle if any.
-  @param {string} [title_icon] – Optional collection title icon. Defaults to target icon Params if any.
-  @param {string} [title_class] – Optional collection title CSS class.
-  @param {string} [title_style] – Optional collection title CSS style.
-
+  @param {string} [class] – Optional CSS class for whole collection container.
 
   @return {HTML} Render pages collection with cards.
 
   @example {{< collection collection="news" taxonomy="tags" term="feature" sort="date" >}}
-  @example {{< collection news 6 >}}
+  @example {{< collection news 3 >}}
 
 */ -}}
 
 
 {{- $collection := cond (.IsNamedParams) (.Get "collection") (.Get 0) -}}
 {{- $first := cond (.IsNamedParams) (.Get "first") (.Get 1) | default 0 | int -}}
-{{- $taxonomy := cond (.IsNamedParams) (.Get "taxonomy") (.Get 2) -}}
-{{- $term := cond (.IsNamedParams) (.Get "term") (.Get 3) -}}
-{{- $sort := cond (.IsNamedParams) (.Get "sort") (.Get 4) -}}
+{{- $taxonomy := cond (.IsNamedParams) (.Get "taxonomy") (.Get 2) | lower -}}
+{{- $term := cond (.IsNamedParams) (.Get "term") (.Get 3) | lower -}}
+{{- $sort := cond (.IsNamedParams) (.Get "sort") (.Get 4) | lower -}}
 {{- $reverse := cond (.IsNamedParams) (.Get "reverse") (.Get 5) | default false -}}
-{{- $title := cond (.IsNamedParams) (.Get "title") (.Get 6) -}}
-{{- $title_icon := cond (.IsNamedParams) (.Get "title_icon") (.Get 7) -}}
-{{- $title_classes := slice "cards-title" | append (cond (.IsNamedParams) (.Get "title_class") (.Get 8)) -}}
-{{- $title_style := cond (.IsNamedParams) (.Get "title_style") (.Get 9) -}}
+{{- $class := cond (.IsNamedParams) (.Get "class") (.Get 6) -}}
 
 {{- $pages := slice -}}
 {{- $taxonomies := site.Taxonomies -}}
-{{- $show_title := ne $title nil -}}
-{{- $title_link := .Page.CurrentSection.RelPermalink -}}
 {{- $shortcode_parent := .Parent -}}
 
 {{- if and $collection (not $taxonomy) (not $term) -}}
+  {{- $collection_key := lower $collection -}}
 
-  {{- /* Collection is an existing taxonomy term. */ -}}
-  {{- $ter := lower $collection -}}
-  {{- range $tax, $terms := $taxonomies -}}
-    {{- if isset $terms $ter -}}
-      {{- $pages = index $terms $ter -}}
+  {{- /* Collection is an existing term of a taxonomy. */ -}}
+  {{- range $_, $terms := $taxonomies -}}
+    {{- if isset $terms $collection_key -}}
+      {{- $pages = index $terms $collection_key -}}
       {{- break -}}
     {{- end -}}
   {{- end -}}
 
   {{- /* Collection is an existing taxonomy name. */ -}}
-  {{- if and (not $pages) (in $taxonomies (lower $collection)) -}}
-    {{- $taxonomy = $collection -}}
-    {{- with index $taxonomies $taxonomy -}}
+  {{- if and (not $pages) (isset $taxonomies $collection_key) -}}
+    {{- with index $taxonomies $collection_key -}}
       {{- $pages = .Pages -}}
     {{- end -}}
   {{- end -}}
@@ -66,10 +56,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- if not $pages -}}
     {{- with site.GetPage $collection -}}
       {{- $pages = .Pages -}}
-      {{- if eq $title "auto" -}}
-        {{- $title = .LinkTitle -}}
-      {{- end -}}
-      {{- $title_link = .RelPermalink -}}
     {{- end -}}
   {{- end -}}
 
@@ -77,19 +63,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- else if and $taxonomy $term -}}
   {{- with index $taxonomies $taxonomy -}}
     {{- $pages = .Get $term -}}
-    {{- if eq $title "auto" -}}
-      {{- $title = .LinkTitle -}}
-    {{- end -}}
-    {{- $title_link = .RelPermalink -}}
   {{- end -}}
 
 {{- else if $taxonomy -}}
   {{- with index $taxonomies $taxonomy -}}
     {{- $pages = .Pages -}}
-    {{- if eq $title "auto" -}}
-      {{- $title = .LinkTitle -}}
-    {{- end -}}
-    {{- $title_link = .RelPermalink -}}
   {{- end -}}
 
 {{- else -}}
@@ -99,12 +77,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   -}}
 {{- end -}}
 
-{{- /* Sort pages. */ -}}
 {{- $valid_sort := slice "date" "weight" "title" -}}
-{{- if not (in $valid_sort $sort)  -}}
-  {{- $sort = "" -}}
-{{- end -}}
-{{- if $sort -}}
+{{- if in $valid_sort $sort -}}
   {{- if eq $sort "date" -}}
     {{- $pages = $pages.ByDate -}}
   {{- else if eq $sort "weight" -}}
@@ -113,54 +87,29 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- $pages = $pages.ByTitle -}}
   {{- end -}}
 {{- end -}}
+
 {{- if $reverse -}}
   {{- $pages = $pages.Reverse -}}
 {{- end -}}
 
 {{- /* Filter pages number. */ -}}
-{{- if gt $first 0 -}}
-  {{- $pages = first $first $pages -}}
+{{- with $first -}}
+  {{- $pages = first . $pages -}}
+{{- end -}}
+
+{{- $classes := slice "card-list" "wide" -}}
+{{- with $class -}}
+  {{- $classes = $classes | append . -}}
 {{- end -}}
 
 {{- /* Render pages as cards. */ -}}
 {{- with $pages -}}
 
-  <div {{ with not $shortcode_parent }}class="card-list wide"{{ end }}>
+  <div {{- if not $shortcode_parent }} class="{{ delimit $classes " " }}"{{ end -}}>
+    <div
+      class="cards"
+      {{- if $shortcode_parent }} style="padding: 0;"{{ end -}}>
 
-    {{- if and $show_title $title -}}
-      {{- with site.GetPage $title_link -}}
-        {{- $key := "" -}}
-        {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}
-        {{- $title_link = partialCached "utils/link_redirect.html" . $key -}}
-        {{- if not $title_icon -}}
-          {{- with .Params.icon -}}
-            {{- $title_icon = . -}}
-          {{- else -}}
-            {{- $title_icon = lower .LinkTitle -}}
-          {{- end -}}
-        {{- end -}}
-      {{- end -}}
-      {{- $is_external := and (hasPrefix $title_link "http") (not (hasPrefix $title_link site.BaseURL)) -}}
-
-      <a href={{ $title_link }}
-        aria-label="{{ $title }}"
-        class="{{ delimit $title_classes " " }}"
-        {{- with $title_style }} style="{{ . | safeCSS }}"{{ end -}}
-        {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
-
-        {{- with $title_icon -}}
-          {{- partialCached "utils/icon.html" . . -}}
-        {{- end -}}
-
-        {{ $title }}
-
-        {{- if $is_external -}}
-          {{- partialCached "utils/icon.html" "external" "external" -}}
-        {{- end -}}
-      </a>
-    {{- end -}}
-
-    <div {{ with $shortcode_parent }}style="padding: 0;" {{ end }}class="cards">
       {{- range . -}}
         {{- $key := "" -}}
         {{- with .File -}}{{- $key = .Path -}}{{- else -}}{{- $key = .RelPermalink -}}{{- end -}}

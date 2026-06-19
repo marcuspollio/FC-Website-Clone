@@ -5,7 +5,7 @@ description: Powerful and open parametric design for everyone.
 ---
 
 
-{{< block title="Made to build for the real world" title_style="background: linear-gradient(var(--gradient-angle), var(--accent-hover), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;" style="background: var(--bg-grid);" >}}
+{{< block title="Made to build for the real world" class="grid" title_class="accent" >}}
 
 {{< group >}}
 
@@ -20,7 +20,7 @@ FreeCAD is made primarily to design objects for the real world. FreeCAD uses rea
 {{< /block >}}
 
 
-{{< block title="A powerful solid-based geometry kernel" style="color: darkslateblue; background: linear-gradient(135deg, #ffe7d6 0%, #ffd6e7 45%, #e6d6ff 100%);" title_style="background: linear-gradient(var(--gradient-angle), #c86b5a, #7b61c9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;" >}}
+{{< block title="A powerful solid-based geometry kernel" class="pastel4" >}}
 
 ![Pressure vessels, piping and skids](mep.webp "Pressure vessels, piping and skids")
 
@@ -35,7 +35,7 @@ FreeCAD features an advanced geometry engine based on Open CASCADE Technology. I
 {{< /block >}}
 
 
-{{< block title="A wi(l)dly parametric environment" style="background: var(--bg-dots);" >}}
+{{< block title="A wi(l)dly parametric environment" class="dots" >}}
 
 {{< group >}}
 
@@ -50,7 +50,7 @@ All FreeCAD objects are natively parametric, meaning their shape can be based on
 {{< /block >}}
 
 
-{{< block title="File formats frenzy" style="color: darkslategrey; background: linear-gradient(135deg, #dfffe2 0%, #d6fff5 40%, #d6ecff 100%);" title_style="background: linear-gradient(var(--gradient-angle), #2f9a73, #3d74d8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;" >}}
+{{< block title="File formats frenzy" class="pastel5" >}}
 
 {{< group >}}
 
@@ -63,7 +63,7 @@ FreeCAD allows to import and export models and data to dozens of different file 
 {{< /block >}}
 
 
-{{< block title="A large multi-specialty ecosystem" style="background: var(--section-bg);" >}}
+{{< block title="A large multi-specialty ecosystem" class="section" >}}
 
 ![Building Information Modeling](bim.webp "Building Information Modeling")
 
@@ -78,7 +78,7 @@ FreeCAD offers dedicated workbenches for a variety of purposes such as CSG model
 {{< /block >}}
 
 
-{{< block title="A Community heart" style="color: maroon; background: linear-gradient(135deg, #fff8e7 0%, #ffe4e1 50%, #fff0c9 100%);" title_style="background: linear-gradient(var(--gradient-angle), #ce4125, #c78b09); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;" >}}
+{{< block title="A Community heart" class="pastel6" >}}
 
 {{< group >}}
 
@@ -91,7 +91,7 @@ FreeCAD is made for everybody, by everybody. Developed and maintained by a commu
 {{< /block >}}
 
 
-{{< block title="Share your passion with the world" style="background: var(--bg-gradient);" >}}
+{{< block title="Share your passion with the world" >}}
 
 {{< carousel "1.webp" "2.webp" "3.webp" "4.webp" >}}
 

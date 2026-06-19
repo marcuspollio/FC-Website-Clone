@@ -37,7 +37,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       transparent 70%
     ),
     linear-gradient(
-      var(--gradient-angle),
+      var(--angle),
       hsl(var(--section-hue) 40% 95%),
       hsl(var(--section-hue) 20% 90%)
     );
@@ -62,7 +62,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
       transparent 70%
     ),
     linear-gradient(
-      var(--gradient-angle),
+      var(--angle),
       hsl(var(--section-hue) 40% 5%),
       hsl(var(--section-hue) 20% 10%)
     );

@@ -39,18 +39,28 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
     <div id="compare{{ $ordinal }}" class="compare">
 
-      {{- range . -}}
+      {{- range $index, $resource := . -}}
 
-        {{- $img := $page.Resources.GetMatch .src -}}
+        {{- $src := .src -}}
+        {{- $class := .class -}}
+        {{- $img := $page.Resources.GetMatch $src -}}
         {{- if not $img -}}
-          {{- $img = resources.Get .src -}}
+          {{- $img = resources.Get $src -}}
         {{- end -}}
-        {{- if and (not $img) (hasPrefix .src "http") (site.Params.allow_remote | default true) -}}
-          {{- $remote := try (resources.GetRemote .src) -}}
-          {{- with $remote.Err -}}
-            {{- warnf "Compare shortcode: failed to fetch remote resource %q: %s" .src . -}}
-          {{- else -}}
-            {{- $img = $remote.Value -}}
+        {{- if and (not $img) (hasPrefix $src "http") (site.Params.allow_remote | default true) -}}
+
+          {{- with try (
+            resources.GetRemote
+            $src
+            (dict "timeout" (site.Params.timeout | default "5s"))
+          ) -}}
+
+            {{- with .Err -}}
+              {{- warnf "%q shortcode: failed to fetch remote resource %q: %s" $.Name $src . -}}
+
+            {{- else with .Value -}}
+              {{- $img = . -}}
+            {{- end -}}
           {{- end -}}
         {{- end -}}
 
@@ -70,7 +80,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
           {{- $sizes = $sizes | append "75vw" -}}
 
-          <img class="{{ .class }}"
+          <img
+            class="{{ $class }}"
             srcset="{{ delimit $srcset ", " }}"
             sizes="{{ delimit $sizes ", " }}"
             src="{{ $img.RelPermalink }}"
@@ -81,7 +92,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             fetchpriority="low">
 
         {{- else -}}
-          <img class="{{ .class }}"
+          <img
+            class="{{ $class }}"
             src="{{ if $img }}{{ $img.RelPermalink }}{{ else }}{{ .src }}{{ end }}"
             alt="{{ $alt }}"
             loading="lazy"

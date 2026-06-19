@@ -60,7 +60,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     {{- if not $global.Err -}}
       {{- $files = $global.Value -}}
     {{- else -}}
-      {{- warnf "Carousel shortcode: no images found for dir %q on page %s" $dir $page.File.Path -}}
+      {{- warnf "%q shortcode: no images found for dir %q on page %s" $.Name $dir $page.File.Path -}}
     {{- end -}}
   {{- end -}}
 
@@ -73,15 +73,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- $images = uniq $images -}}
 
-{{- if gt (len $images) 0 -}}
+{{- with $images -}}
 
-  <div id="carousel{{ $ordinal }}"
+  <div
+    id="carousel{{ $ordinal }}"
     class="carousel"
     data-duration="{{ $duration }}"
     data-mode="{{ $mode }}">
     <ul>
 
-      {{- range $index, $src := $images -}}
+      {{- range $index, $src := . -}}
 
         {{- $img := $page.Resources.GetMatch $src -}}
         {{- if not $img -}}
@@ -89,11 +90,19 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         {{- end -}}
 
         {{- if and (not $img) (hasPrefix $src "http") (site.Params.allow_remote | default true) -}}
-          {{- $remote := try (resources.GetRemote $src) -}}
-          {{- with $remote.Err -}}
-            {{- warnf "Carousel: failed to fetch remote resource %q: %s" $src . -}}
-          {{- else -}}
-            {{- $img = $remote.Value -}}
+
+          {{- with try (
+            resources.GetRemote
+            $src
+            (dict "timeout" (site.Params.timeout | default "5s"))
+          ) -}}
+
+            {{- with .Err -}}
+              {{- warnf "%q shortcode: failed to fetch remote resource %q: %s" $.Name $src . -}}
+
+            {{- else with .Value -}}
+              {{- $img = . -}}
+            {{- end -}}
           {{- end -}}
         {{- end -}}
 
@@ -127,7 +136,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
         {{- else -}}
           <li id="carousel{{ $ordinal }}-slide{{ $index }}">
-            <img src="{{ $src }}"
+            <img
+              src="{{ $src }}"
               alt="Slide-{{ $index }}"
               loading="lazy"
               fetchpriority="low">
@@ -137,7 +147,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
     </ul>
     <ol>
-      {{- range $index, $src := $images -}}
+      {{- range $index, $src := . -}}
         <li><a href="#carousel{{ $ordinal }}-slide{{ $index }}"></a></li>
       {{- end -}}
     </ol>

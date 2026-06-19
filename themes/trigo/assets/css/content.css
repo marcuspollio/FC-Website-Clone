@@ -14,7 +14,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   text-align-last: auto;
 }
 
-.content :is(h1, h2):not(.block-shortcode :is(h1, h2)) {
+.content :is(h1, h2):not(:is(.block-shortcode, .steps) :is(h1, h2)) {
   border-block-end: var(--border);
 }
 
@@ -283,7 +283,6 @@ figure > figcaption:not(:has(.internal-tooltip)) {
   width: 100%;
   margin: var(--gap) auto;
   font-size: var(--s);
-  color: var(--tertiary);
   text-align: center;
   z-index: 1;
 }
@@ -363,18 +362,6 @@ figure .internal-tooltip {
 .content > :not(.wide):last-child,
 .content > :not(.wide):has( + .block) {
   margin-block-end: var(--gap);
-}
-
-.wide:not(.hero .wide):nth-child(3n + 1) {
-  background: var(--bg1);
-}
-
-.wide:not(.hero .wide):nth-child(3n + 2) {
-  background: var(--bg2);
-}
-
-.wide:not(.hero .wide):nth-child(3n) {
-  background: var(--bg3);
 }
 
 
@@ -469,7 +456,7 @@ figure .internal-tooltip {
 .card-color {
   --card-hue: calc(120deg + var(--hue) * 1.5deg);
   background: linear-gradient(
-    var(--gradient-angle),
+    var(--angle),
     hsl(var(--card-hue), 50%, 75%) 0%,
     hsl(calc(var(--card-hue) + 30deg), 50%, 75%) 100%
   );
@@ -477,7 +464,7 @@ figure .internal-tooltip {
 
 .dark .card-color {
   background: linear-gradient(
-    var(--gradient-angle),
+    var(--angle),
     hsl(var(--card-hue), 50%, 25%) 0%,
     hsl(calc(var(--card-hue) + 30deg), 50%, 25%) 100%
   );
@@ -808,7 +795,7 @@ figcaption > .internal-tooltip .tooltip {
   vertical-align: calc(var(--gap) * -0.125);
 }
 
-:is(details, blockquote, .tabs-content) :is(details, code, blockquote, .chroma, .codeblock) {
+:is(details, blockquote, .tab-content) :is(details, code, blockquote, .chroma, .codeblock) {
   background: var(--theme);
 }
 

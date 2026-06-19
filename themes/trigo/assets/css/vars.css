@@ -16,6 +16,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   --line: 0.125rem;
   --padding: 0.75rem 1.5rem;
   --card-width: clamp(16rem, 4rem + 17.5vw, 32rem);
+  --angle: 135deg;
 
   --cover: rgb(252, 252, 252);
   --header: var(--cover);
@@ -37,8 +38,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   --underline: underline solid currentColor var(--line);
   --shadow: 1px 2px 8px rgba(16, 16, 32, 0.05);
 
-  /* rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset; */
-
   --filter: brightness(1.1) saturate(110%);
   --transform-hover: scale(1.02);
   --transform-active: scale(0.95);
@@ -51,17 +50,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   --xl: 2.25rem;
   --xxl: 3.5rem;
   --xxxl: 5rem;
-
-/* Variables for backgrounds */
-  --gradient-angle: 135deg;
-  --bg1: rgb(232, 232, 232);
-  --bg2: rgb(224, 224, 224);
-  --bg3: rgb(216, 216, 216);
-  --bg-gradient: linear-gradient(var(--bg1), var(--bg3));
-  --bg-dots: radial-gradient(var(--entry) var(--line), transparent var(--line)) 0 0 / calc(var(--gap) * 0.5) calc(var(--gap) * 0.5);
-  --bg-grid: repeating-linear-gradient(90deg, var(--entry) 0 var(--line), transparent 0 calc(var(--gap) * 0.5)),
-    repeating-linear-gradient(180deg, var(--entry) 0 var(--line), transparent 0 calc(var(--gap) * 0.5));
-
 }
 
 
@@ -78,12 +66,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   --backdrop: rgba(64, 64, 64, 0.9);
   --accent: color-mix(in srgb, var(--accent-color) 70%, white 15%);
   --accent-hover: color-mix(in srgb, var(--accent) 70%, white 45%);
-
   --border: var(--line) solid var(--tone);
-
-  /* Variables for backgrounds */
-  --gradient-angle: 315deg;
-  --bg1: rgb(28, 28, 28);
-  --bg2: rgb(36, 36, 36);
-  --bg3: rgb(44, 44, 44);
+  --angle: 315deg;
 }

@@ -54,8 +54,11 @@ function initCanvas(wrapper) {
   const slider = get(".slider");
   const playButton = get(".play");
   const pauseButton = get(".pause");
+  const data = get(".canvas-data");
+  const parsed = JSON.parse(data.textContent);
+  const frames = parsed.frames;
+  const fps = parsed.fps;
 
-  const { frames, fps } = JSON.parse(get(".canvas-data").textContent);
   if (!Array.isArray(frames) || frames.length === 0) {
     console.warn("Canvas: no frames found");
     return;

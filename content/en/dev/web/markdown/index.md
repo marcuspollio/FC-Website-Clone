@@ -20,7 +20,7 @@ This article offers a sample of basic Markdown syntax that can be used in Hugo c
 ##### Heading 5
 ###### Heading 6
 
-### Heading with custom style {style="color: purple; background: coral; padding: 0.5rem; border-radius: var(--radius);"}
+### Heading with custom class {class="accent"}
 
 ### Heading with a custom id {#custom-id}
 ```
@@ -34,7 +34,7 @@ This article offers a sample of basic Markdown syntax that can be used in Hugo c
 ##### Heading 5
 ###### Heading 6
 
-### Heading with custom style {style="color: purple; background: coral; padding: 0.5rem; border-radius: var(--radius);"}
+### Heading with custom class {class="accent"}
 
 ### Heading with a custom id {#custom-id}
 
@@ -177,7 +177,7 @@ For more advanced functionality, use Hugo's built-in [Figure shortcode](https://
 
 ## Styling Text
 
-| Style       | Syntax          | Example output           |
+| Format      | Syntax          | Example output           |
 | ----------- | --------------- | ------------------------ |
 | Bold        | `**bold**`      | Some **bold** text       |
 | Italic      | `*italic*`      | Some *italic* text       |

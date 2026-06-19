@@ -15,11 +15,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- with .Inner -}}
+{{- with .InnerDeindent -}}
 
-  <div class="tabs">
-    {{- . -}}
-  </div>
+  <div class="tabs">{{ . }}</div>
 
 {{- else -}}
   {{- warnf "%q shortcode: missing required 'inner' content on %s" .Name .Position -}}

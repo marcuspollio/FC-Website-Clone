@@ -1,10 +1,9 @@
 {{- /*
 SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2024 Mandaris
 SPDX-FileCopyrightText: 2026 FreeCAD
 SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
-
-{{- /* Original code from https://github.com/mandaris/stoot. */ -}}
 
 {{- /* Toot shortcode:
 
@@ -15,6 +14,9 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   @example {{< toot url="mastodon.social/@user/1234567890" OG="false" >}}
   @example {{< toot "https://mastodon.social/@user/1234567890" >}}
+
+  Note: Tweaked from stoot shortcode on 'https://github.com/mandaris/stoot'.
+  Based partly on 'https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-twitter'.
 
 */ -}}
 
@@ -34,36 +36,47 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $alt := i18n "image_fallback" | default "Image" -}}
 
   {{- if (site.Params.allow_remote | default true) -}}
-    {{- with try (resources.GetRemote $api_url) -}}
-      {{- with .Err -}}
-        <blockquote class="toot-blockquote">
-          <p class="ctr legal">[Source not online at time of site build.]</p>
-        </blockquote>
-      {{- else  with .Value -}}
+
+    {{- with try (
+      resources.GetRemote
+      $api_url
+      (dict "timeout" (site.Params.timeout | default "5s"))
+    ) -}}
+
+      {{- with .Value -}}
         {{- $json := unmarshal .Content -}}
         {{- $acct := $json.account.acct -}}
         {{- $toot_link := printf "https://%s/@%s/status/%s" $host $acct $id -}}
         {{- $handle_inst := printf "@%s@%s" $acct $host -}}
 
-        <blockquote class="toot-blockquote" cite="{{ $toot_link }}">
+        <blockquote
+          class="toot-blockquote"
+          cite="{{ $toot_link }}">
           <div class="toot-header">
-            <a class="toot-profile"
+            <a
+              class="toot-profile"
               href="https://{{ $host }}/@{{ $acct }}"
-              rel="noopener">
-              <img src="{{ $json.account.avatar }}"
+              target="_blank"
+              rel="external noreferrer nofollow">
+              <img
+                src="{{ $json.account.avatar }}"
                 alt="{{ $alt }}"
                 loading="lazy"
                 aria-hidden="true">
             </a>
             <div class="toot-author">
-              <a class="toot-author-name"
+              <a
+                class="toot-author-name"
                 href="https://{{ $host }}/@{{ $acct }}"
-                rel="noopener">
+                target="_blank"
+                rel="external noreferrer nofollow">
                 {{- $json.account.display_name -}}
               </a>
-              <a class="toot-author-handle"
+              <a
+                class="toot-author-handle"
                 href="https://{{ $host }}/@{{ $acct }}"
-                rel="noopener">
+                target="_blank"
+                rel="external noreferrer nofollow">
                 {{- $handle_inst -}}
               </a>
             </div>
@@ -73,6 +86,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- $images := slice -}}
 
           {{- with $json.media_attachments -}}
+
+            {{- $sensitive_content := i18n "sensitive_content" | default "Sensitive content" -}}
             {{- range . -}}
               {{- if eq .type "image" -}}
                 {{- $images = $images | append . -}}
@@ -82,16 +97,17 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             {{- with $images -}}
               <div class="toot-img-grid-{{ len $images }}">
 
-                {{- range $img := . -}}
+                {{- range . -}}
 
-                  <img src="{{ $img.url }}"
+                  <img
+                    src="{{ .url }}"
                     alt="{{ $alt }}"
                     loading="lazy"
                     class="toot-media-img{{- if $json.sensitive }} toot-sens-blur{{ end -}}"
                     {{- if $json.sensitive }} onclick="this.classList.toggle('toot-sens-blur-no')"{{ end -}}>
 
                   {{- if $json.sensitive -}}
-                    <div class="blur-text">Sensitive content<br>(flagged at origin)</div>
+                    <div class="blur-text">{{ $sensitive_content }}</div>
                   {{- end -}}
                 {{- end -}}
               </div>
@@ -100,17 +116,21 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
             {{- range . -}}
 
               {{- if or (eq .type "video") (eq .type "gifv") -}}
-                <div class="ctr toot-video-wrapper">
-                  <video muted playsinline controls
-                    class="ctr toot-media-img{{- if $json.sensitive }} toot-sens-blur{{ end -}}"
+                {{- $video_fallback := i18n "video_fallback" | default "Your browser does not support the video tag." -}}
+                <div class="toot-video-wrapper">
+                  <video
+                    muted
+                    playsinline
+                    controls
+                    class="toot-media-img{{- if $json.sensitive }} toot-sens-blur{{ end -}}"
                     {{- if eq .type "gifv" }} loop autoplay{{ end -}}
                     {{- if $json.sensitive }} onclick="this.classList.toggle('toot-sens-blur-no')"{{ end -}}>
                     <source src="{{ .url }}">
-                    <p class="legal ctr">Your browser doesn't support the <code>video</code> tag.</p>
+                    {{- $video_fallback -}}
                   </video>
 
                   {{- if $json.sensitive -}}
-                    <div class="blur-text">Sensitive content<br>(flagged at origin) </div>
+                    <div class="blur-text">{{ $sensitive_content }}</div>
                   {{- end -}}
                 </div>
               {{- end -}}
@@ -120,10 +140,14 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- if eq $enable_opengraph "true" -}}
             {{- with $json.card -}}
               {{- with .image -}}
-                <a href="{{ $json.card.url }}" rel="'noopener">
+                <a
+                  href="{{ $json.card.url }}"
+                  target="_blank"
+                  rel="external noreferrer nofollow">
                   <div class="toot-card">
                     <div class="toot-card-image">
-                      <img src="{{ . }}"
+                      <img
+                        src="{{ . }}"
                         alt="{{ $alt }}"
                         loading="lazy"
                         class="toot-card-image-image">
@@ -153,7 +177,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
               {{- range .options -}}
 
                 <div class="toot-poll-meter">
-                  <meter id="vote-count"
+                  <meter
+                    id="vote-count"
                     max="{{ $votes_total }}"
                     value="{{ .votes_count }}">
                   </meter>
@@ -167,20 +192,25 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
               {{- end -}}
 
             </div>
-            <p class="legal toot-poll-total">
-              {{- printf "%s people" $votes_total -}}
+            <p class="toot-poll-total">
+              {{- printf "%s %s" $votes_total (i18n "people" | default "people") -}}
             </p>
           {{- end -}}
 
           <div class="toot-footer">
-            <a href="https://{{ $host }}/@{{ $acct }}/{{ $json.id }}"
+            <a
+              href="https://{{ $host }}/@{{ $acct }}/{{ $json.id }}"
               class="toot-date"
-              rel="noopener">
+              target="_blank"
+              rel="external noreferrer nofollow">
               {{- $date := dateFormat "3:04 PM • January 2, 2006" $json.created_at -}}
               {{- printf "%s (UTC)" $date -}}
             </a>
           </div>
         </blockquote>
+
+      {{- else with .Err -}}
+        {{- warnf "%q shortcode: failed to get remote source on %s: %s" $.Name $.Position . -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}

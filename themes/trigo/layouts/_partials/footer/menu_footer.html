@@ -9,7 +9,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   - Footer entries by Parent or Section.
   - Support Children or direct RegularPages.
   - Set active for current Section.
-  - Handle external links, optional classes, and style support.
+  - Handle external links and optional class.
 */ -}}
 
 
@@ -49,7 +49,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           <a href="{{ $url }}"
             {{- with $aria }} aria-current="{{ . }}"{{ end -}}
             {{- with $class }} class="{{ delimit . " " }}"{{ end -}}
-            {{- with .Params.style }} style="{{ . | safeCSS }}"{{ end -}}
             {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
             {{- title $name -}}
 
@@ -74,7 +73,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                 <li>
                   <a href="{{ $child_url }}"
                     {{- with .Params.class }} class="{{ delimit . " " }}"{{ end -}}
-                    {{- with .Params.style }} style="{{ . | safeCSS }}"{{ end -}}
                     {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
                     {{- title .Name -}}
 
@@ -102,7 +100,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
                     <li>
                       <a href="{{ $page_url }}"
                         {{- with .Params.class }} class="{{ delimit . " " }}"{{ end -}}
-                        {{- with .Params.style }} style="{{ . | safeCSS }}"{{ end -}}
                         {{- if $is_external }} target="_blank" rel="noopener noreferrer"{{ end -}}>
                         {{- title .LinkTitle -}}
 

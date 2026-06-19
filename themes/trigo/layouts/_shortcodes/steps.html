@@ -8,9 +8,6 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   @param {inner} content – Steps content.
 
-  Note: `{class="no-step"}` prevent a heading from being counted as a step.
-  Note: only intended for Markdown content. HTML other shortcodes content may not render as expected.
-
   @return {HTML} Render steps container and content with numbered bullets.
 
   @example {{< steps >}}
@@ -19,13 +16,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     This is the first step.
   {{< /steps >}}
 
+  Note: `{class="no-step"}` prevent a heading from being counted as a step.
+  Note: only intended for Markdown content. HTML other shortcodes content may not render as expected.
+
 */ -}}
 
 
-{{- with .Inner -}}
+{{- with .InnerDeindent -}}
 
   <div class="steps">
-    {{- . | page.RenderString (dict "display" "block") -}}
+    {{- . | strings.TrimSpace | $.Page.RenderString (dict "display" "block") -}}
   </div>
 
 {{- else -}}

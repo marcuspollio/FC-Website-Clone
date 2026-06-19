@@ -13,12 +13,12 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   @param {string} [id] – Optional ID attribute.
   @param {string} [class] – Optional CSS class for details.
 
-  Note: Tweaked from Hugo default details shortcode. See https://gohugo.io/shortcodes/details/
-
   @return {HTML} Render details with inner content.
 
   @example {{< details summary="More info" open="true" >}}...{{< /details >}}
   @example {{< details open >}}...{{< /details >}}
+
+  Note: Tweaked from Hugo default details shortcode. See 'https://gohugo.io/shortcodes/details/'.
 
 */ -}}
 
@@ -26,20 +26,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- if .Inner -}}
 
   {{- $summary := cond (.IsNamedParams) (.Get "summary") (.Get 0) | default (i18n "details" | default "Details") -}}
-  {{- $open := cond (.IsNamedParams) (.Get "open") (.Get 1) | default "true" -}}
+  {{- $open := cond (.IsNamedParams) (.Get "open") (.Get 1) | default true -}}
   {{- $name := cond (.IsNamedParams) (.Get "name") (.Get 2) -}}
   {{- $title := cond (.IsNamedParams) (.Get "title") (.Get 3) -}}
   {{- $id := cond (.IsNamedParams) (.Get "id") (.Get 4) -}}
   {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 5) -}}
 
-  {{- if in (slice "true" "open" "opened" true 1) $open -}}
-    {{- $open = true -}}
-  {{- else -}}
-    {{- $open = false -}}
-  {{- end -}}
+  {{- $open = in (slice true "true" "open" "opened" 1) $open -}}
 
   <details
-    {{- with $open }} open{{ end -}}
+    {{- if $open }} open{{ end -}}
     {{- with $name }} name="{{ . }}"{{ end -}}
     {{- with $title }} title="{{ . }}"{{ end -}}
     {{- with $id }} id="{{ . }}"{{ end -}}

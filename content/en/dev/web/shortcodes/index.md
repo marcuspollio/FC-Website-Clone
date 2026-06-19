@@ -1,15 +1,27 @@
 ---
 title: Shortcodes
-description: Bundled Trigo Theme and Hugo shortcodes to augment your content.
+description: Bundled Trigo Theme and Hugo shortcodes to enhance content.
 weight: 5
 ---
 
 
-[Hugo Shortcodes](https://gohugo.io/content-management/shortcodes/) are snippets inside your content files calling built-in or custom templates.
+> Shortcodes are special code snippets inside your Markdown content files calling built-in or custom templates.
+>
+> They allow to add specialized content to pages or format their layout with ease.
 
-Trigo provides a collection of shortcodes to enhance your content. Additional shortcodes are also provided directly by Hugo.
+The Trigo theme provides several custom shortcodes detailed below.
 
-Shortcode syntax include `{{</* */>}}` tags, the shortcode name and optional attributes.
+> [!NOTE]
+> Additional shortcodes are also provided directly by Hugo.
+>
+> See the [built-in Hugo shortcodes list](https://gohugo.io/content-management/shortcodes/#embedded) on its official documentation.
+
+Shortcodes require the special `{{</* */>}}` tags, the shortcode name and optional arguments.
+Some shortcodes only require one tag, while others need both opening and closing tags with Markdown content in-between.
+Some shortcodes can even be nested, allowing for complex content and layout.
+Most shortcodes support both named and positional arguments.
+
+See the examples below to understand their use cases, structure, and syntax.
 
 
 ## Details
@@ -50,21 +62,21 @@ This will be hidden by default.
 
 {{< /details >}}
 
-<u>Attributes:</u>
+<u>`details` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | summary | string | "Details" | | "Click me" |
-| 1 | open | bool/string | `true` | | "open" |
+| 1 | open | bool | `true` | | `false` |
 | 2 | name | string | *optional* | | "name" |
 | 3 | title | string | *optional* | | "title" |
 | 4 | id | string | *optional* | | "id" |
-| 5 | class | string | *optional* | | "CSS class" |
+| 5 | class | string | *optional* | | CSS class |
 
 
-## Tabs
+## Tabs and tab
 
-Trigo shortcode to display content is several tabs.
+Trigo shortcode to display content in multiple tabs.
 The `tabs` shortcode renders the inner content with multiple `tab` shortcodes.
 
 ````html {file="markdown"}
@@ -115,41 +127,43 @@ The `tabs` shortcode renders the inner content with multiple `tab` shortcodes.
   {{< /tab >}}
 {{< /tabs >}}
 
-<u>Attributes:</u>
+<u>`tab` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | label | string | "Tab" | | "Tab label" |
 
 
 ## Steps
 
-Trigo shortcode to display a series of steps with numbered bullets..
+Trigo shortcode to display a series of numbered steps based on headings.
 
 You can use the Markdown attribute `{class="no-step"}` to prevent a heading from being counted as a step.
 
-> [!WARNING]
-> Please note that this shortcode is intended **only for Markdown content**.
-> If you put HTML content or other shortcodes as step content, it may not render as expected.
+> [!IMPORTANT]
+> Please note that this shortcode is intended **for Markdown content only**.
+> HTML or other shortcodes as step content may not render as expected.
 
 ```html {file="markdown"}
 {{</* steps >}}
 
-#### Step 1
+## Step 1
 
 This is the first step.
 
-#### Step 2
+### Step 2
 
 This is the second step.
 
-###### Step subheading {class="no-step"}
+#### Step subheading {class="no-step"}
 
 This will not be counted as a step.
 
-#### Step 3
+### Step 3
 
-This is the third step.
+- Item 1
+- Item 2
+- Item 3
 
 {{< /steps */>}}
 ```
@@ -158,26 +172,28 @@ This is the third step.
 
 {{< steps >}}
 
-#### Step 1
+## Step 1
 
 This is the first step.
 
-#### Step 2
+### Step 2
 
 This is the second step.
 
-###### Step subheading {class="no-step"}
+#### Step subheading {class="no-step"}
 
 This will not be counted as a step.
 
-#### Step 3
+### Step 3
 
-This is the third step.
+- Item 1
+- Item 2
+- Item 3
 
 {{< /steps >}}
 
 
-## Tree
+## Tree, branch and leaf
 
 Trigo shortcode to display a filetree list with inner content/branches/leaves and optional icon and label. Branches are collapsible with nested children (e.g. branches or leaves).
 
@@ -186,7 +202,7 @@ Trigo shortcode to display a filetree list with inner content/branches/leaves an
   {{< branch label="content" >}}
     {{< leaf label="_index.md" >}}
     {{< branch label="docs" state="closed" >}}
-      {{< leaf label="_index.md" style="color: red;" >}}
+      {{< leaf label="_index.md" class="accent" >}}
       {{< leaf label="introduction.md" >}}
       {{< leaf label="introduction.fr.md" >}}
     {{< /branch >}}
@@ -201,7 +217,7 @@ Trigo shortcode to display a filetree list with inner content/branches/leaves an
   {{< branch label="content" >}}
     {{< leaf label="_index.md" >}}
     {{< branch label="docs" state="closed" >}}
-      {{< leaf label="_index.md" style="color: red;">}}
+      {{< leaf label="_index.md" class="accent" >}}
       {{< leaf label="introduction.md" >}}
       {{< leaf label="introduction.fr.md" >}}
     {{< /branch >}}
@@ -209,85 +225,69 @@ Trigo shortcode to display a filetree list with inner content/branches/leaves an
   {{< leaf label="hugo.toml" >}}
 {{< /tree >}}
 
-### Options
+<u>`tree` arguments:</u>
 
-| Parameter | Description |
-|-----------|---|
-| `label`    | The label of the branch or leaf. |
-| `type`    | The type and icon of the branch or leaf. Can be `folder`, `document`, `container`, `group`, `part`, `assembly`, `arrow`, `branch`, `fork`, or `merge`. Default is `folder`. |
-| `state`   | The state of the branch: can be `open` or `closed`. Default is `open`. |
-
-**Tree**:
-
-<u>Attributes:</u>
-
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | label | string | *optional* | | "Tree label" |
-| 1 | class | string | *optional* | | "CSS class" |
-| 2 | style | string | *optional* | | "CSS style" |
+| 1 | class | string | *optional* | custom CSS classes | "accent" |
 
-**Branch**:
+<u>`branch` arguments:</u>
 
-<u>Attributes:</u>
-
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | label | string | *optional* | | "label" |
-| 1 | type | string | "folder" | "folder", "document", "container", "group", "part", "assembly", "arrow", "branch", "fork", or "merge" | "type" |
+| 1 | icon | string | "folder" | "folder", "document", "container", "group", "part", "assembly", "arrow", "branch", "fork", "pr", or "versions" | "group" |
 | 2 | state | string | "open" | | "state" |
-| 3 | class | string | *optional* | | "CSS class" |
-| 4 | style | string | *optional* | | "CSS style" |
+| 3 | class | string | *optional* | custom CSS classes | "accent" |
 
-**Leaf**:
+<u>`leaf` arguments:</u>
 
-<u>Attributes:</u>
-
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | label | string | *optional* | | "label" |
-| 1 | icon | string | "file" | "file", "body", "feature", "sketch", "item", "element", "leaf", "commit" | "icon" |
-| 2 | class | string | *optional* | | "CSS class" |
-| 3 | style | string | *optional* | | "CSS style" |
-
+| 1 | icon | string | "file" | "file", "body", "feature", "sketch", "item", "element", "leaf", "commit" | "item" |
+| 2 | class | string | *optional* | custom CSS classes | "accent" |
 
 
 ## Carousel
 
 Trigo shortcode to display a carousel of images with drag, scroll support and optional automatic mode.
 
-Specify a directory where all image resources are used for the carousel:
+Use either `dir`, `images`, or positional image arguments. Do not combine them.
+
+Directory where all image resources are used for the carousel:
 
 ```html {file="markdown"}
 {{</* carousel dir="path/to/directory" mode="auto" */>}}
 ```
 
-Specify a list of images to use with an `images` parameter:
+List of images to use with an `images` parameter:
 
 ```html {file="markdown"}
 {{</* carousel images="1.webp, 2.webp, 3.webp" */>}}
 ```
 
-Specify a list of images to use:
+Images as positional arguments:
 
 ```html {file="markdown"}
 {{</* carousel "1.webp" "2.webp" "3.webp" */>}}
 ```
 
-The path is relative to the current page bundle. To use resources in the `static` or `assets` directories of the site, prefix the path with a `/` slash. The URL of an external image can be use as well.
+The path is relative to the current page bundle. To use resources in the `static` or `assets` directories of the site, prefix the path with a `/` slash. External image URLs are also supported.
 
 <u>How it renders:</u>
 
 {{< carousel dir="dir" mode="auto" >}}
 
-<u>Attributes:</u>
+<u>`carousel` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | | unnamed | string[] | *optional* | | "1.webp" |
 | | images | string | *optional* | | "1.webp, 2.webp" |
 | | dir | string | *optional* | | "path/to/dir" |
-| | mode | string | "fixed" | | "auto" |
+| | mode | string | "fixed" | "fixed" or "auto" | "auto" |
 | | duration | int[ms] | 5000 | | 1000 |
 
 
@@ -301,19 +301,19 @@ Specify two image paths:
 {{</* compare "1.webp" "2.webp" */>}}
 ```
 
-The path is relative to the current page bundle. To use resources in the `static` directory of the site, prefix the path with a `/` slash. The URL of an external image can be use as well.
+The path is relative to the current page bundle. To use resources in the `static` directory of the site, prefix the path with a `/` slash. External image URLs are also supported.
 
 <u>How it renders:</u>
 
 {{< compare "dir/1.webp" "dir/3.webp" >}}
 
 
-<u>Attributes:</u>
+<u>`compare` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
-| | before/left | string | **required** | | "before.webp" |
-| | after/right | string | **required** | | "after.webp" |
+| | before (alias: left) | string | **required** | | "before.webp" |
+| | after (alias: right) | string | **required** | | "after.webp" |
 
 
 ## Canvas
@@ -326,15 +326,15 @@ Specify a directory path with the sequence of named images, optionally the anima
 {{</* canvas path="frames-dir" fps="12" title="Animation title" */>}}
 ```
 
-The path is relative to the current page bundle. To use resources in the `static` directory of the site, prefix the path with a `/` slash. External resources (defined from a URL) are not supported at this time. The animation takes the image filenames as order, e.g. `001.webp`, `002.webp` or other named sorted schema.
+The path is relative to the current page bundle. To use resources in the `static` directory of the site, prefix the path with a `/` slash. External resources (defined from a URL) are not supported at this time. Frames are ordered lexicographically by filename, e.g. `001.webp`, `002.webp`.
 
 <u>How it renders:</u>
 
 {{< canvas path="frames" fps="12" title="Press spacebar to animate me! Or grab, scroll and use keyboard arrows too!" >}}
 
-<u>Attributes:</u>
+<u>`canvas` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | path | string | **required** | | "path/to/dir" |
 | 1 | fps | int[fps] | 12 | | 1 |
@@ -353,39 +353,35 @@ Trigo shortcode to add a link as a clickable button with optional icon and label
 
 {{< button url="/news" label="See the latest news" icon="time" >}}
 
-<u>Attributes:</u>
+<u>`button` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
-| 0 | url | string | **required** | | "news" |
+| 0 | url | string | **required** | | "/news" |
 | 1 | label | string | *optional* | | "Button label" |
 | 2 | icon | string | *optional* | | "heart" |
-| 3 | class | string | *optional* | | "CSS class" |
-| 4 | style | string | *optional* | | "CSS style" |
+| 3 | class | string | *optional* | custom CSS classes | "button-accent" |
 
 
-## Merge
+## Git
 
-Trigo shortcode to link to a git commit or Pull Request (short commit hash or #id).
+Trigo shortcode to link to a git commit or pull request (short commit hash or #id respectively).
 
 ```html {file="markdown"}
-{{</* merge url="https://github.com/user/repo/pull/123" */>}}
+A git commit: {{</* git "https://gitlab.com/user/repo/-/commit/abcdef123456" */>}},
 
-{{</* merge "https://gitlab.com/user/repo/-/commit/abcdef123456" */>}}
-
+and a pull request: {{</* git url="https://github.com/user/repo/pull/123" */>}}.
 ```
 
 <u>How it renders:</u>
 
-{{< merge url="https://github.com/user/repo/pull/123" >}}
+A commit: {{< git "https://gitlab.com/user/repo/-/commit/abcdef123456" >}},
 
-and
+and a pull request: {{< git url="https://github.com/user/repo/pull/123" >}}.
 
-{{< merge "https://gitlab.com/user/repo/-/commit/abcdef123456" >}}
+<u>`merge` arguments:</u>
 
-<u>Attributes:</u>
-
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | url | string | **required** | | "https://github.com/user/repo/pull/123" |
 
@@ -408,11 +404,12 @@ The PDF file can also be located in the project directory and use the relative p
 
 {{< pdf "https://upload.wikimedia.org/wikipedia/commons/0/0c/Wikimedia_Commons_web_en.pdf" >}}
 
-<u>Attributes:</u>
+<u>`pdf` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | path | string | **required** | | "path/to/file.pdf" |
+| 1 | title | string | *optional* | | "My PDF document" |
 
 
 ## Video
@@ -427,9 +424,9 @@ Trigo shortcode to display a video with optional poster.
 
 {{< video src="video.mp4" poster="dir/3.webp" >}}
 
-<u>Attributes:</u>
+<u>`video` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | src | string | **required** | | "path/to/video.mp4" |
 | 1 | poster | string | | | "poster.webp" |
@@ -443,9 +440,28 @@ Trigo shortcode to embed a Peertube video.
 {{</* peertube url="https://toobnix.org/w/5jBegFpNbffA1nhmp32kqR" */>}}
 ```
 
+You can optionally specify a start and/or stop time.
+
+```html {file="markdown"}
+{{</* peertube url="https://toobnix.org/w/5jBegFpNbffA1nhmp32kqR" start="30s" stop="2m15s" */>}}
+```
+
 <u>How it renders:</u>
 
 {{< peertube url="https://toobnix.org/w/5jBegFpNbffA1nhmp32kqR" >}}
+
+<u>`peertube` arguments:</u>
+
+| Position | Argument| Type | Default | Options | Example value |
+| --- | --- | --- | --- | --- | --- |
+| 0 | url | string | **required** | | "https://toobnix.org/w/5jBegFpNbffA1nhmp32kqR" |
+| 1 | start | string  | *optional* | | "30s" |
+| 2 | stop | string  | *optional* | | "2m15s" |
+| 3 | width | int[px] | 0=responsive | | 1280 |
+| 4 | autoplay | boolean | `false` | | `true` |
+| 5 | mute | boolean | `false` | | `true` |
+
+By default, videos are displayed responsively, lazy-loaded, and allow fullscreen playback.
 
 
 ## YouTube
@@ -453,72 +469,46 @@ Trigo shortcode to embed a Peertube video.
 Hugo built-in shortcode to embed a YouTube video.
 
 ```html {file="markdown"}
-{{</* youtube id=VIDEO_ID title="My video title" start=30 loading=lazy */>}}
+{{</* youtube id=a9biWv_M8p8 title="My video title" start=30 loading=lazy */>}}
 ```
 
 <u>How it renders:</u>
 
-{{< youtube id=x5oXSGhK7EY title="My video title" start=30 loading=lazy >}}
+{{< youtube id=a9biWv_M8p8 title="My video title" start=30 loading=lazy >}}
 
-For more information, see [Hugo's YouTube Shortcode](https://gohugo.io/content-management/shortcodes/#youtube).
+For more information, see [Hugo's YouTube shortcode](https://gohugo.io/shortcodes/youtube/).
 
 
-## Code block highlight
+## Vimeo
 
-Hugo built-in shortcode to highlight a code block.
+Hugo built-in shortcode to embed a Vimeo video.
 
-```text {file=Markdown}
-{{</* highlight html >}}
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Example HTML5 Document</title>
-        <meta name="description" content="Basic Markdown syntax.">
-    </head>
-    <body>
-        <p>Test</p>
-    </body>
-</html>
-
-{{< /highlight */>}}
+```html {file="markdown"}
+{{</* vimeo id=19899678 loading=lazy title="Barn Owl" */>}}
 ```
 
 <u>How it renders:</u>
 
-{{< highlight html >}}
+{{< vimeo id=19899678 loading=lazy title="Barn Owl" >}}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Example HTML5 Document</title>
-        <meta name="description" content="Basic Markdown syntax.">
-    </head>
-    <body>
-        <p>Test</p>
-    </body>
-</html>
-
-{{< /highlight >}}
+For more information, see [Hugo's Vimeo shortcode](https://gohugo.io/shortcodes/vimeo/).
 
 
 ## Collection
 
-Trigo shortcode to display a full-width pages collection, section, or taxonomy term pages with cards.
+Trigo shortcode to display a full-width layout with a collection of pages as cards. These pages come from a section, a specific taxonomy term or are part of a taxonomy.
 
 ```html {file="markdown"}
-{{</* collection collection="dev" first=3 */>}}
+{{</* collection collection="dev" first=3 class="gradient" */>}}
 ```
 
 <u>How it renders:</u>
 
-{{< collection collection="dev" first=3 >}}
+{{< collection collection="dev" first=3 class="gradient" >}}
 
-<u>Attributes:</u>
+<u>`collection` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
 | 0 | collection | string | | | "news" |
 | 1 | first | int | 0 | | 1 |
@@ -526,26 +516,23 @@ Trigo shortcode to display a full-width pages collection, section, or taxonomy t
 | 3 | term | string | *optional* | | "event" |
 | 4 | sort | string | *optional* | | "date" |
 | 5 | reverse | bool | `false` | | `true` |
-| 6 | title | string | *optional* | | "Collection title" |
-| 7 | title_icon | string | *optional* | | "heart" |
-| 8 | title_class | string | *optional* | | "CSS class" |
-| 9 | title_style | string | *optional* | | "CSS style" |
+| 6 | class | string | *optional* | custom CSS classes | "gradient" |
 
 
-## Block
+## Block and group
 
-Trigo shortcode to display a full-width block layout container with custom inner content.
+Trigo shortcode to display a full-width layout block container with custom inner content.
 
-Use the `{{</* group */>}}` shortcode to nest and group related content into vertical columns.
+Use the `{{</* group */>}}` shortcode to nest and group related content into vertical columns within a block.
 
 ```html {file="markdown"}
-{{</* block title="My Title" style="background: linear-gradient(var(--gradient-angle), var(--accent-hover), var(--accent));" */>}}
+{{</* block title="My Title" class="section" */>}}
 
 {{</* group */>}}
 
-This is **Markdown** content between `block` and `group` shortcode tags.
+This is **Markdown** *content* between `block` and `group` shortcode tags.
 
-| Style       | Syntax          | Example output           |
+| Format      | Syntax          | Example output           |
 | ----------- | --------------- | ------------------------ |
 | Bold        | `**bold**`      | Some **bold** text       |
 | Italic      | `*italic*`      | Some *italic* text       |
@@ -555,7 +542,12 @@ This is **Markdown** content between `block` and `group` shortcode tags.
 | Subscript   | `~subscript~`   | Some ~subscript~ text.   |
 | Superscript | `^superscript^` | Some ^superscript^ text. |
 
- Images can be added too:
+> [!TIP]
+> - Content such as images and other shortcodes can be added as well
+> - Each individual HTML block-level element (e.g. heading, paragraph, figure, list, quote) form a "sub-block" and creates its own vertical layout.
+> - Use the `group` shortcode to group them vertically and control the flow.
+
+{{</* button url="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Display/Block_and_inline_layout" label="Reference: Block and inline layout in normal flow" icon="tip" */>}}
 
 {{</* /group */>}}
 
@@ -566,13 +558,13 @@ This is **Markdown** content between `block` and `group` shortcode tags.
 
 <u>How it renders:</u>
 
-{{< block title="My Title" style="background: linear-gradient(var(--gradient-angle), var(--accent-hover), var(--accent));" >}}
+{{< block title="My Title" class="section" >}}
 
 {{< group >}}
 
-This is **Markdown** content between `block` and `group` shortcode tags.
+This is **Markdown** *content* between `block` and `group` shortcode tags.
 
-| Style       | Syntax          | Example output           |
+| Format      | Syntax          | Example output           |
 | ----------- | --------------- | ------------------------ |
 | Bold        | `**bold**`      | Some **bold** text       |
 | Italic      | `*italic*`      | Some *italic* text       |
@@ -582,7 +574,12 @@ This is **Markdown** content between `block` and `group` shortcode tags.
 | Subscript   | `~subscript~`   | Some ~subscript~ text.   |
 | Superscript | `^superscript^` | Some ^superscript^ text. |
 
- Images can be added too:
+> [!TIP]
+> - Content such as images and other shortcodes can be added as well
+> - Each individual HTML block-level element (e.g. heading, paragraph, figure, list, quote) form a "sub-block" and creates its own vertical layout.
+> - Use the `group` shortcode to group them vertically and control the flow.
+
+{{< button url="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Display/Block_and_inline_layout" label="Reference: Block and inline layout in normal flow" icon="tip" >}}
 
 {{< /group >}}
 
@@ -590,15 +587,19 @@ This is **Markdown** content between `block` and `group` shortcode tags.
 
 {{< /block >}}
 
-<u>Attributes:</u>
+<u>`block` arguments:</u>
 
-| Position | Attribute | Type | Default | Options | Example value |
+| Position | Argument| Type | Default | Options | Example value |
 | --- | --- | --- | --- | --- | --- |
-| 0 | content | string | `InnerDeindent` | | "**Markdown** *content*" |
+| 0 | content | string | `InnerDeindent` | | Note: Place **Markdown** *content* inside block tags |
 | 1 | title | string | *optional* | | "Block title" |
-| 2 | class | string | *optional* | | "CSS block class" |
-| 3 | style | string | *optional* | | "CSS block style" |
-| 4 | title_class | string | *optional* | | "CSS title class" |
-| 5 | title_style | string | *optional* | | "CSS title style" |
-| 6 | content_class | string | *optional* | | "CSS content class" |
-| 7 | content_style | string | *optional* | | "CSS content style" |
+| 2 | class | string | *optional* | custom CSS classes | "section" |
+| 3 | title_class | string | *optional* | custom CSS classes | "accent" |
+| 4 | content_class | string | *optional* | custom CSS classes | "accent" |
+
+<u>`group` arguments:</u>
+
+| Position | Argument| Type | Default | Options | Example value |
+| --- | --- | --- | --- | --- | --- |
+| 0 | content | string | `InnerDeindent` | | Note: Place **Markdown** *content* inside group tags |
+| 1 | class | string | *optional* | custom CSS classes | "accent" |
