@@ -14,7 +14,7 @@ cover:
 
 A longstanding bug in FreeCAD was recently tackled by new contributor Adrian Popescu (acpopescu). In [PR 8228](https://github.com/freecad/freecad/pull/8228) and a series of follow-up commits, he has addressed some of the major shortcomings in the expression auto-complete function.
 
-{{< video "expressioncompleter.mp4" >}}
+{{< video src="expressioncompleter.mp4" >}}
 
 AutoCompleter demonstration using data from a spreadsheet.
 

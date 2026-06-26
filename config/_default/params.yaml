@@ -68,15 +68,22 @@ timeout: 5s
 git_repository: https://github.com/freecad/website
 
 socials:
-  - forum: https://forum.freecad.org
-  - github: https://github.com/freecad
-  - codeberg: https://codeberg.org/freecad
-  - mastodon: https://social.freecad.org/@freecad
-  - reddit: https://www.reddit.com/r/freecad
-  - matrix: https://matrix.to/#/#FreeCAD_FreeCAD:gitter.im
-  - discord: https://discord.gg/w2cTKGzccC
-  - facebook: https://www.facebook.com/freecad
-  - linkedin: https://www.linkedin.com/groups/4295230
+  - label: Forum
+    url: https://forum.freecad.org
+  - label: GitHub
+    url: https://github.com/freecad
+  - label: Codeberg
+    url: https://codeberg.org/freecad
+  - label: Mastodon
+    url: https://social.freecad.org/@freecad
+  - label: Reddit
+    url: https://www.reddit.com/r/freecad
+  - label: Matrix
+    url: https://matrix.to/#/#FreeCAD_FreeCAD:gitter.im
+  - label: Discord
+    url: https://discord.gg/w2cTKGzccC
+  - label: LinkedIn
+    url: https://www.linkedin.com/groups/4295230
 
 # Image processing
 resize_format: webp

@@ -24,13 +24,11 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< button url="https://www.youtube.com/watch?v=a9biWv_M8p8" label="Watch the release video" icon="youtube_fill" >}}
 
 
-{{< block title="Your refined user interface and experience" class="pastel1" >}}
+{{< block title="Your refined user interface and experience" css_class="pastel1" >}}
 
 {{< group >}}
 
 {{< carousel "transform_1-1.webp" "transform2_1-1.webp" >}}
-
-<br>
 
 - Three-point lighting improving rendering of models in the 3D view.
 - Transform tool overhaul, with draggers, precise input, alignment, snapping, and target features.
@@ -46,8 +44,6 @@ This release focuses on making everyday modeling more reliable, faster, and more
 - Improved navigation controls, align to selection, and visual utility tools.
 - New search in the Preferences Editor.
 
-<br>
-
 ![Clarify selection](clarify_1-1.webp)
 
 {{< /group >}}
@@ -55,7 +51,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="Part Design and Assembly on the move" class="background: var(--gradient);" >}}
+{{< block title="Part Design and Assembly on the move" css_class="background: var(--gradient);" >}}
 
 ![Feature preview and adjustments by gizmos](pd_1-1.webp)
 
@@ -67,7 +63,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="Born to Sketch" class="dots" >}}
+{{< block title="Born to Sketch" css_class="dots" >}}
 
 {{< group >}}
 
@@ -82,7 +78,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="CAM, FEM and TechDraw flow" class="pastel2" >}}
+{{< block title="CAM, FEM and TechDraw flow" css_class="pastel2" >}}
 
 - New toolbit library and editor, better multi-pass support and post-processors introduced in CAM.
 - FEM results now support animations, electrostatic analyses, and glyph filters.
@@ -93,7 +89,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="Build on BIM and Draft" class="grid" >}}
+{{< block title="Build on BIM and Draft" css_class="grid" >}}
 
 ![Better layers, dimensions, and style management](plan_1-1.webp)
 
@@ -104,7 +100,7 @@ This release focuses on making everyday modeling more reliable, faster, and more
 {{< /block >}}
 
 
-{{< block title="General performance and stability" class="pastel3" >}}
+{{< block title="General performance and stability" css_class="pastel3" >}}
 
 - Continued improvements to topological naming mitigation for greater model stability.
 - Better Wayland support for Linux users.

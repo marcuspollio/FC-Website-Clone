@@ -9,7 +9,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   @param {string} [label] – Optional label for tree branch.
   @param {string} [icon=folder] – Icon for tree branch: folder, document, container, group, part, assembly, arrow, branch, fork, pr, or versions.
   @param {string} [state=open] – Initial open or closed state.
-  @param {string} [class] – Optional CSS class for tree branch.
+  @param {string} [css_class] – Optional CSS class for tree branch.
 
   @return {HTML} Render collapsible tree branch with nested children (e.g. branches or leaves).
 
@@ -22,7 +22,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $label := cond (.IsNamedParams) (.Get "label") (.Get 0) | plainify -}}
 {{- $icon := cond (.IsNamedParams) (.Get "icon") (.Get 1) | lower | default "folder" -}}
 {{- $state := cond (.IsNamedParams) (.Get "state") (.Get 2) | lower | default "open" -}}
-{{- $class := cond (.IsNamedParams) (.Get "class") (.Get 3) -}}
+{{- $class := cond (.IsNamedParams) (.Get "css_class") (.Get 3) -}}
 
 {{- $valid := slice "folder" "document" "container" "group" "part" "assembly" "arrow" "branch" "fork" "merge" -}}
 {{- if not (in $valid $icon) -}}

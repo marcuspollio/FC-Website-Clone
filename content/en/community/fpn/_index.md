@@ -52,7 +52,7 @@ Membership isn't just a fee—it's an investment in FreeCAD's future and in your
 
 {{< block title="Membership Tiers" >}}
 
-{{< group class="group-center" >}}
+{{< group css_class="group-center" >}}
 
 ### Individual
 
@@ -67,7 +67,7 @@ Membership isn't just a fee—it's an investment in FreeCAD's future and in your
 
 {{< /group >}}
 
-{{< group class="group-center" >}}
+{{< group css_class="group-center" >}}
 
 ### Organization
 

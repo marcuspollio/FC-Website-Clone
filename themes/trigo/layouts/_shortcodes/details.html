@@ -11,7 +11,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   @param {string} [name] – Optional name attribute for grouping behavior.
   @param {string} [title] – Optional title attribute.
   @param {string} [id] – Optional ID attribute.
-  @param {string} [class] – Optional CSS class for details.
+  @param {string} [css_class] – Optional CSS class for details.
 
   @return {HTML} Render details with inner content.
 
@@ -30,7 +30,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   {{- $name := cond (.IsNamedParams) (.Get "name") (.Get 2) -}}
   {{- $title := cond (.IsNamedParams) (.Get "title") (.Get 3) -}}
   {{- $id := cond (.IsNamedParams) (.Get "id") (.Get 4) -}}
-  {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 5) -}}
+  {{- $class := cond (.IsNamedParams) (.Get "css_class") (.Get 5) -}}
 
   {{- $open = in (slice true "true" "open" "opened" 1) $open -}}
 

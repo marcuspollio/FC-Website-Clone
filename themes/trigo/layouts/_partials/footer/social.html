@@ -11,13 +11,13 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 
 {{- range site.Params.socials -}}
-  {{- range $social, $url := . -}}
-    <a
-      href="{{ $url }}"
-      title="{{ i18n $social | default $social }}"
-      target="_blank" rel="external noreferrer nofollow">
+  {{- $label := .label -}}
+  {{- $social := lower $label -}}
+  <a
+    href="{{ .url }}"
+    title="{{ i18n $social | default $label }}"
+    target="_blank" rel="external noreferrer nofollow">
 
-      {{- partialCached "utils/icon.html" $social (lower $social) -}}
-    </a>
-  {{- end -}}
+    {{- partialCached "utils/icon.html" $social $social -}}
+  </a>
 {{- end -}}

@@ -5,7 +5,7 @@ description: Get FreeCAD and start with freedom right away.
 ---
 
 
-{{< block class="section" >}}
+{{< block css_class="section" >}}
 
 {{< group >}}
 

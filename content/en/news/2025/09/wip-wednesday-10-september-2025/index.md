@@ -69,7 +69,7 @@ This week in FreeCAD development:
 - captain0xff add theming abilities to interactive gizmos merged last week.
 - tetektoza added a context menu to select obstructed items; the code has been backported from RealThunder's fork.
 
-{{< video "obstructed-objects-selection.mp4" >}}
+{{< video src="obstructed-objects-selection.mp4" >}}
 
 **Other changes**:
 

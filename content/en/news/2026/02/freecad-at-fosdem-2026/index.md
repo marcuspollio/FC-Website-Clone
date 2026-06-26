@@ -37,11 +37,11 @@ A big draw item on the booth was the excellent display of the opensource [Micro 
 
 Previously our friends an colleagues at KiCad have voluntarily been the devroom managers for the [Open Hardware CAD/CAM dev room](https://fosdem.org/2026/schedule/track/open-hardware-and-cadcam/) talk track at FOSDEM. This year however it was FreeCAD teamsters chennes and concretedog who took over the reigns aided and abetted by Kliment and others. It's a fair amount of work to collate and review all the talk proposals (thanks volunteer review team members) but we were pleased to have a really nice range of excellent talks in the room. There are lots of favourites and we enjoyed them all, you can check out the FOSDEM site to view all the talks from all the rooms. Just as a flavour we enjoyed hosting Ryan Walker speaking on "[The Blackpants are Pants for your Blackhat](https://fosdem.org/2026/schedule/event/WDCDC3-the_blackpants_are_pants_for_your_blackhat/)" a story about the design and development of an enhanced Flipper Zero style device. It was  also great to hear Morgan speaking about his development of [KiConnect](https://git.oit.cloud/morgan/kiconnect), a FreeCAD workbench that powerfully allows for push pull interaction between FreeCAD and KiCad.
 
-{{< video "https://video.fosdem.org/2026/h1309/JAH78J-kiconnect-one-year.av1.webm" >}}
+{{< video src="https://video.fosdem.org/2026/h1309/JAH78J-kiconnect-one-year.av1.webm" >}}
 
 Of course we also had the main project updates for [FreeCAD from Yorik](https://fosdem.org/2026/schedule/event/XPFS8X-freecad-state-of-affairs/), and [KiCad from Wayne](https://fosdem.org/2026/schedule/event/WDEHKY-kicad_status/) which were incredibly packed talks with the queue for the Open Hardware devroom stretching to over 100 people deep. Thanks to everyone for their patience about access to the devroom in this period as we need to be mindful of fire regulations and our capacity caps.
 
-{{< video "https://video.fosdem.org/2026/h1309/XPFS8X-freecad-state-of-affairs.av1.webm" >}}
+{{< video src="https://video.fosdem.org/2026/h1309/XPFS8X-freecad-state-of-affairs.av1.webm" >}}
 
 It was once again an excellent event for us and great to meet and mingle with so many FreeCAD users, developers and those curious to try it out. It's an intense weekend of activity and we'd like to thank everyone who gave up their time to come and support. We look forward to next year!
 

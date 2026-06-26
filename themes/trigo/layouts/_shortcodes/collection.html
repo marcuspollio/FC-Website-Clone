@@ -12,7 +12,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   @param {string} [sort] – Optional sort by date, weight, or title.
   @param {int} [first] – Optional limit number of returned pages.
   @param {bool} [reverse] – Optional reverse sort order.
-  @param {string} [class] – Optional CSS class for whole collection container.
+  @param {string} [css_class] – Optional CSS class for whole collection container.
 
   @return {HTML} Render pages collection with cards.
 
@@ -28,7 +28,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $term := cond (.IsNamedParams) (.Get "term") (.Get 3) | lower -}}
 {{- $sort := cond (.IsNamedParams) (.Get "sort") (.Get 4) | lower -}}
 {{- $reverse := cond (.IsNamedParams) (.Get "reverse") (.Get 5) | default false -}}
-{{- $class := cond (.IsNamedParams) (.Get "class") (.Get 6) -}}
+{{- $class := cond (.IsNamedParams) (.Get "css_class") (.Get 6) -}}
 
 {{- $pages := slice -}}
 {{- $taxonomies := site.Taxonomies -}}

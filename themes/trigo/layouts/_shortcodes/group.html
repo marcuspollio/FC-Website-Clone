@@ -7,7 +7,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- /* Group shortcode:
 
   @param {inner} content – Grouped content.
-  @param {string} [class] – Optional CSS class for whole block container.
+  @param {string} [css_class] – Optional CSS class for whole block container.
 
   @return {HTML} Render grouped content, specially useful nested in a Block shortcode parent.
 
@@ -23,7 +23,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- if $content -}}
 
-  {{- $class := cond (.IsNamedParams) (.Get "class") (.Get 1) -}}
+  {{- $class := cond (.IsNamedParams) (.Get "css_class") (.Get 1) -}}
 
   {{- $classes := slice "group" -}}
   {{- with $class -}}

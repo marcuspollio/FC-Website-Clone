@@ -5,7 +5,7 @@ description: Powerful and open parametric design for everyone.
 ---
 
 
-{{< block title="Made to build for the real world" class="grid" title_class="accent" >}}
+{{< block title="Made to build for the real world" css_class="grid" title_class="accent" >}}
 
 {{< group >}}
 
@@ -20,7 +20,7 @@ FreeCAD is made primarily to design objects for the real world. FreeCAD uses rea
 {{< /block >}}
 
 
-{{< block title="A powerful solid-based geometry kernel" class="pastel4" >}}
+{{< block title="A powerful solid-based geometry kernel" css_class="pastel4" >}}
 
 ![Pressure vessels, piping and skids](mep.webp "Pressure vessels, piping and skids")
 
@@ -35,7 +35,7 @@ FreeCAD features an advanced geometry engine based on Open CASCADE Technology. I
 {{< /block >}}
 
 
-{{< block title="A wi(l)dly parametric environment" class="dots" >}}
+{{< block title="A wi(l)dly parametric environment" css_class="dots" >}}
 
 {{< group >}}
 
@@ -50,7 +50,7 @@ All FreeCAD objects are natively parametric, meaning their shape can be based on
 {{< /block >}}
 
 
-{{< block title="File formats frenzy" class="pastel5" >}}
+{{< block title="File formats frenzy" css_class="pastel5" >}}
 
 {{< group >}}
 
@@ -63,7 +63,7 @@ FreeCAD allows to import and export models and data to dozens of different file 
 {{< /block >}}
 
 
-{{< block title="A large multi-specialty ecosystem" class="section" >}}
+{{< block title="A large multi-specialty ecosystem" css_class="section" >}}
 
 ![Building Information Modeling](bim.webp "Building Information Modeling")
 
@@ -78,7 +78,7 @@ FreeCAD offers dedicated workbenches for a variety of purposes such as CSG model
 {{< /block >}}
 
 
-{{< block title="A Community heart" class="pastel6" >}}
+{{< block title="A Community heart" css_class="pastel6" >}}
 
 {{< group >}}
 

@@ -36,7 +36,7 @@ This week in FreeCAD development:
 - kadet1090 implemented transparent previews for Boolean commands ([PR#23062](https://github.com/FreeCAD/FreeCAD/pull/23062)). He also added a Preferences option to toggle highlighting profiles for profile-based features.
 - captain0xff contributed his GSoC project code that adds interactive draggers for Pad, Revolution, Pocket, and all other PD commands except Draft and the eight additive/subtractive primitives. Here is a quick demo to give you an idea what it looks  and works like:
 
-{{< video "pd-draggers.mp4" >}}
+{{< video src="pd-draggers.mp4" >}}
 
 **Assembly**:
 

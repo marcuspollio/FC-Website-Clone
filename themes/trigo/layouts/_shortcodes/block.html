@@ -8,16 +8,16 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   @param {string} content – Block content.
   @param {string} [title] – Optional block title.
-  @param {string} [class] – Optional CSS class for whole block container.
+  @param {string} [css_class] – Optional CSS class for whole block container.
   @param {string} [title_class] – Optional CSS class for title.
   @param {string} [content_class] – Optional CSS class for content.
 
   @return {HTML} Render full-width block layout container with optional title and content.
 
-  @example {{< block title="My Title" content="Inline content" class="accent" >}}
+  @example {{< block title="My Title" content="Inline content" css_class="accent" >}}
   @example {{< block "Inline content" "My Title" "accent" >}}
   @example
-    {{< block class="accent" >}}
+    {{< block css_class="accent" >}}
       Markdown content between tags.
     {{< /block >}}
 
@@ -32,7 +32,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- if $content -}}
 
   {{- $title := cond (.IsNamedParams) (.Get "title") (.Get 1) -}}
-  {{- $block_class := cond (.IsNamedParams) (.Get "class") (.Get 2) -}}
+  {{- $block_class := cond (.IsNamedParams) (.Get "css_class") (.Get 2) -}}
   {{- $title_class := cond (.IsNamedParams) (.Get "title_class") (.Get 3) -}}
   {{- $content_class := cond (.IsNamedParams) (.Get "content_class") (.Get 4) -}}
 
