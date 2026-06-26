@@ -215,3 +215,12 @@ donate:
         - BIC-SWIFT: GEBABEBBXXX
         - Bank: BNP Paribas Fortis
         - Bank_Address: Rue de la Station 64, 1360 Perwez, Belgium
+
+# Content Management System
+enable_cms: true
+cms_name: sveltia
+cms_url: https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js
+cms_app_title: FreeCAD Admin CMS
+cms_logout_redirect_url: https://www.freecad.org
+cms_logo_src: https://www.freecad.org/svg/icon-freecad.svg
+cms_branch: main

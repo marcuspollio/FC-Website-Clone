@@ -17,6 +17,7 @@ Nevertheless, please read the few following guidelines to ensure contributions a
 - Texts should be easy to translate. If in doubt, ask a translator.
 - Texts focus on user benefits in practical and relatable terms that highlight how FreeCAD contribute to solving real-world challenges (e.g. design, engineering, community, free and open-source development).
 - Prefer using the active voice when possible (e.g. subject is the agent: "subject does action", instead of passive voice where subject is recipient: "action is done by subject") and break complex ideas into simpler and digestible explanations.
+- Use dedicated Markdown and shortcode features to enhance the content, layout, and text with adequate formant and style.
 - Sometimes an illustration is worth a thousand words.
 
 
@@ -31,6 +32,8 @@ Content translations are stored in separate content root directories, e.g. `/con
 Translations of the Theme are handled by translations tables in `themes/trigo/i18n`.
 
 Before a new language is enabled, the main navigation pages (Homepage, Features, Download, News, Community, Documentation and Donate) and the Theme strings must be translated. If willing to add a new language, use the provided [feature issue](https://github.com/FreeCAD/Website/issues) template indicating who will translate and who will proof-read/review.
+
+The [CMS](cms#manage-translations) allows to edit and add translated content easily, based on the original English content, and provides automatic online translation services via API keys.
 
 
 ## Illustrations

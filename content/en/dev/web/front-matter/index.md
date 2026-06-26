@@ -19,14 +19,29 @@ By default, a `title` front matter field must be provided for each page. Additio
 
 ## Front matter fields and values
 
-TODO...
-
 > [!Note]
-> For all Hugo methods, functions, and default fields, the `CamelCase` formatting is used.
->
-> For all custom Trigo theme naming and fields, `snake_case` formatting is used instead to help distinguish from official Hugo syntax.
+> For all Hugo default fields, `camelCase` is used.
+> For all custom Trigo theme naming and fields, `snake_case` is used instead to help distinguish from official Hugo syntax.
 > CSS classes and IDs use hyphens like `custom-class`.
 
+| Field name | Value type | Example |
+|---|---|---|
+| `authors` | string | Alice and Bob |
+| `categories` | string (options) | event |
+| `cover` | map | {"image": "img.webp", "caption": None} |
+| `date` | date | 2020-01-02 |
+| `description` | string | How to write great articles. |
+| `draft` | bool | False |
+| `icon` | string | puzzle |
+| `icon_cms` | string | bolt |
+| `lastmod` | date | 2021-02-03 |
+| `layout` | string | archives |
+| `linkTitle` | string | Admin |
+| `redirect` | string | auto |
+| `tags` | list[string] | [code, python] (can be inline or block array) |
+| `title` | string | A great title |
+| `versions` | list[string] | ["1.0", "1.1"] (can be inline or block array) |
+| `weight` | int | 1 |
 
 ## YAML syntax
 

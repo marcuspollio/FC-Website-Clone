@@ -157,6 +157,7 @@ cascade:
 outputs:
   home:
     - html
+    - cms_config
   section:
     - html
   taxonomy:
@@ -166,6 +167,14 @@ outputs:
 
 disableKinds:
   - rss
+
+outputFormats:
+  cms_config:
+    baseName: cms-config
+    mediaType: application/yaml
+    isHTML: false
+    isPlainText: true
+    notAlternative: true
 
 # Keep for local dev. Production build uses --minify.
 minify:

@@ -1,0 +1,66 @@
+{{- /*
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2026 FreeCAD
+SPDX-FileNotice: Part of the Trigo theme for Hugo.
+*/ -}}
+
+{{- /* CMS Admin:
+
+  - Get CMS config.
+  - Fetch external CMS script resource.
+  - Load CMS script.
+*/ -}}
+
+
+{{- if site.Params.enable_cms -}}
+
+  <!DOCTYPE html>
+  <html lang="{{ site.Language.Locale }}"
+    dir="{{ site.Language.Direction | default "auto" }}">
+
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, shrink-to-fit=no">
+      <meta name="robots" content="noindex, nofollow">
+      <title>{{ printf "%s | %s" site.Title .Title | plainify }}</title>
+      {{- with site.Home.OutputFormats.Get "cms_config" -}}
+        <link href="{{ .RelPermalink }}"
+          type="application/yaml"
+          rel="cms-config-url">
+      {{- end -}}
+    </head>
+
+    <body>
+      {{- $name := site.Params.cms_name -}}
+      {{- $url := site.Params.cms_url -}}
+
+      {{- with try (
+        resources.GetRemote
+        $url
+        (dict
+          "timeout" (site.Params.timeout | default "5s")
+          "key" (printf "%s-cms.css" $name)
+        )) -}}
+        {{- warnf "Fetching remote resource: %q" $url -}}
+
+        {{- with .Err -}}
+          {{- errorf "Failed to fetch remote %q CMS with url %q: %s" $name $url . -}}
+
+        {{- else with .Value -}}
+          {{- warnf "Serving cached resource: %q" .RelPermalink -}}
+
+          <script src="{{ .RelPermalink }}"
+            onerror="document.body.innerHTML='Failed to load {{ title $name }} CMS'">
+          </script>
+
+          {{- partialCached "scripts/load_script.html" "cms" "cms" }}
+
+        {{- else -}}
+          <h2>Error: Invalid CMS configuration</h2>
+          {{- errorf "Unable to get remote resource: %q" $url -}}
+        {{- end -}}
+      {{- end -}}
+    </body>
+
+  </html>
+{{- end -}}
