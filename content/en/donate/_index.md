@@ -1,6 +1,6 @@
 ---
 title: Support the FreeCAD project
-linkTitle: ❤ Donate
+linkTitle: Donate
 description: Donate once or sponsor monthly to make FreeCAD even more awesome!
 donate:
   once:
