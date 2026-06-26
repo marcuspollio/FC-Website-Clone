@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: telemetry
@@ -41,21 +42,25 @@ jobs:
         run: |
           python tools/workflows/telemetry.py
 
-      - name: Commit and push Telemetry data
+      - name: Get date
+        id: date
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "date=$(date -u +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
 
-          git add data/telemetry.json
 
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
+      - name: Create Pull Request with updated Telemetry data
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: |
+            data/telemetry.json
+          commit-message: "Action: Update Telemetry data - ${{ steps.date.outputs.date }}"
+          title: "Action: Update Telemetry data - ${{ steps.date.outputs.date }}"
+          body: |
+            Automated update of Telemetry data.
+          branch: automation/update-telemetry-${{ steps.date.outputs.date }}
+          delete-branch: true
 
-          DATE=$(date -u +"%Y-%m-%d")
-          git commit -m "Action: Update Telemetry data - $DATE"
-          git push
 
       - name: Save Telemetry cache
         uses: actions/cache/save@v5

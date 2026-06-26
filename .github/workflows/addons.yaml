@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: addons
@@ -41,21 +42,23 @@ jobs:
         run: |
           python tools/workflows/addons.py
 
-      - name: Commit and push Addons data
+      - name: Get date
+        id: date
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "date=$(date -u +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
 
-          git add data/addons.json
-
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-
-          DATE=$(date -u +"%Y-%m-%d")
-          git commit -m "Action: Update Addons data - $DATE"
-          git push
+      - name: Create Pull Request with updated Addons data
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: |
+            data/addons.json
+          commit-message: "Action: Update Addons data - ${{ steps.date.outputs.date }}"
+          title: "Action: Update Addons data - ${{ steps.date.outputs.date }}"
+          body: |
+            Automated update of Addons data.
+          branch: automation/update-addons-${{ steps.date.outputs.date }}
+          delete-branch: true
 
       - name: Save Addons cache
         uses: actions/cache/save@v5
