@@ -36,7 +36,7 @@ style:
 # Theme features
 show_date: true
 show_taxonomy: true
-show_word_count: true
+show_word_count: false
 show_reading_time: true
 show_translations: false
 show_pagination: true
