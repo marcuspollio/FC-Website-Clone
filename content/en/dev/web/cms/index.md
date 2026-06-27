@@ -1,6 +1,7 @@
 ---
-title: CMS
-description: Use the Content Management System.
+title: Content Management System
+linkTitle: CMS
+description: How to use the Sveltia CMS for the FreeCAD website.
 weight: 8
 ---
 

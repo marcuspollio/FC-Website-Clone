@@ -58,7 +58,7 @@ Several theme [shortcodes](shortcodes) are available to enhance the layout and a
 
 ## Theme and configuration
 
-To tweak or enhance the Trigo theme and the FreeCAD website configuration, see the dedicated [theme page](theme) and the [theme ReadMe](https://github.com/FreeCAD/Website/tree/main/themes/trigo#readme).
+To tweak the style of the Trigo theme, enhance it by adding new features, fix issues, or deep dive into the FreeCAD website configuration, see the dedicated [setup and theme page](theme).
 
 
 ## Licensing

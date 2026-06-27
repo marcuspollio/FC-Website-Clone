@@ -202,7 +202,7 @@ Trigo shortcode to display a filetree list with inner content/branches/leaves an
   {{< branch label="content" >}}
     {{< leaf label="_index.md" >}}
     {{< branch label="docs" state="closed" >}}
-      {{< leaf label="_index.md" class="accent" >}}
+      {{< leaf label="_index.md" css_class="pastel1" >}}
       {{< leaf label="introduction.md" >}}
       {{< leaf label="introduction.fr.md" >}}
     {{< /branch >}}
@@ -217,7 +217,7 @@ Trigo shortcode to display a filetree list with inner content/branches/leaves an
   {{< branch label="content" >}}
     {{< leaf label="_index.md" >}}
     {{< branch label="docs" state="closed" >}}
-      {{< leaf label="_index.md" class="accent" >}}
+      {{< leaf label="_index.md" css_class="pastel1" >}}
       {{< leaf label="introduction.md" >}}
       {{< leaf label="introduction.fr.md" >}}
     {{< /branch >}}
@@ -499,12 +499,12 @@ For more information, see [Hugo's Vimeo shortcode](https://gohugo.io/shortcodes/
 Trigo shortcode to display a full-width layout with a collection of pages as cards. These pages come from a section, a specific taxonomy term or are part of a taxonomy.
 
 ```html {file="markdown"}
-{{</* collection collection="dev" first=3 class="gradient" */>}}
+{{</* collection collection="dev" first=3 css_class="gradient" */>}}
 ```
 
 <u>How it renders:</u>
 
-{{< collection collection="dev" first=3 class="gradient" >}}
+{{< collection collection="dev" first=3 css_class="gradient" >}}
 
 <u>`collection` arguments:</u>
 
@@ -526,7 +526,7 @@ Trigo shortcode to display a full-width layout block container with custom inner
 Use the `{{</* group */>}}` shortcode to nest and group related content into vertical columns within a block.
 
 ```html {file="markdown"}
-{{</* block title="My Title" class="section" */>}}
+{{</* block title="My Title" css_class="section" */>}}
 
 {{</* group */>}}
 
@@ -558,7 +558,7 @@ This is **Markdown** *content* between `block` and `group` shortcode tags.
 
 <u>How it renders:</u>
 
-{{< block title="My Title" class="section" >}}
+{{< block title="My Title" css_class="section" >}}
 
 {{< group >}}
 

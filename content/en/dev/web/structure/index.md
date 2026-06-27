@@ -1,5 +1,5 @@
 ---
-title: Structure and organization
+title: Structure
 description: How to organize the website files.
 weight: 3
 ---

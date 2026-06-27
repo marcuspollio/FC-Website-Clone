@@ -1,6 +1,7 @@
 ---
 title: Markdown Syntax Guide
-description: Sample article showcasing basic Markdown syntax and formatting.
+linkTitle: Markdown
+description: How to use basic Markdown syntax and formatting.
 weight: 4
 ---
 

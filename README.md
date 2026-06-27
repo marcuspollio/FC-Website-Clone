@@ -36,7 +36,7 @@ When contributing to the website, keep in mind that it acts as the public face o
 
 Contributions of all kinds are welcome: content, translations, bug fixes, theme improvements, testing, documentation, bug reports, and more... Depending on the scope, some basic know-how of Git, Markdown, HTML, CSS, Javascript, YAML/JSON and Hugo template syntax is recommended. Create appropriate [feature issues](https://github.com/FreeCAD/Website/issues) to discuss substantial changes before submitting Pull Requests. Also use the appropriate [Pull Request template](https://github.com/FreeCAD/Website/pulls) and make sure reviewers are assigned.
 
-Please read the [Website introduction and Guidelines](https://freecad.github.io/Website/dev/web/).
+Please read the [Website introduction and Guidelines](https://freecad.github.io/Website/dev/web/start).
 
 For bug report, use the provided [bug issues](https://github.com/FreeCAD/Website/issues) template.
 
@@ -62,18 +62,14 @@ To understand how Hugo works, read its [Official documentation](https://gohugo.i
 
 ## CMS
 
-> [!NOTE]
-> Currently the CMS is WIP and its structure and content may change in the near future.
+A server-less Content Management System is available to manage content easily. It is based on the [Sveltia CMS](https://github.com/sveltia/sveltia-cms) project. A single JavaScript interacts with the Git repository of the website. It can be used locally on supported web browsers (currently only Chromium-based) or via a GitHub PAT login. Pages, translations and resources such as illustrations can be added, edited or deleted directly from the content panel of available collections.
 
-A server-less Content Management System is available to manage content easily. It is based on the [Sveltia CMS](https://github.com/sveltia/sveltia-cms) project. A single JavaScript interacts with the Git repository of the website. It can be used locally on supported web browsers (currently only Chromium-based) or via GitHub login. Pages, translations and resources such as illustrations can be added, edited or deleted directly from the content panel of available collections.
+Learn more [how to use the CMS](https://freecad.github.io/Website/dev/web/cms) for the FreeCAD website.
 
 
 ## Theme
 
-> [!NOTE]
-> The Trigo Theme is WIP and its structure and methods may change in the near future.
-
-The custom-made Trigo Theme is used. It is included directly in the `themes/trigo` directory. Read its [own documentation](themes/trigo/README.md) to find out more.
+The custom-made Trigo Theme is used. It is included directly in the `themes/trigo` directory. Read its [own documentation](https://freecad.github.io/Website/dev/web/theme) to find out more.
 
 
 ## License
