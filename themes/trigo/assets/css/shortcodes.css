@@ -15,7 +15,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   border-radius: var(--radius);
 }
 
-.git svg:not(.icon-external) {
+.git svg.icon:not(.external) {
   vertical-align: calc(var(--gap) * -0.125);
 }
 
@@ -452,7 +452,7 @@ input:checked + .branch :is(+ ul, .branch .open) {
   text-align: center;
 }
 
-.button-shortcode svg:not(.icon-external) {
+.button-shortcode svg.icon:not(.external) {
   vertical-align: calc(var(--gap) * -0.125);
 }
 

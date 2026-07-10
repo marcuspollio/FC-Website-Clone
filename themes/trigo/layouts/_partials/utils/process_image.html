@@ -18,6 +18,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $alt := .alt | default (i18n "image_fallback" | default "Image fallback") -}}
 {{- $attributes := .attributes | default dict -}}
 {{- $title := .title -}}
+{{- $name := .name | default (path.BaseName $image.Name) -}}
 
 {{- $resize_format := site.Params.resize_format | default "webp" -}}
 {{- $resize_dimensions := site.Params.resize_dimensions | default (slice 400 800 1600) -}}
@@ -30,43 +31,64 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $srcset := slice -}}
 {{- $sizes := slice -}}
 
-{{- /* Responsive and processable image (e.g. bmp, gif, jpg, png, tif, webp). */ -}}
-{{- if reflect.IsImageResourceProcessable $image -}}
+{{- if eq $image.MediaType.SubType "svg" -}}
 
-  {{- $width = $image.Width -}}
-  {{- $height = $image.Height -}}
+  <svg
+    class="svg {{ $name }}"
+    aria-hidden="true"
+    focusable="false"
 
-  {{- range $resize_dimensions -}}
-    {{- $resize_width := int . -}}
-    {{- if lt $resize_width $width -}}
-      {{- $resized := $image.Resize (printf "%dx %s" $resize_width $resize_format) -}}
-      {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink $resize_width) -}}
-      {{- $sizes = $sizes | append (printf "(max-width: %dpx) %dpx" $resize_width $resize_width) -}}
+    {{- range $attr, $value := $attributes -}}
+      {{- with $value -}}
+        {{- printf " %s=%q" $attr (. | transform.HTMLEscape) | safeHTMLAttr -}}
+      {{- end -}}
+    {{- end -}}>
+    <use href="{{ $src }}#{{ $name }}"></use>
+  </svg>
+
+
+{{- else -}}
+
+  {{- /* Responsive and processable image (e.g. bmp, gif, jpg, png, tif, webp). */ -}}
+  {{- if reflect.IsImageResourceProcessable $image -}}
+
+    {{- $width = $image.Width -}}
+    {{- $height = $image.Height -}}
+
+    {{- range $resize_dimensions -}}
+      {{- $resize_width := int . -}}
+      {{- if lt $resize_width $width -}}
+        {{- $resized := $image.Resize (printf "%dx %s" $resize_width $resize_format) -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink $resize_width) -}}
+        {{- $sizes = $sizes | append (printf "(max-width: %dpx) %dpx" $resize_width $resize_width) -}}
+      {{- end -}}
     {{- end -}}
+
+    {{- $srcset = $srcset | append (printf "%s %dw" $src $width) -}}
+    {{- $sizes = $sizes | append "95vw" -}}
+
+  {{- /* Non-processable and non-resizable image with metadata (e.g. avif, heic, heif). */ -}}
+  {{- else if reflect.IsImageResourceWithMeta $image -}}
+    {{- $width = $image.Width -}}
+    {{- $height = $image.Height -}}
   {{- end -}}
 
-  {{- $srcset = $srcset | append (printf "%s %dw" $src $width) -}}
-  {{- $sizes = $sizes | append "95vw" -}}
+  <img
+    class="img {{ $name }}"
+    src="{{ $src }}"
+    alt="{{ $alt }}"
+    loading="{{ $loading }}"
+    fetchpriority="{{ $priority }}"
+    decoding="{{ $decoding }}"
+    {{- with $title }} title="{{ . }}"{{ end -}}
+    {{- with $width }} width="{{ . }}"{{ end -}}
+    {{- with $height }} height="{{ . }}"{{ end -}}
+    {{- with $srcset }} srcset="{{ delimit . ", " }}" sizes="{{ delimit $sizes ", " }}"{{ end -}}
 
-{{- /* Non-processable and non-resizable image with metadata (e.g. avif, heic, heif). */ -}}
-{{- else if reflect.IsImageResourceWithMeta $image -}}
-  {{- $width = $image.Width -}}
-  {{- $height = $image.Height -}}
+    {{- range $attr, $value := $attributes -}}
+      {{- with $value -}}
+        {{- printf " %s=%q" $attr (. | transform.HTMLEscape) | safeHTMLAttr -}}
+      {{- end -}}
+    {{- end -}}>
+
 {{- end -}}
-
-<img
-  src="{{ $src }}"
-  alt="{{ $alt }}"
-  loading="{{ $loading }}"
-  fetchpriority="{{ $priority }}"
-  decoding="{{ $decoding }}"
-  {{- with $title }} title="{{ . }}"{{ end -}}
-  {{- with $width }} width="{{ . }}"{{ end -}}
-  {{- with $height }} height="{{ . }}"{{ end -}}
-  {{- with $srcset }} srcset="{{ delimit . ", " }}" sizes="{{ delimit $sizes ", " }}"{{ end -}}
-
-  {{- range $attr, $value := $attributes }}
-    {{- with $value }}
-      {{- printf " %s=%q" $attr (. | transform.HTMLEscape) | safeHTMLAttr -}}
-    {{- end }}
-  {{- end -}}>

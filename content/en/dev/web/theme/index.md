@@ -60,19 +60,17 @@ Trigo is inspired by numerous existing Hugo themes, such as PaperMod, Hextra, th
 > [!Note]
 > Capitalized words refer to specific web concepts, or relevant to the Trigo theme used in a FreeCAD website context.
 
-
 ### Theme Overview
 
 The Trigo theme is based on a standard Hugo theme structure: it uses a set of HTML wrapping template actions to transform Content, Data and Resources (in `layouts` directory), some CSS stylesheets and JavaScript (the last two in `assets`).
 Translations tables for theme `i18n` strings are used as well.
 Bundled icons are available in `assets/svg`.
 
-
 ### Style
 
 The style of the theme is defined in CSS stylesheets in `assets/css`.
 The `main.css` file defines the stylesheet files to import.
-Reusable variables are found in `vars.css` in both **Light** and **Dark** variants.
+Reusable variables (e.g. `var(--accent)`) are found in `vars.css` in both **Light** and **Dark** chroma variants.
 Some additional project-specific variables are defined the project configuration parameters (`/config/_default/params.yaml`) under the `style` key, such as `accent-color`, `font-sans`, `font-mono`, etc.
 
 General selectors and properties are in `body.css`.
@@ -83,6 +81,9 @@ The `media.css` defines the style for different devices and screen sizes via med
 The `shortcodes.css` defines the style for bundled shortcodes.
 Finally, the `custom.css` defines the style of project-specific custom partials and reusable classes.
 
+### Custom classes
+
+TODO
 
 ### Layouts
 
@@ -103,7 +104,6 @@ Default Layouts use either:
 - `term.html` for listing all relevant Pages associated with a specific Term.
 
 To organize the code and avoid duplications, the default Layouts may include **Partials** depending on the context. A Partial is just another piece of code that also performs template actions, to keep the code *DRY*.
-
 
 ### Code formatting and syntax
 

@@ -8,6 +8,8 @@ Contributions of new features, tweaks and improvements are very much welcome!
 Anyone with basic knowledge of Hugo, web standards, HTML, CSS and a bit of JavaScript will hopefully feel at ease.
 Its architecture, methods and documentation are made simple yet efficient in a *FOSS* spirit.
 
+The [website documentation](https://freecad.github.io/Website/dev/web) in the Development handbook provides usage explanations and guidelines with many detailed examples.
+
 Trigo is inspired by numerous existing Hugo themes, such as PaperMod, Hextra, the official Hugo docs theme and many more.
 
 > [!Note]

@@ -17,6 +17,8 @@ Welcome to the source of the [FreeCAD website](https://www.freecad.org)!
 
 The content, assets, theme code and style are all gathered in this repository. The site is statically generated thanks to [Hugo](https://gohugo.io/), a fast and flexible static site generator written in Golang.
 
+The [website documentation](https://freecad.github.io/Website/dev/web) in the Development handbook provides usage explanations and guidelines with many detailed examples.
+
 For other parts of FreeCAD web ecosystem, head to:
 
 - [FreeCAD software source](https://github.com/FreeCAD/FreeCAD)

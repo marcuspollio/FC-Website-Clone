@@ -15,7 +15,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
 {{- with resources.Get (printf "svg/%s.svg" $name) -}}
   <svg
-    class="icon-{{ $name }}"
+    class="icon {{ $name }}"
     aria-hidden="true"
     focusable="false">
     <use href="{{ .RelPermalink }}#{{ $name }}"></use>

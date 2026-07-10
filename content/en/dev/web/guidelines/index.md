@@ -41,6 +41,7 @@ The [CMS](cms#manage-translations) allows to edit and add translated content eas
 - Images in hero cover and page content are used to illustrate the page message and purpose, and additionally highlight related and successful projects.
 - Texts in illustrations are avoided if possible for translation reasons. Attribution and license are respected at all times. If photos depict human beings, a consent agreement is submitted accordingly.
 - It is highly recommended to add illustrations files along the page Markdown file in the same directory, using the [page bundle](https://gohugo.io/content-management/page-bundles/) approach, so they can be processed by the static site generator templates. For internal resources, relative links are used instead of absolute links.
+- Resources filenames must be slugified (e.g. `my-image.webp`), without any whitespace or special characters. Use hyphens (`-`), underscores (`_`), or simplified characters (`e` for `é`, `ue` for `ü`, etc.) instead.
 - Caption and alternate text are provided when adequate:
 
 ```md
@@ -54,6 +55,24 @@ A minimum width of about 2000 pixels is recommended. A square or landscape forma
 The theme templates resize and crop images at build time depending on their use. The Content Management System also resizes uploaded images at the correct resolution. In most cases, content contributors only need to add one WebP file about 2000px wide.
 
 Several theme [shortcodes](shortcodes) are available to enhance the layout and arrangement of multiple illustrations.
+
+### Vector graphics
+
+Scalable Vector Graphics (SVG) illustrations are supported as well, both as hero cover and page content images. For proper display and theme features support, SVG files must be formatted as below:
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg"
+  id="<NAME>"
+  viewBox="0 0 <WIDTH> <HEIGHT>">
+  ...
+</svg>
+```
+
+In the svg root node, the identifier `<NAME>` must be the slugified filename (e.g. `id="my-svg-graph"`). The `<WIDTH>` and `<HEIGHT>` of the `viewBox` must be provided based on the canvas dimensions (e.g. `viewBox="0 0 100 100"`). Do not include the `width` and `height` attributes, use the `viewBox` only.
+
+For simple vector graphics illustrations, style attributes such as `fill`, `stroke`, `font`, `text`, etc. can be specified in the svg root node. To provide two variants for the light and dark theme chroma, use the general `currentColor` property value (e.g. `stroke="currentColor"`) to rely on the theme default style, or use the CSS variables of the theme (e.g. `fill="var(--theme)"`) at the root or as inline style for each node.
+
+It is also recommended to simplify and cleanup the svg code by removing unused document resources, definitions, groups, nodes, and attributes. In most cases, one decimal precision is plenty enough and makes the file significantly lighter.
 
 
 ## Theme and configuration

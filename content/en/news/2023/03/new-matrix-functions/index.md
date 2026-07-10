@@ -9,7 +9,7 @@ tags:
   - API
 cover:
   image: MatrixLabelled.svg
-  caption: Matrix image courtesy of [mavaddat](https://commons.wikimedia.org/wiki/File:MatrixLabelled.svg)
+  caption: Matrix image courtesy of [Mavaddat](https://commons.wikimedia.org/wiki/File:MatrixLabelled.svg)
 ---
 
 

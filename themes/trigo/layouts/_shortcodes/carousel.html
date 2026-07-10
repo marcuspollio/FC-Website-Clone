@@ -89,7 +89,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
           {{- $img = resources.Get $src -}}
         {{- end -}}
 
-        {{- if and (not $img) (hasPrefix $src "http") (site.Params.allow_remote | default true) -}}
+        {{- if and
+          (not $img)
+          (hasPrefix $src "http")
+          (site.Params.allow_remote | default true)
+        -}}
 
           {{- with try (
             resources.GetRemote

@@ -22,15 +22,15 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   position: relative;
 }
 
-.icon-anchor {
+svg.icon.anchor {
   opacity: 0;
 }
 
-:is(h1, h2, h3, h4, h5, h6):hover .icon-anchor {
+:is(h1, h2, h3, h4, h5, h6):hover svg.icon.anchor {
   opacity: 1;
 }
 
-.icon-anchor, .icon-external, .icon-hash {
+svg.icon:is(.anchor, .external, .hash) {
   height: 0.75em; /* NOTE: relative size, scales with parent headers. */
   width: 0.75em;
   min-height: var(--s);
@@ -49,61 +49,61 @@ blockquote p {
   margin: 0.5rem 0 0;
 }
 
-.note {
+blockquote.note {
   background: #ddeeff;
   color: #446688;
   border-inline-start: calc(var(--line) * 2) solid #446688;
 }
 
-.tip {
+blockquote.tip {
   background: #cceedd;
   color: #226644;
   border-inline-start: calc(var(--line) * 2) solid #226644;
 }
 
-.important {
+blockquote.important {
   background: #eeddff;
   color: #664488;
   border-inline-start: calc(var(--line) * 2) solid #664488;
 }
 
-.warning {
+blockquote.warning {
   background: #ffeecc;
   color: #886622;
   border-inline-start: calc(var(--line) * 2) solid #886622;
 }
 
-.caution {
+blockquote.caution {
   background: #ffdddd;
   color: #884444;
   border-inline-start: calc(var(--line) * 2) solid #884444;
 }
 
-.dark .note {
+.dark blockquote.note {
   background: #446688;
   color: #ddeeff;
   border-inline-start: calc(var(--line) * 2) solid #ddeeff;
 }
 
-.dark .tip {
+.dark blockquote.tip {
   background: #226644;
   color: #cceedd;
   border-inline-start: calc(var(--line) * 2) solid #cceedd;
 }
 
-.dark .important {
+.dark blockquote.important {
   background: #664488;
   color: #eeddff;
   border-inline-start: calc(var(--line) * 2) solid #eeddff;
 }
 
-.dark .warning {
+.dark blockquote.warning {
   background: #886622;
   color: #ffeecc;
   border-inline-start: calc(var(--line) * 2) solid #ffeecc;
 }
 
-.dark .caution {
+.dark blockquote.caution {
   background: #884444;
   color: #ffdddd;
   border-inline-start: calc(var(--line) * 2) solid #ffdddd;
@@ -250,15 +250,20 @@ sup:target {
   text-align: center;
 }
 
-.content .image img {
+.content .image :is(img, svg) {
   max-height: var(--content-width);
+}
+
+.content .image svg {
+  height: calc(var(--content-width) * 0.75);
+  width: var(--content-width);
 }
 
 .content .image button {
   position: relative;
 }
 
-.content button[popovertarget] [class^="icon-"] {
+.content button[popovertarget] svg.icon {
   position: absolute;
   top: var(--gap);
   right: var(--gap);
@@ -275,7 +280,7 @@ sup:target {
   pointer-events: none;
 }
 
-.content button[popovertarget]:hover [class^="icon-"] {
+.content button[popovertarget]:hover svg.icon {
   color: var(--accent);
 }
 
@@ -291,18 +296,18 @@ figure .internal-tooltip {
   position: absolute;
   bottom: calc(var(--gap) * 1);
   right: var(--gap);
-  color: var(--cover);
+  color: var(--secondary);
   z-index: 1;
 }
 
-.content button[popovertarget]:not(.close) {
+.content button[popovertarget]:not(.enlarged) {
   cursor: zoom-in;
   margin: auto;
   text-align: center;
   transition: var(--transition);
 }
 
-.content .image button:not(.close):hover {
+.content .image button:not(.enlarged):hover {
   filter: var(--filter);
   transform: var(--transform-hover);
 }
@@ -322,15 +327,20 @@ figure .internal-tooltip {
   background: var(--backdrop);
 }
 
-.content .close {
+.content .enlarged {
   max-width: calc(100vw - (var(--gap) * 4));
   border-radius: var(--radius);
   cursor: zoom-out;
 }
 
-.content .close img {
+.content .enlarged img {
   width: auto;
   max-height: calc(100vh - (var(--gap) * 4));
+}
+
+.content .enlarged svg.svg {
+  height: calc(100vh - (var(--gap) * 4));
+  width: calc(100vw - (var(--gap) * 4));
 }
 
 .content [popover] p {
@@ -384,7 +394,7 @@ figure .internal-tooltip {
   transition: var(--transition);
 }
 
-.cards-title svg:not(.icon-external) {
+.cards-title svg.icon:not(.external) {
   vertical-align: calc(var(--gap) * -0.125);
 }
 
@@ -572,12 +582,12 @@ figure .internal-tooltip {
   display: block;
 }
 
-.toc-checkbox:checked + .toc-toggle .icon-cross {
+.toc-checkbox:checked + .toc-toggle svg.icon.cross {
   display: inline;
 }
 
-.toc-toggle .icon-cross,
-.toc-checkbox:checked + .toc-toggle .icon-toc {
+.toc-toggle svg.icon.cross,
+.toc-checkbox:checked + .toc-toggle svg.icon.expand {
   display: none;
 }
 
@@ -656,7 +666,7 @@ figure .internal-tooltip {
   padding: var(--gap) calc((100vw - var(--width)) * 0.5);
 }
 
-.pagination svg:not(.icon-external) {
+.pagination svg.icon:not(.external) {
   vertical-align: -0.125rem;
 }
 

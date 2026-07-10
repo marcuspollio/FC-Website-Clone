@@ -37,7 +37,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 {{- $resource := "" -}}
 
 {{- /* Remote resource. */ -}}
-{{- if and (hasPrefix $url.Scheme "http")
+{{- if and
+  (hasPrefix $url.Scheme "http")
   (site.Params.allow_remote | default true)
 -}}
 
@@ -103,7 +104,7 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
         </button>
         <div id="{{ $id }}" popover>
           <button
-            class="close"
+            class="enlarged"
             popovertarget="{{ $id }}"
             popovertargetaction="hide"
             aria-label="{{ $close }}">

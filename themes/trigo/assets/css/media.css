@@ -126,9 +126,8 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
     padding: var(--gap);
   }
 
-  .toc-toggle .icon-toc {
+  .toc-toggle svg.icon.expand {
     height: var(--l);
-    width: var(--l);
   }
 
   .toc-checkbox:checked + .toc-toggle {

@@ -79,7 +79,8 @@ To maintain consistency, the FreeCAD logo should only be used as suggested above
 You should **not** alter colors, shape, style, or apply any effects such as gradients, borders, shadows, or outlines.
 
 We have made some examples of what **not** to do when using the logo:
-![Guidelines](guidelines.svg)
+
+![Guidelines](guidelines.svg "Guidelines")
 
 
 ## PDF Guidelines

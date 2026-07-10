@@ -12,7 +12,10 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 */ -}}
 
 
-{{- if site.Params.enable_cms -}}
+{{- if and
+  site.Params.enable_cms
+  (site.Params.allow_remote | default true)
+-}}
 
   <!DOCTYPE html>
   <html lang="{{ site.Language.Locale }}"

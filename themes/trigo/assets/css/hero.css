@@ -185,7 +185,7 @@ input:checked + .button,
   color: var(--accent-hover);
 }
 
-.meta :is(a, span):not([class*="icon-"], :last-of-type):after {
+.meta :is(a, span):not(svg.icon, :last-of-type):after {
   content: " · ";
 }
 
@@ -196,4 +196,14 @@ input:checked + .button,
   max-width: var(--width);
   max-height: calc(var(--width) * 0.5);
   z-index: 1;
+}
+
+.cover svg.svg {
+  width: auto;
+  min-width: calc(var(--width) * 0.5);
+  max-width: var(--width);
+  height: calc(var(--width) * 0.25);
+  margin-inline: calc(var(--gap) * 0.25);
+  color: inherit;
+  transition: var(--transition);
 }

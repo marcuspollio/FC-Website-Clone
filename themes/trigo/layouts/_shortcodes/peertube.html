@@ -101,7 +101,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
 
   {{- /* Get data from API. */ -}}
   {{- $data := "" -}}
-  {{- if and $api (site.Params.allow_remote | default true) -}}
+
+  {{- if and
+    $api
+    (site.Params.allow_remote | default true)
+  -}}
 
     {{- with try (
       resources.GetRemote

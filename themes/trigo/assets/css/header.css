@@ -74,11 +74,11 @@ SPDX-FileNotice: Part of the Trigo theme for Hugo.
   width: var(--l);
 }
 
-html.dark .site-nav .icon-dark {
+html.dark .site-nav svg.icon.dark {
   display: none;
 }
 
-html:not(.dark) .site-nav .icon-light {
+html:not(.dark) .site-nav svg.icon.light {
   display: none;
 }
 
@@ -89,12 +89,12 @@ html:not(.dark) .site-nav .icon-light {
   display: block;
 }
 
-.menu:has(#menu-list:popover-open) .icon-hamburger,
-.menu:has(:not(#menu-list:popover-open)) .icon-cross {
+.menu:has(#menu-list:popover-open) svg.icon.hamburger,
+.menu:has(:not(#menu-list:popover-open)) svg.icon.cross {
   display: none;
 }
 
-.menu:has(#menu-list:popover-open) .icon-cross {
+.menu:has(#menu-list:popover-open) svg.icon.cross {
   display: block;
 }
 

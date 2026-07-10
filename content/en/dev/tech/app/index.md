@@ -11,4 +11,4 @@ Application Modules provide specialized functions and may store specialized data
 
 Application Modules are almost always divided into two parts: App which manages the relevant document objects and operations on them, and Gui which handles the display.
 
-![Overview of an Application Module](schema.svg)
+![Application Module Overview](schema.svg "Application Module Overview")

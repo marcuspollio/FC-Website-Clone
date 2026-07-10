@@ -126,7 +126,7 @@ img {
   border-radius: var(--radius);
 }
 
-[class^="icon-"] {
+svg.icon {
   height: var(--m);
   width: var(--m);
   margin-inline: calc(var(--gap) * 0.25);
